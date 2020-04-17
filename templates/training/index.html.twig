@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations web et bureautique avancée{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <!-- section title -->
+    
+    <h1 class="mt-5 text-center display-4">Formations proposées</h1>
+    <p class="title-line">
+        <span class="fa-stack">
+            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle fa-stack-1x"></i>
+        </span>
+    </p>
+    <hr>
+
+    <div class="row my-5 justify-content-around">
+        {% for training in trainings %}
+        <!-- a card -->
+        <div class="col-md-5">
+            <div class="card mb-3">
+                <h3 class="card-header">{{ training.title }}</h3>
+                <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
+                    alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">{{ training.duration }}</p>
+                    <p class="card-text">{{ training.excerpt }}
+                    </p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="#" class="card-link">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+        <!-- end of a card -->
+
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
