@@ -1,0 +1,24 @@
+#slider {
+    background: center / cover url('../img/slider.jpg') no-repeat;
+}
+
+.title-line{
+    font-size: 0.8em;
+    color:#E95420;
+    text-align:center;
+}
+
+hr{
+    padding: 0 0 0 0;
+    width:30%;
+    margin:-30px auto 5rem auto;
+    border: 1px solid #d3d3d3;
+}
+
+#portfolio{
+    background-color: #F0F0F0;
+}
+
+.icones-blanc { color:#fff; }
+.icones-gris { color: #f0f0f0; }
+.icones-blanc { color:#fff; }
