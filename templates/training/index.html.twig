@@ -4,10 +4,9 @@
 
 {% block body %}
 
-<div class="container">
     <!-- section title -->
-    
-    <h1 class="mt-5 text-center display-4">Formations proposées</h1>
+<div class="container">
+    <h1 class="mt-5 text-center display-4 h2">Formations proposées</h1>
     <p class="title-line">
         <span class="fa-stack">
             <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
@@ -15,22 +14,29 @@
         </span>
     </p>
     <hr>
+    <div class="row my-5 justify-content-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Toutes</button>
+            <button type="button" class="btn btn-secondary">Web</button>
+            <button type="button" class="btn btn-secondary">Bureautique</button>
+        </div>
+    </div>
+
 
     <div class="row my-5 justify-content-around">
         {% for training in trainings %}
         <!-- a card -->
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="card mb-3">
                 <h3 class="card-header">{{ training.title }}</h3>
                 <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
                     alt="Card image">
                 <div class="card-body">
-                    <p class="card-text">{{ training.duration }}</p>
                     <p class="card-text">{{ training.excerpt }}
                     </p>
                 </div>
                 <div class="card-footer text-muted">
-                    <a href="#" class="card-link">En savoir plus</a>
+                    <a href="{{ path('training_show', { 'slug' : training.slug }) }}" class="card-link">En savoir plus</a>
                 </div>
             </div>
         </div>

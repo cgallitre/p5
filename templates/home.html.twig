@@ -1,29 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Formateur développeur à Tours (37)
+Formateur développeur à Tours (37)
 {% endblock %}
 
 {% block body %}
-<!-- slider -->
-<div class="p-3 text-center min-vw-95 min-vh-100" id="slider">
 
-    <h1 class="display-3 p-5">Formateur développeur</h1>
-    <p class="lead">Formations et sites web sur mesure</p>
-    <br>
-    <p>HTML - CSS - JavaScript - PHP - MySQL<br>
-        Excel VBA - Windev - Power BI</p>
-    <br>
-    <p class="lead text-center">
-        <a class="btn btn-primary btn-lg" href="#offer" role="button">Offre de services</a>
-    </p>
+<!-- slider -->
+<div class="vw-95 vh-100" id="slider">
+    <div class="text-center pt-5">
+        <h1 class="display-5 pt-5">Formateur développeur</h1>
+        <p class="lead">Formations et sites web sur mesure</p>
+        <br>
+        <p>HTML - CSS - JavaScript - PHP - MySQL<br>
+            Excel VBA - Windev - Power BI</p>
+        <br>
+        <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="#services" role="button">Offre de services</a>
+        </p>
+    </div>
 </div>
 <!-- end slider -->
+
 <!-- Services -->
-<div class="container mb-5">
+<div class="mb-5 py-5 container" id="services">
     <!-- section title -->
-    <br class="my-3" id="offer">
-    <h2 class="mt-5 text-center display-4">Offre de services</h2>
+    <h2 class="mt-5 text-center display-4" >Offre de services</h2>
     <p class="title-line">
         <span class="fa-stack">
             <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
@@ -36,7 +38,7 @@
         <!-- a card -->
         <div class="col-md-5">
             <div class="card mb-3">
-                <h3 class="card-header">Formations</h3>
+                <h4 class="card-header">Formations</h4>
                 <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
                     alt="Card image">
                 <div class="card-body">
@@ -50,16 +52,17 @@
             </div>
         </div>
         <!-- end of a card -->
-        
+
         <!-- a card -->
         <div class="col-md-5">
             <div class="card mb-3">
-                <h3 class="card-header">Développement</h3>
+                <h4 class="card-header">Développement</h4>
                 <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
                     alt="Card image">
                 <div class="card-body">
                     <p class="card-text">Application web ou de bureau ? Vous avez le choix. Les sites sont
-                        généralement développés en PHP/Symfony et les applications de gestion avec Windev ou Excel VBA.
+                        généralement développés en PHP/Symfony et les applications de gestion avec Windev ou Excel
+                        VBA.
                     </p>
                 </div>
                 <div class="card-footer text-muted">
@@ -74,67 +77,93 @@
 <!-- End Services -->
 
 <!-- Portfolio -->
-<div id="portfolio" class="mt-5">
-    <div class="container">
-        <!-- section title -->
-        <br class="my-3">
-        <h2 class="mt-5 text-center display-4">Réalisations</h2>
-        <p class="title-line">
-            <span class="fa-stack">
-                <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
-                <i class="fas fa-circle fa-stack-1x"></i>
-            </span>
-        </p>
-        <hr>
-        <!-- end of section title -->
-        <div class="row mt-3 justify-content-around">
-            <!-- one ref -->
-            <div class="col-md-3">
-                <div class="card border-light mb-3" style="max-width: 20rem;">
-                    <div class="card-header">PHP : Poo et MVC</div>
-                    <div class="card-body">
-                        <h4 class="card-title">Blog pour écrivain</h4>
-                        <img src="http://placehold.it/250x150" alt="" srcset="">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
-                    </div>
-                </div>
-            </div <!-- end one ref -->
-            <!-- one ref -->
-            <div class="col-md-3">
-                <div class="card border-light mb-3" style="max-width: 20rem;">
-                    <div class="card-header">Javascript</div>
-                    <div class="card-body">
-                        <h4 class="card-title">Réservation de vélo</h4>
-                        <img src="http://placehold.it/250x150" alt="" srcset="">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
-                    </div>
+<div id="portfolio" class="my-5 py-5">
+    <!-- section title -->
+    <h2 class="mt-5 text-center display-4">Réalisations</h2>
+    <p class="title-line">
+        <span class="fa-stack">
+            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle fa-stack-1x"></i>
+        </span>
+    </p>
+    <hr>
+    <!-- end of section title -->
+    <div class="row mt-3 justify-content-around">
+        <!-- one ref -->
+        <div class="col-md-3">
+            <div class="card border-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">PHP : Poo et MVC</div>
+                <div class="card-body">
+                    <h4 class="card-title">Blog pour écrivain</h4>
+                    <img src="http://placehold.it/200x100" alt="" srcset="">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's
+                        content.</p>
                 </div>
             </div>
-            <!-- end one ref -->
-            <!-- one ref -->
-            <div class="col-md-3">
-                <div class="card border-light mb-3" style="max-width: 20rem;">
-                    <div class="card-header">Windev</div>
-                    <div class="card-body">
-                        <h4 class="card-title">Application de gestion</h4>
-                        <img src="http://placehold.it/250x150" alt="" srcset="">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- end one ref -->
         </div>
+        <!-- end one ref -->
+        <!-- one ref -->
+        <div class="col-md-3">
+            <div class="card border-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">PHP : Poo et MVC</div>
+                <div class="card-body">
+                    <h4 class="card-title">Blog pour écrivain</h4>
+                    <img src="http://placehold.it/200x100" alt="" srcset="">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's
+                        content.</p>
+                </div>
+            </div>
+        </div>
+        <!-- end one ref -->
+        <!-- one ref -->
+        <div class="col-md-3">
+            <div class="card border-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">PHP : Poo et MVC</div>
+                <div class="card-body">
+                    <h4 class="card-title">Blog pour écrivain</h4>
+                    <img src="http://placehold.it/200x100" alt="" srcset="">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's
+                        content.</p>
+                </div>
+            </div>
+        </div>
+        <!-- end one ref -->
     </div>
 </div>
 <!-- End Portfolio -->
+
+<!-- Testimonials -->
+<div class="my-5 py-5 container">
+    <!-- section title -->
+    <h2 class="mt-3 text-center display-4" id="testimonials">Témoignages</h2>
+    <p class="title-line">
+        <span class="fa-stack">
+            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle fa-stack-1x"></i>
+        </span>
+    </p>
+    <hr>
+    <blockquote class="blockquote text-center">
+        <p>"Cyril intervient en Master 1 Finance et M2 Finance à l’IGR-IAE de Rennes pour former des étudiants en
+            programmation Excel VBA.</p>
+        <p>
+            Toujours très réactif et doté de réelles qualités pédagogiques, il est très apprécié par les étudiants tant
+            pour
+            la grande clarté de ses explications que pour ses compétences techniques. Les étudiants s’avèrent rapidement
+            autonomes pour créer leurs propres programmes en VBA sur des problèmes financiers.
+            Je le recommande sans réserve."</p>
+        <footer class="blockquote-footer">Jean-Jacques Lilti<br>
+            (Professeur des Universités / Responsable du Master Finance – IGR-IAE de Rennes / Université de Rennes 1)
+        </footer>
+    </blockquote>
+</div>
+
+<!-- End testimonials -->
 
 {% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ training.title }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <!-- section title -->
+    <h1 class="mt-5 text-center display-5">{{ training.title}}</h1>
+    <p class="title-line">
+        <span class="fa-stack">
+            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle fa-stack-1x"></i>
+        </span>
+    </p>
+    <hr>
+    <!-- end of section title -->
+
+    <div id="content" class="row my-5 py-5">
+        <div class="col-md-4 px-5">
+            <h3>Présentation</h3>
+            <p>{{ training.excerpt }}</p>
+            {% if training.objectives  %}
+            <h3>Objectifs pédagogiques</h3>
+            <p>{{ training.objectives }}</p>
+            {% endif %}
+            {% if training.public %}
+            <h3>Public</h3>
+            <p>{{ training.public }}</p>
+            {% endif %}
+            {% if training.level %}
+            <h3>Niveau requis</h3>
+            <p>{{ training.level }}</p>
+            {% endif %}
+            <h3>Durée indicative</h3>
+            <p>{{ training.duration }}</p>
+
+        </div>
+        <div class="col-md-8 px-5">
+            <h3>Programme (indicatif)</h3>
+            <p>{{ training.program | raw }}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

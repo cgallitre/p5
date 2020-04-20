@@ -1,3 +1,4 @@
+
 #slider {
     background: center / cover url('../img/slider.jpg') no-repeat;
 }
@@ -10,13 +11,18 @@
 
 hr{
     padding: 0 0 0 0;
-    width:30%;
+    width:25%;
     margin:-30px auto 5rem auto;
     border: 1px solid #d3d3d3;
 }
 
 #portfolio{
-    background-color: #F0F0F0;
+    background-color: #E9ECEF;
+}
+
+#footer {
+    background-color: rgb(110, 110, 110);
+    color: white;
 }
 
 .icones-blanc { color:#fff; }
