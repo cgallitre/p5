@@ -8,10 +8,6 @@
 
     {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Réalisations' } %}
 
-        <p class="text-center">
-        <a href="{{ path('portfolio_create') }}" class="btn btn-primary">Ajouter une référence</a>
-    </p>
-
     <div class="row mt-3 justify-content-around">
         <!-- one ref -->
         {% for portfolio in portfolios %}

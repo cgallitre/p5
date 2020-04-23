@@ -51,12 +51,64 @@ class TestimonialController extends AbstractController
                 "Le témoignage de <strong>{$testimonial->getAuthor()}</strong> a bien été enregistré."
             );
 
-            return $this->redirectToRoute('testimonial_index');
+            return $this->redirectToRoute('testimonial_list');
         }
 
 
         return $this->render('testimonial/new.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Modification d'un témoignage
+     * 
+     * @Route("/temoignages/{id}/edit", name="testimonial_edit")
+     *
+     * @return void
+     */
+    public function edit(Testimonial $testimonial, Request $request)
+    {
+        $form = $this->createForm(TestimonialType::class, $testimonial);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            $manager->persist($testimonial);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le témoignage de <strong>{$testimonial->getAuthor()}</strong> a bien été modifié."
+            );
+
+            return $this->redirectToRoute('testimonial_list');
+        }
+
+
+        return $this->render('testimonial/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Suppression d'un témoignage
+     * @Route("/temoignages/{id}/delete", name="testimonial_delete")
+     *
+     * @return void
+     */
+    public function delete(Testimonial $testimonial)
+    {
+        $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+        $manager->remove($testimonial);
+        $manager->flush();
+    
+        $this->addFlash(
+                'success',
+                "Le témoignage de <strong>{$testimonial->getAuthor()}</strong> a bien été supprimé."
+            );
+    
+            return $this->redirectToRoute('testimonial_list');
     }
 }

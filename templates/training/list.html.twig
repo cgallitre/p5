@@ -10,22 +10,29 @@
     <p class="text-center pb-5">
         <a href="{{ path('training_create') }}" class="btn btn-primary">Ajouter une formation</a>
     </p>
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Nom de la formation</th>
-                <th scope="col">Commandes</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for training in trainings %}
-            <tr>
-                <td>{{ training.title }}</td>
-                <td></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom de la formation</th>
+                    <th scope="col" width="100px">Commandes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for training in trainings %}
+                <tr>
+                    <td>{{ training.title }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('training_edit', { 'slug' : training.slug }) }}"><i
+                                class="fas fa-file fa-2x"></i></a>
+                        &emsp;
+                        <a href="{{ path('training_delete', {'slug' : training.slug }) }}"><i
+                                class="fas fa-trash fa-2x"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

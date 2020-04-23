@@ -16,22 +16,25 @@ class TrainingType extends AbstractType
      *
      * @param string $label
      * @param string $placeholder
+     * @param array $options
      * @return array 
      */
-    private function getConfiguration($label, $placeholder=null){
-        return [
+    private function getConfiguration($label, $placeholder=null, $options = []){
+        return array_merge([
             'label' => $label,
             'attr' => [
                 'placeholder' => $placeholder
             ]
-        ] ;
+            ], $options) ;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, $this->getConfiguration("Titre", "Nom de la formation"))
-            ->add('slug', TextType::class, $this->getConfiguration("URL", "Générée automatiquement si omis"))
+            ->add('slug', TextType::class, $this->getConfiguration("URL", "Générée automatiquement si omis", [
+                'required' => false
+            ]))
             ->add('excerpt', TextType::class, $this->getConfiguration("Présentation", "Résumé de la formation"))
             ->add('duration', TextType::class, $this->getConfiguration("Durée de la formation", "En jours ou heures"))
             ->add('objectives', TextareaType::class, $this->getConfiguration("Objectifs pédagogiques"))

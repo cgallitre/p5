@@ -51,7 +51,7 @@ class PortfolioController extends AbstractController
                 "La référence de <strong>{$portfolio->getTitle()}</strong> a bien été enregistrée."
             );
 
-            return $this->redirectToRoute('portfolio_index');
+            return $this->redirectToRoute('portfolio_list');
         }
 
         return $this->render('portfolio/new.html.twig', [
@@ -73,5 +73,55 @@ class PortfolioController extends AbstractController
         return $this->render('portfolio/list.html.twig', [
             'portfolios' => $portfolios
         ]);
+    }
+
+    /**
+     * Modifier une référence
+     *
+     * @Route("/portfolio/{id}/edit", name="portfolio_edit")
+     * @return Response
+     */
+    public function edit(Request $request, Portfolio $portfolio)
+    {
+        $form = $this->createForm(PortfolioType::class, $portfolio);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            $manager->persist($portfolio);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "La référence de <strong>{$portfolio->getTitle()}</strong> a bien été modifiée."
+            );
+
+            return $this->redirectToRoute('portfolio_list');
+        }
+
+        return $this->render('portfolio/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Suppression d'une référence
+     *
+     * @Route("/portfolio/{id}/delete", name="portfolio_delete")
+     * @return Response
+     */
+    public function delete(Portfolio $portfolio)
+    {
+        $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+        $manager->remove($portfolio);
+        $manager->flush();
+    
+        $this->addFlash(
+                'success',
+                "La référence <strong>{$portfolio->getTitle()}</strong> a bien été supprimée."
+            );
+    
+        return $this->redirectToRoute('portfolio_list');
     }
 }

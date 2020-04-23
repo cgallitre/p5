@@ -21,7 +21,7 @@ class TestimonialType extends AbstractType
                 ]
             ])
             ->add('author', TextType::class, [
-                'label' => 'Votre nom',
+                'label' => 'Votre signature',
                 'attr' => [
                     'placeholder' => 'Laissez votre nom ainsi que votre fonction et entreprise'
                 ]

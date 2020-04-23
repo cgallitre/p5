@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrainingRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("slug")
  */
 class Training
 {

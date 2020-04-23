@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une formation{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\une formation' } %}
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Modifier la formation</button>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

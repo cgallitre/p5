@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TestimonialRepository")
@@ -19,11 +20,27 @@ class Testimonial
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 1000,
+     *      minMessage = "Le message doit au moins faire 10 caractères",
+     *      maxMessage = "Le message ne peut dépasser 1000 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le message est obligatoire")
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "La signature doit faire au moins 10 caractères",
+     *      maxMessage = "La signature ne peut pas dépasser 255 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "La signature est obligatoire")
      */
     private $author;
 

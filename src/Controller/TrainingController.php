@@ -83,6 +83,63 @@ class TrainingController extends AbstractController
     }
 
     /**
+     * Edition d'une formation
+     *
+     * @Route("/formations/{slug}/edit", name = "training_edit"
+     * )
+     * @return Response
+     */
+    public function edit(Training $training, Request $request)
+    {
+        $form = $this->createForm(TrainingType::class, $training);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            $manager->persist($training);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "La modification de la formation <strong>{$training->getTitle()}</strong> a bien été enregistrée."
+            );
+
+            // return $this->redirectToRoute('training_show', [
+            //     'slug' => $training->getSlug()
+            // ]);
+
+            return $this->redirectToRoute('training_list');
+        }
+
+        return $this->render('training/edit.html.twig', [
+            'form' => $form->createView()
+         ]);
+    }
+
+    /**
+     * Suppression d'une formation
+     *
+     * @Route("/formations/{slug}/delete", name="training_delete")
+     * 
+     * @return Response
+     */
+    public function delete(Training $training)
+    {
+        $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+        $manager->remove($training);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "La formation <strong>{$training->getTitle()}</strong> a bien été supprimée."
+        );
+
+        return $this->redirectToRoute('training_list');
+    }
+
+    /**
      * Show one training
      *
      * @Route("/formations/{slug}", name="training_show")

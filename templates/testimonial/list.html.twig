@@ -11,24 +11,36 @@
     </p>
 
     <p class="text-center mb-5">Les témoignages en couleur ne sont pas encore publiés.</p>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Auteur</th>
-                <th scope="col">Création</th>
-                <th scope="col">Contenu</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for testimonial in testimonials %}
-            <tr class="table-{% if testimonial.published %}light{% else %}primary{% endif %}">
-                <td>{{ testimonial.author }}</td>
-                <td>{{ testimonial.createdAt | date('d/m/Y') }}</td>
-                <td>{{ testimonial.content }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Création</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col" width="100px">Commandes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for testimonial in testimonials %}
+                <tr class="table-{% if testimonial.published %}light{% else %}primary{% endif %}">
+                    <td>{{ testimonial.author }}</td>
+                    <td>{{ testimonial.createdAt | date('d/m/Y') }}</td>
+                    <td>{{ testimonial.content }}</td>
+                    <td>
+                        <a href="{{ path('testimonial_edit', { 'id' : testimonial.id }) }}">
+                            <i class="fas fa-file fa-2x"></i>
+                        </a>
+                        &emsp;
+                        <a href="{{ path('testimonial_delete', {'id' : testimonial.id }) }}">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
