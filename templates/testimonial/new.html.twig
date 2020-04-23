@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un témoignages{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Transmettre un témoignage' } %}
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <button type="submit" class="btn btn-primary">Soumettre le témoignage</button>
+
+        {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

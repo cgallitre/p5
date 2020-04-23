@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="{{ path('homepage') }}">
+        <i class="fas fa-code"></i>
+        CG
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto align-items-center">
+            <li class="nav-item">
+                <a href="{{ path('homepage') }}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}#services_homepage">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}#portfolio_homepage">Réalisations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}#testimonial_homepage">Témoignages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#contactModal">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('homepage') }}">A propos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#accountModal">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{# Affiche les messages flash #}
+{% for label, messages in app.flashes %}
+<div class="container mt-3">
+    <div class="alert alert-{{ label }}">
+        {% for message in messages %}
+        <p>{{ message | raw }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+{# Modal form for contact #}
+<!-- Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Envoyer un message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Modal form for account #}
+<!-- Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountModalLabel">Se connecter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Connexion</button>
+            </div>
+        </div>
+    </div>
+</div>

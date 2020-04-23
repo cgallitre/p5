@@ -6,15 +6,16 @@
 
 {% block body %}
 <div class="container">
-    <!-- section title -->
-    <h1 class="mt-5 text-center display-5" >Ajout d'une formation</h1>
-    <p class="title-line">
-        <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
-            <i class="fas fa-circle fa-stack-1x"></i>
-        </span>
-    </p>
-    <hr>
-    <!-- end of section title -->
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter une formetion' } %}
+    
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Créer la formation</button>
+
+    {{ form_end(form) }}
+
+
 </div>
 {% endblock %}

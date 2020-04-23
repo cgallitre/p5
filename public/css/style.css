@@ -1,3 +1,6 @@
+body {
+    padding-top: 55px;
+}
 
 #slider {
     background: center / cover url('../img/slider.jpg') no-repeat;
@@ -16,7 +19,7 @@ hr{
     border: 1px solid #d3d3d3;
 }
 
-#portfolio{
+#portfolio_homepage{
     background-color: #E9ECEF;
 }
 
@@ -27,4 +30,11 @@ hr{
 
 .icones-blanc { color:#fff; }
 .icones-gris { color: #f0f0f0; }
-.icones-blanc { color:#fff; }
+.icones-orange { color:#E95420; }
+
+.carousel-item.active {
+    display:block;
+    max-width: 70%;
+    margin-left : auto;
+    margin-right : auto;
+}

@@ -7,7 +7,7 @@ Formateur développeur à Tours (37)
 {% block body %}
 
 <!-- slider -->
-<div class="vw-95 vh-100" id="slider">
+<div class="vw-100 vh-100" id="slider">
     <div class="text-center pt-5">
         <h1 class="display-5 pt-5">Formateur développeur</h1>
         <p class="lead">Formations et sites web sur mesure</p>
@@ -16,73 +16,89 @@ Formateur développeur à Tours (37)
             Excel VBA - Windev - Power BI</p>
         <br>
         <p class="lead text-center">
-            <a class="btn btn-primary btn-lg" href="#services" role="button">Offre de services</a>
+            <a class="btn btn-primary btn-lg" href="#services_homepage" role="button">Offre de services</a>
         </p>
     </div>
 </div>
 <!-- end slider -->
 
 <!-- Services -->
-<div class="mb-5 py-5 container" id="services">
-    <!-- section title -->
-    <h2 class="mt-5 text-center display-4" >Offre de services</h2>
+<div class="mb-5 py-5 container" id="services_homepage">
+    <h2 class="mt-5 text-center display-5">Offre de services</h2>
     <p class="title-line">
         <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
             <i class="fas fa-circle fa-stack-1x"></i>
         </span>
     </p>
     <hr>
-    <!-- end of section title -->
+
     <div class="row mt-3 justify-content-around">
-        <!-- a card -->
-        <div class="col-md-5">
-            <div class="card mb-3">
-                <h4 class="card-header">Formations</h4>
-                <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
-                    alt="Card image">
-                <div class="card-body">
-                    <p class="card-text">Pour un centre de formation ou pour une entreprise, je vous propose des
-                        formations en bureautique avancée et développement web.</p>
-                </div>
 
-                <div class="card-footer text-muted">
-                    <a href="{{ path('training_index') }}" class="card-link">Voir tous les programmes</a>
+        <div class="col-md-6 align-top mb-3">
+            <img src="/img/services.jpg" alt="Formateur développeur devant son bureau" class="img-fluid">
+        </div>
+
+        <div class="col-md-6 align-top">
+            <!-- Service Développement-->
+            <div class="one-service">
+                <!-- Logo -->
+                <div class="row">
+                    <div class="col-3-offset-1">
+                        <span class="fa-stack fa-2x align-top">
+                            <i class="far fa-circle fa-stack-2x icones-gris"></i>
+                            <i class="far fa-circle fa-stack-1x icones-blanc"></i>
+                            <i class="fas fa-file-code fa-stack-1x icones-orange"></i>
+                        </span>
+                    </div>
+                    <!-- Développement contenu textuel-->
+                    <div class="col-9 align-top">
+                        <div class="text-service">
+                            <h3>Développement</h3>
+                            <p>Application web ou de bureau ? Vous avez le choix. Les sites sont généralement développés
+                                avec PHP/Symfony et les applications de gestion avec Windev ou Excel VBA.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- end of a card -->
+            <!-- Service Formation -->
+            <div class="one-service">
+                <!-- Logo -->
+                <div class="row">
+                    <div class="col-3-offset-1">
+                        <span class="fa-stack fa-2x align-top">
+                            <i class="far fa-circle fa-stack-2x icones-gris"></i>
+                            <i class="far fa-circle fa-stack-1x icones-blanc"></i>
+                            <i class="fas fa-user-graduate fa-stack-1x icones-orange"></i>
+                        </span>
+                    </div>
+                    <!-- Formaton contenu textuel-->
+                    <div class="col-9 align-top">
+                        <div class="text-service">
+                            <h3>Formation</h3>
+                            <p>Pour un centre de formation ou pour une entreprise, je propose des
+                                formations en bureautique avancée et développement web.</p>
 
-        <!-- a card -->
-        <div class="col-md-5">
-            <div class="card mb-3">
-                <h4 class="card-header">Développement</h4>
-                <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
-                    alt="Card image">
-                <div class="card-body">
-                    <p class="card-text">Application web ou de bureau ? Vous avez le choix. Les sites sont
-                        généralement développés en PHP/Symfony et les applications de gestion avec Windev ou Excel
-                        VBA.
-                    </p>
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="#portfolio" class="card-link">Découvrir des exemples</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <p class="lead text-center py-3">
+                <a class="btn btn-primary btn-lg text-center" href="{{ path('training_index') }}">Tous les programmes de formation</a>
+            </p>
         </div>
-        <!-- end of a card -->
-
     </div>
 </div>
 <!-- End Services -->
 
 <!-- Portfolio -->
-<div id="portfolio" class="my-5 py-5">
-    <!-- section title -->
-    <h2 class="mt-5 text-center display-4">Réalisations</h2>
+
+<div id="portfolio_homepage" class="container-fluid my-5 py-5">
+    <h2 class="mt-5 text-center display-5">Réalisations</h2>
     <p class="title-line">
         <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle fa-stack-2x icones-blanc"></i>
             <i class="fas fa-circle fa-stack-1x"></i>
         </span>
     </p>
@@ -90,78 +106,64 @@ Formateur développeur à Tours (37)
     <!-- end of section title -->
     <div class="row mt-3 justify-content-around">
         <!-- one ref -->
-        <div class="col-md-3">
+        {% for portfolio in portfolios %}
+        <div class="col-md-4-offset">
             <div class="card border-light mb-3" style="max-width: 20rem;">
-                <div class="card-header">PHP : Poo et MVC</div>
+                <h3 class="card-header">{{ portfolio.title }}</h3>
                 <div class="card-body">
-                    <h4 class="card-title">Blog pour écrivain</h4>
-                    <img src="http://placehold.it/200x100" alt="" srcset="">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's
-                        content.</p>
+                    <h5 class="card-title">{{ portfolio.technology }}</h5>
+                </div>
+                <img style="height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}">
+                <div class="card-body">
+                    <p class="card-text">{{ portfolio.description | raw }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
                 </div>
             </div>
         </div>
-        <!-- end one ref -->
-        <!-- one ref -->
-        <div class="col-md-3">
-            <div class="card border-light mb-3" style="max-width: 20rem;">
-                <div class="card-header">PHP : Poo et MVC</div>
-                <div class="card-body">
-                    <h4 class="card-title">Blog pour écrivain</h4>
-                    <img src="http://placehold.it/200x100" alt="" srcset="">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's
-                        content.</p>
-                </div>
-            </div>
-        </div>
-        <!-- end one ref -->
-        <!-- one ref -->
-        <div class="col-md-3">
-            <div class="card border-light mb-3" style="max-width: 20rem;">
-                <div class="card-header">PHP : Poo et MVC</div>
-                <div class="card-body">
-                    <h4 class="card-title">Blog pour écrivain</h4>
-                    <img src="http://placehold.it/200x100" alt="" srcset="">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's
-                        content.</p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
         <!-- end one ref -->
     </div>
+    <p class="lead text-center py-3">
+        <a class="btn btn-primary btn-lg text-center" href="{{ path('portfolio_index') }}">En découvrir plus...</a>
+    </p>
 </div>
 <!-- End Portfolio -->
 
+
 <!-- Testimonials -->
-<div class="my-5 py-5 container">
-    <!-- section title -->
-    <h2 class="mt-3 text-center display-4" id="testimonials">Témoignages</h2>
+<div class="mb-5 py-5 container" id="testimonial_homepage">
+    <h2 class="mt-5 text-center display-5">Témoignages</h2>
     <p class="title-line">
         <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
+            <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
             <i class="fas fa-circle fa-stack-1x"></i>
         </span>
     </p>
     <hr>
-    <blockquote class="blockquote text-center">
-        <p>"Cyril intervient en Master 1 Finance et M2 Finance à l’IGR-IAE de Rennes pour former des étudiants en
-            programmation Excel VBA.</p>
-        <p>
-            Toujours très réactif et doté de réelles qualités pédagogiques, il est très apprécié par les étudiants tant
-            pour
-            la grande clarté de ses explications que pour ses compétences techniques. Les étudiants s’avèrent rapidement
-            autonomes pour créer leurs propres programmes en VBA sur des problèmes financiers.
-            Je le recommande sans réserve."</p>
-        <footer class="blockquote-footer">Jean-Jacques Lilti<br>
-            (Professeur des Universités / Responsable du Master Finance – IGR-IAE de Rennes / Université de Rennes 1)
-        </footer>
-    </blockquote>
+    <div class="row">
+        <!-- Carousel -->
+        <div id="carouselTestimonials" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner d-flex">
+                {% for testimonial in testimonials %}
+                <div class="carousel-item text-center {% if loop.first %}active{% endif %}">
+                    <p>{{ testimonial.content | raw }}</p>
+                    <p><strong>{{ testimonial.author }}</strong></p>
+                </div>
+                {% endfor %}
+                <a class="carousel-control-prev" href="#carouselTestimonials" role="button" data-slide="prev">
+                    <i style="font-size: 60px; color: #E95420;" class="fas fa-arrow-alt-circle-left"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselTestimonials" role="button" data-slide="next">
+                    <i style="font-size: 60px; color: #E95420;" class="fas fa-arrow-alt-circle-right"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!-- end Carousel -->
+        </div>
+    </div>
 </div>
 
 <!-- End testimonials -->

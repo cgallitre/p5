@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Témoignages{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Témoignages' } %}
+    <p class="text-center">
+        <a href="{{ path('testimonial_create') }}" class="btn btn-primary">Ajouter un témoignage</a>
+    </p>
+
+    <p class="text-center mb-5">Les témoignages en couleur ne sont pas encore publiés.</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Auteur</th>
+                <th scope="col">Création</th>
+                <th scope="col">Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for testimonial in testimonials %}
+            <tr class="table-{% if testimonial.published %}light{% else %}primary{% endif %}">
+                <td>{{ testimonial.author }}</td>
+                <td>{{ testimonial.createdAt | date('d/m/Y') }}</td>
+                <td>{{ testimonial.content }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

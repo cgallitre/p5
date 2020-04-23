@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des formations{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Liste des formations' } %}
+
+    <p class="text-center pb-5">
+        <a href="{{ path('training_create') }}" class="btn btn-primary">Ajouter une formation</a>
+    </p>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nom de la formation</th>
+                <th scope="col">Commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for training in trainings %}
+            <tr>
+                <td>{{ training.title }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

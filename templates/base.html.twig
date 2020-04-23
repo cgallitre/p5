@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.1">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/58c417a85e.js" crossorigin="anonymous"></script>
@@ -12,70 +12,15 @@
 </head>
 
 <body>
+    <div class="container-fluid p-0">
+        <div class="row m-0 p-0">
+            {% include 'partials/header.html.twig' %}
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('homepage') }}">
-                <i class="fas fa-code"></i>
-                CG
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            {% block body %}{% endblock %}
 
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                {# <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
-                </li>
-            </ul> #}
-                <ul class="navbar-nav ml-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('training_index') }}">Formations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}#portfolio">Réalisations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}#testimonials">Témoignages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}">A propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-user"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        {% block body %}{% endblock %}
-
-        {# Footer #}
-        <div class="my-5 py-5" id="footer">
-            <div class="row justify-content-around">
-                <div class="col-md-3">
-                    <h5>Coordonnées</h5>
-                    <small>Cyril Gallitre, 06 87 10 52 61</small>
-                </div>
-                <div class="col-md-3">
-                    <h5>Mentions légales</h5>
-                    <small>Siret N°xxxxxxx, TVA n°aaaaaa</small>
-                </div>
-                <div class="col-md-3">
-                    <h5>Qui suis-je ?</h5>
-                    <small>Indépendant depuis 1997, blablabla</small>
-                </div>
-            </div>
+            {% include 'partials/footer.html.twig' %}
         </div>
-   
+    </div>
     <script src="/js/popper.min.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

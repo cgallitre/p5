@@ -4,16 +4,9 @@
 
 {% block body %}
 
-    <!-- section title -->
 <div class="container">
-    <h1 class="mt-5 text-center display-4 h2">Formations proposées</h1>
-    <p class="title-line">
-        <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
-            <i class="fas fa-circle fa-stack-1x"></i>
-        </span>
-    </p>
-    <hr>
+    {% include 'partials/titlePage.html.twig' %}
+
     <div class="row my-5 justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary">Toutes</button>

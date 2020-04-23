@@ -6,19 +6,11 @@
 
 {% block body %}
 <div class="container">
-    <!-- section title -->
-    <h1 class="mt-5 text-center display-5">{{ training.title}}</h1>
-    <p class="title-line">
-        <span class="fa-stack">
-            <i class="fas fa-circle  fa-stack-2x icones-blanc" data-fa-transform="grow-8"></i>
-            <i class="fas fa-circle fa-stack-1x"></i>
-        </span>
-    </p>
-    <hr>
-    <!-- end of section title -->
+    
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : training.title } %}
 
-    <div id="content" class="row my-5 py-5">
-        <div class="col-md-4 px-5">
+    <div id="content" class="row my-5 py5">
+        <div class="col-md-3">
             <h3>Présentation</h3>
             <p>{{ training.excerpt }}</p>
             {% if training.objectives  %}
@@ -37,9 +29,19 @@
             <p>{{ training.duration }}</p>
 
         </div>
-        <div class="col-md-8 px-5">
+        <div class="col-md-6">
             <h3>Programme (indicatif)</h3>
-            <p>{{ training.program | raw }}</p>
+            <p>{{ training.program | markdown_to_html }}</p>
+        </div>
+        <div class="col-md-3">
+            <h3>Sur le même thème</h3>
+            <ul class="list-unstyled">
+                {% for tr in trainings %}
+                     <a href="{{ path('training_show', {'slug': tr.slug }) }}"> 
+                        <li>{{ tr.title }}</li>
+                    </a>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
