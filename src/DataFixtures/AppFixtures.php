@@ -3,16 +3,64 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
+use App\Entity\Message;
 use App\Entity\Training;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr-FR');
 
+        // Utilisateurs
+
+        $users= [];
+
+        for ($i=1; $i<=5; $i++){
+            
+            $user = new User;
+
+            $hash = $this->encoder->encodePassword($user, 'password');
+
+            $user
+                ->setFirstName($faker->firstname)
+                ->setLastName($faker->lastname)
+                ->setEmail($faker->email)
+                ->setProject('<p>' . join('</p><p>', $faker->paragraphs(4)) . '</p>')
+                ->setHash($hash)
+                ->setCompany($faker->sentence())
+                ->setStatus(mt_rand(0,1))
+                ;
+            $manager->persist($user);
+            $users[] = $user;
+        }
+
+        // Messages
+        for ($i=1; $i<20; $i++){
+            $message = new Message;
+
+            $user = $users[mt_rand(0, count($users)-1)];
+            $message
+                ->setTitle($faker->sentence())
+                ->setContent('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
+                ->setCreatedAt($faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now', $timezone = 'Europe/Paris'))
+                ->setAuthor($user)
+                ;
+            $manager->persist($message);
+        }
+
+        // Formations
         for ($i =1; $i<=6; $i++){
             $training = new Training;
 

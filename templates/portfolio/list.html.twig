@@ -10,13 +10,13 @@
     <p class="text-center pb-5">
         <a href="{{ path('portfolio_create') }}" class="btn btn-primary">Ajouter une référence</a>
     </p>
-    <div class="table-responsive">
+    <div class="table-responsive-md">
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th scope="col">Titre</th>
-                    <th scope="col">Technologies</th>
-                    <th scope="col">URL</th>
+                    <th scope="col" class="d-none d-md-table-cell">Technologies</th>
+                    <th scope="col" class="d-none d-md-table-cell">URL</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -24,8 +24,8 @@
                 {% for portfolio in portfolios %}
                 <tr>
                     <td>{{ portfolio.title }}</td>
-                    <td>{{ portfolio.technology }}</td>
-                    <td>{{ portfolio.url }}</td>
+                    <td class="d-none d-md-table-cell">{{ portfolio.technology }}</td>
+                    <td class="d-none d-md-table-cell">{{ portfolio.url }}</td>
                     <td class="text-center">
                         <a href="{{ path('portfolio_edit', { 'id' : portfolio.id }) }}">
                             <i class="fas fa-file fa-2x"></i>

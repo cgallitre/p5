@@ -7,6 +7,7 @@ use App\Form\TestimonialType;
 use App\Repository\TestimonialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestimonialController extends AbstractController
@@ -69,7 +70,13 @@ class TestimonialController extends AbstractController
      */
     public function edit(Testimonial $testimonial, Request $request)
     {
-        $form = $this->createForm(TestimonialType::class, $testimonial);
+        $form = $this->createForm(TestimonialType::class, $testimonial)
+                        // Ajout ici pour ne pas que le client puisse publié son témoignage tout seul
+                        ->add('published', CheckboxType::class, [ 
+                            'label' => 'Publié',
+                            'required' => false
+                            ]) 
+                        ;
 
         $form->handleRequest($request);
 
