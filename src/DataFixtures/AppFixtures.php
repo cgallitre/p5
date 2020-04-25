@@ -6,6 +6,8 @@ use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Message;
 use App\Entity\Training;
+use App\Entity\Portfolio;
+use App\Entity\Testimonial;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -83,6 +85,36 @@ class AppFixtures extends Fixture
 
             $manager->persist($training);
         }
+
+        // Testimonial
+
+        for ($i=1; $i<=3; $i++){
+
+            $testimonial = new Testimonial;
+            $testimonial
+                ->setContent($faker->paragraph(3))
+                ->setAuthor($faker->name())
+                ->setPublished(1)
+                ;
+            $manager->persist($testimonial);
+        }
+
+        // Portfolio
+
+        for ($i=1; $i<=6; $i++){
+
+            $portfolio = new Portfolio;
+            $portfolio
+                ->setTitle($faker->text($maxNbChars = 30))
+                ->setDescription($faker->paragraph(2))
+                ->setTechnology($faker->text($maxNbChars = 30))
+                ->setUrl($faker->url())
+                ->setCoverImage('http://placehold.it/150x100')
+                ;
+                $manager->persist($portfolio);
+        }
+
+        // Save in database
 
         $manager->flush();
     }
