@@ -84,7 +84,8 @@ Formateur développeur à Tours (37)
                 </div>
             </div>
             <p class="lead text-center py-3">
-                <a class="btn btn-primary btn-lg text-center" href="{{ path('training_index') }}">Tous les programmes de formation</a>
+                <a class="btn btn-primary btn-lg text-center" href="{{ path('training_index') }}">Tous les programmes de
+                    formation</a>
             </p>
         </div>
     </div>
@@ -141,14 +142,21 @@ Formateur développeur à Tours (37)
         </span>
     </p>
     <hr>
+
     <div class="row">
         <!-- Carousel -->
         <div id="carouselTestimonials" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner d-flex">
                 {% for testimonial in testimonials %}
                 <div class="carousel-item text-center {% if loop.first %}active{% endif %}">
+                    <p class="text-left">
+                        <i class="fas fa-quote-left fa-2x"></i>
+                    </p>
                     <p>{{ testimonial.content | raw }}</p>
-                    <p><strong>{{ testimonial.author }}</strong></p>
+                    <p class="text-right">
+                        <i class="fas fa-quote-right fa-2x"></i>
+                    </p>
+                    <p class="text-right"><strong>{{ testimonial.author }}</strong></p>
                 </div>
                 {% endfor %}
                 <a class="carousel-control-prev" href="#carouselTestimonials" role="button" data-slide="prev">
