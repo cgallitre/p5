@@ -9,11 +9,15 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
- * @UniqueEntity("slug")
+ * @UniqueEntity(
+ *      fields={"email"},
+ *      message="Adresse email déjà utilisée, veuillez en utiliser une autre."
+ * )
  */
 class User implements UserInterface
 {
@@ -26,11 +30,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Vous devez renseigner un prénom.")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner un nom.")
      */
     private $lastName;
 
@@ -41,6 +47,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="Mail non valide, merci de corriger")
      */
     private $email;
 
@@ -48,6 +55,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
+
+    /**
+     * @Assert\EqualTo(propertyPath="Hash", message="vous avez mal confirmé le mot de passe.")
+     */
+    public $passwordConfirm;
 
     /**
      * @ORM\Column(type="text", nullable=true)

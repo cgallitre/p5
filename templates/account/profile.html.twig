@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gestion de profil
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Gestion de profil' } %}
+    
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+    <p class="text-center">
+        <button type="submit" class="btn btn-primary">Modifier le profil</button>
+    </p>
+
+    {{ form_end(form) }}
+
+
+</div>
+{% endblock %}

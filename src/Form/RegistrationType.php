@@ -21,6 +21,7 @@ class RegistrationType extends ApplicationType
             ->add('company', TextType::class, $this->getConfiguration("Entreprise"))
             ->add('email', EmailType::class, $this->getConfiguration("Email"))
             ->add('hash', PasswordType::class, $this->getConfiguration("Mot de passe"))
+            ->add('passwordConfirm', PasswordType::class, $this->getConfiguration("Confirmation de mot de passe"))
             ->add('project', TextareaType::class, $this->getConfiguration("Description du projet"))
             // Statut et Slug sont créés automatiquement au niveau de l'entité
         ;

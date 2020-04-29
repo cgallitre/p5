@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AccountType;
+use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
+use App\Form\PasswordUpdateType;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +21,7 @@ class AccountController extends AbstractController
     /**
      * Permet de se connecter
      * 
-     * @Route("/login", name="account_login")
+     * @Route("/connexion", name="account_login")
      * 
      * @return Response
      */
@@ -35,7 +39,7 @@ class AccountController extends AbstractController
     /**
      * permet de se déconnecter
      *
-     * @Route("/logout", name="account_logout")
+     * @Route("/deconnexion", name="account_logout")
      * @return void
      */
     public function logout()
@@ -46,7 +50,7 @@ class AccountController extends AbstractController
     /**
      * Permet de s'enregistrer
      * 
-     * @Route("/register", name="account_register")
+     * @Route("/enregistrer", name="account_register")
      *
      * @return Response
      */
@@ -80,5 +84,81 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
         
+    }
+
+    /**
+     * Permet de modifier son profil utilisateur
+     *
+     * @Route("/profil", name="account_profile")
+     * 
+     * @return Response
+     */
+    public function profile(Request $request, EntityManagerInterface $manager)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(AccountType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Les données ont bien été modifiées."
+            );
+        }
+        
+        return $this->render('account/profile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * MAJ du mot de passe
+     * 
+     * @Route("/mot-de-passe", name="account_password")
+     * @return Response
+     */
+    public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    {
+        $passwordUpdate = new PasswordUpdate;
+
+        $user = $this->getUser();
+        
+        $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            if (password_verify($passwordUpdate->getOldPassword(), $user->getHash()))
+            {
+                $newPassword = $passwordUpdate->getNewPassword();
+                $hash = $encoder->encodePassword($user, $newPassword);
+                $user->setHash($hash);
+                
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    "Le mot de passe a été changé."
+                );
+
+                return $this->redirectToRoute('homepage');
+                
+            } else {
+                // si échec
+                $form->get('oldPassword')->addError(new FormError("L'ancien mot de passe saisi est incorrect."));
+            }
+        }
+
+        return $this->render('account/password.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
