@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Créer un compte utilisateur' } %}
+
+    {{ form_start(form )}}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Inscription</button>
+
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

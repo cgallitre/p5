@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Portfolio;
 use App\Form\PortfolioType;
 use App\Repository\PortfolioRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +33,7 @@ class PortfolioController extends AbstractController
      *
      * @return Response
      */
-    public function create(Request $request)
+    public function create(Request $request, EntityManagerInterface $manager)
     {
 
         $portfolio = new Portfolio();
@@ -42,7 +43,7 @@ class PortfolioController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            // $manager = $this->getDoctrine()->getManager();
             $manager->persist($portfolio);
             $manager->flush();
 
@@ -81,14 +82,14 @@ class PortfolioController extends AbstractController
      * @Route("/portfolio/{id}/edit", name="portfolio_edit")
      * @return Response
      */
-    public function edit(Request $request, Portfolio $portfolio)
+    public function edit(Request $request, Portfolio $portfolio, EntityManagerInterface $manager)
     {
         $form = $this->createForm(PortfolioType::class, $portfolio);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            // $manager = $this->getDoctrine()->getManager();
             $manager->persist($portfolio);
             $manager->flush();
 
@@ -111,9 +112,9 @@ class PortfolioController extends AbstractController
      * @Route("/portfolio/{id}/delete", name="portfolio_delete")
      * @return Response
      */
-    public function delete(Portfolio $portfolio)
+    public function delete(Portfolio $portfolio, EntityManagerInterface $manager)
     {
-        $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+        // $manager = $this->getDoctrine()->getManager();
         $manager->remove($portfolio);
         $manager->flush();
     

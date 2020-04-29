@@ -70,14 +70,17 @@ class User implements UserInterface
     private $messages;
 
     /**
-     * Permet de créer le slug automatiquement
+     * Permet de créer le slug et le status automatiquement
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function initializeSlug(){
+    public function initialize(){
         if (empty($this->slug)){
             $slugify =  new Slugify();
             $this->slug = $slugify->slugify($this->firstName . ' ' . $this->lastName);
+        }
+        if (empty($this->status)){
+            $this->status = 1; // 1 = compte actif (par défaut)
         }
     }
 

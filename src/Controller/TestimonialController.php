@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Testimonial;
 use App\Form\TestimonialType;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TestimonialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,7 +34,7 @@ class TestimonialController extends AbstractController
      * @Route("/temoignages/ajout", name="testimonial_create")
      * @return Response
      */
-    public function create(Request $request)
+    public function create(Request $request, EntityManagerInterface $manager)
     {
 
         $testimonial = new Testimonial();
@@ -43,7 +44,7 @@ class TestimonialController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            // $manager = $this->getDoctrine()->getManager();
             $manager->persist($testimonial);
             $manager->flush();
 
@@ -68,7 +69,7 @@ class TestimonialController extends AbstractController
      *
      * @return void
      */
-    public function edit(Testimonial $testimonial, Request $request)
+    public function edit(Testimonial $testimonial, Request $request,  EntityManagerInterface $manager)
     {
         $form = $this->createForm(TestimonialType::class, $testimonial)
                         // Ajout ici pour ne pas que le client puisse publié son témoignage tout seul
@@ -81,7 +82,7 @@ class TestimonialController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+            // $manager = $this->getDoctrine()->getManager();
             $manager->persist($testimonial);
             $manager->flush();
 

@@ -3,31 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Training;
-use Symfony\Component\Form\AbstractType;
+use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class TrainingType extends AbstractType
+class TrainingType extends ApplicationType
 {
-    /**
-     * Génère la config pour chaque champ du formulaire
-     *
-     * @param string $label
-     * @param string $placeholder
-     * @param array $options
-     * @return array 
-     */
-    private function getConfiguration($label, $placeholder=null, $options = []){
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-            ], $options) ;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
