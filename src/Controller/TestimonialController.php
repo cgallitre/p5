@@ -9,6 +9,8 @@ use App\Repository\TestimonialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestimonialController extends AbstractController
@@ -32,6 +34,8 @@ class TestimonialController extends AbstractController
      * Ajout d'un témoignage
      *
      * @Route("/temoignages/ajout", name="testimonial_create")
+     * @IsGranted("ROLE_USER")
+     * 
      * @return Response
      */
     public function create(Request $request, EntityManagerInterface $manager)
@@ -66,6 +70,7 @@ class TestimonialController extends AbstractController
      * Modification d'un témoignage
      * 
      * @Route("/temoignages/{id}/edit", name="testimonial_edit")
+     * @Security("is_granted('ROLE_USER') and user === testimonial.getAuthor()")
      *
      * @return void
      */

@@ -30,22 +30,24 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('homepage') }}">A propos</a>
             </li>
-            <li class="nav-item dropdown show">
-                {% if app.user %}
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="true"><i class="fas fa-user"></i></a>
-                <div class="dropdown-menu bg-light"
-                    style="position: absolute; will-change: transform; top: 50px; left: -105px; transform: translate3d(0px, 40px, 0px, 0px);"
-                    x-placement="bottom-start">
-                    <a class="dropdown-item" href="#">...</a>
+            {% if app.user %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i class="fas fa-user"></i></a>
+                <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="accountDropDown">
+                    <a class="dropdown-item" href="#">{{ app.user.fullName }}</a>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('message_create') }}">Créer un message</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('account_password') }}">Mot de passe</a>
                     <a class="dropdown-item" href="{{ path('account_logout') }}">Déconnexion</a>
                 </div>
-                {% else %}
+            </li>
+            {% else %}
+            <div class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#accountModal" role="button" aria-haspopup="true"
                     aria-expanded="true"><i class="fas fa-user"></i></a>
+            </div>
                 {% endif %}
-            </li>
         </ul>
     </div>
 </nav>

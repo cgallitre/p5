@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Message
 {
@@ -18,11 +21,23 @@ class Message
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      minMessage = "L'objet doit au moins faire 4 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "L'objet est obligatoire")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le message doit au moins faire 10 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le message est obligatoire")
      */
     private $content;
 
@@ -36,6 +51,20 @@ class Message
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+     /**
+     * Crée automatiquement la date du message
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function initialize()
+    {
+        if (empty($this->createdAt))
+        {
+            $this->createdAt = new \DateTime();
+        }
+    }
 
     public function getId(): ?int
     {

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Training;
 use App\Form\TrainingType;
 use App\Repository\TrainingRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -37,7 +38,7 @@ class TrainingController extends AbstractController
      * 
      * @return Response
      */
-    public function create(Request $request)
+    public function create(Request $request, EntityManagerInterface $manager)
     {
         $training = new Training();
 
@@ -46,7 +47,7 @@ class TrainingController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+           
             $manager->persist($training);
             $manager->flush();
 
@@ -89,7 +90,7 @@ class TrainingController extends AbstractController
      * )
      * @return Response
      */
-    public function edit(Training $training, Request $request)
+    public function edit(Training $training, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(TrainingType::class, $training);
 
@@ -97,7 +98,7 @@ class TrainingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+           
             $manager->persist($training);
             $manager->flush();
 
@@ -125,9 +126,9 @@ class TrainingController extends AbstractController
      * 
      * @return Response
      */
-    public function delete(Training $training)
+    public function delete(Training $training, EntityManagerInterface $manager)
     {
-        $manager = $this->getDoctrine()->getManager(); // injection de dépendance ne fonctionne pas :-(
+       
         $manager->remove($training);
         $manager->flush();
 
