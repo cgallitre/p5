@@ -61,6 +61,11 @@ class Training
     private $slug;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="trainings")
+     */
+    private $theme;
+
+    /**
      * Permet de créer le slug automatiquement
      * @ORM\PrePersist
      * @ORM\PreUpdate
@@ -169,6 +174,18 @@ class Training
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getTheme(): ?theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

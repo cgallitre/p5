@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Thèmes{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Thèmes' } %}
+    <p class="text-center">
+        <a href="{{ path('admin_theme_new') }}" class="btn btn-primary">Ajouter un thème</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Thème</th>
+                    <th scope="col" width="100px">Commandes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for theme in themes %}
+                <tr class="table-light">
+                    <td>{{ theme.title }}</td>
+                    <td>
+                        <a href="{{ path('admin_theme_edit', { 'id' : theme.id }) }}">
+                            <i class="fas fa-edit fa-2x"></i>
+                        </a>
+                        &emsp;
+                        <a href="{{ path('admin_theme_delete', {'id' : theme.id }) }}">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

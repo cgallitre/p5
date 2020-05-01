@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Role;
 use App\Entity\User;
+use App\Entity\Theme;
 use App\Entity\Message;
 use App\Entity\Training;
 use App\Entity\Portfolio;
@@ -34,11 +35,11 @@ class AppFixtures extends Fixture
 
         $user = new User;
         $user
-            ->setFirstName('a')
-            ->setLastName('dmin')
-            ->setEmail('test@test.fr')
+            ->setFirstName('Cyril')
+            ->setLastName('Gallitre')
+            ->setEmail('cyril@gallitre.fr')
             ->setHash($this->encoder->encodePassword($user, 'password'))
-            ->setCompany('Moi')
+            ->setCompany('FC2I')
             ->setStatus(1)
             ->addUserRole($adminRole);
             
@@ -66,6 +67,20 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $users[] = $user;
         }
+
+        // Thèmes
+
+        $themeBureautique = new Theme;
+        $themeWeb = new Theme;
+        
+        $themeBureautique->setTitle('Bureautique');
+        $themeWeb->setTitle('Web');
+
+        $manager->persist($themeBureautique);
+        $manager->persist($themeWeb);
+
+        $themes[] = $themeBureautique;
+        $themes[] = $themeWeb;
 
         // Messages
         for ($i=1; $i<20; $i++){
@@ -100,7 +115,8 @@ class AppFixtures extends Fixture
                 ->setObjectives($objectives)
                 ->setLevel($level)
                 ->setPublic($public)
-                ->setProgram($program);
+                ->setProgram($program)
+                ->setTheme($themes[mt_rand(0,1)]);
 
             $manager->persist($training);
         }

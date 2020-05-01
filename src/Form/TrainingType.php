@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Theme;
 use App\Entity\Training;
 use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -24,7 +27,12 @@ class TrainingType extends ApplicationType
             ->add('level', TextareaType::class, $this->getConfiguration("Niveau requis", "Indiquer les prérequis pour suivre la formation"))
             ->add('public', TextareaType::class, $this->getConfiguration("Public"))
             ->add('program', TextareaType::class, $this->getConfiguration("Programme (markdown supporté)","Thèmes de la formation et contenu détaillé"))
-        ;
+            ->add('theme', EntityType::class, [
+                'class' => Theme::class,
+                'choice_label' => 'title',
+                'label' => 'Thème de la formation',
+                'expanded' =>true
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
