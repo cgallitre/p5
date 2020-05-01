@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="{{ path('homepage') }}">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="{{ path('homepage') }}" target="_blank">
         <i class="fas fa-code"></i>
         CG
     </a>
@@ -9,46 +9,43 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Thèmes</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{path('admin_training_index')}}" class="nav-link">Formations</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('admin_portfolio_index') }}" class="nav-link">Réalisations</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('admin_testimonial_index') }}" class="nav-link">Témoignages</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Utilisateurs</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Projets</a>
+            </li>
+        </ul>
+
         <ul class="navbar-nav ml-auto align-items-center">
-            <li class="nav-item">
-                <a href="{{ path('homepage') }}" class="nav-link">
-                    <i class="fas fa-home"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}#services_homepage">Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}#portfolio_homepage">Réalisations</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}#testimonial_homepage">Témoignages</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#contactModal">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}">A propos</a>
-            </li>
             {% if app.user %}
+            <li class="nav-item">
+                {{ app.user.fullName }}
+            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i class="fas fa-user"></i></a>
+                <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i
+                        class="fas fa-user"></i></a>
                 <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="accountDropDown">
-                    <a class="dropdown-item" href="#">{{ app.user.fullName }}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('message_create') }}">Créer un message</a>
-                    <a class="dropdown-item" href="{{ path('testimonial_new') }}">Créer un témoignage</a>
-                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('account_password') }}">Profile</a>
                     <a class="dropdown-item" href="{{ path('account_password') }}">Mot de passe</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('account_logout') }}">Déconnexion</a>
                 </div>
             </li>
-            {% else %}
-            <div class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#accountModal" role="button" aria-haspopup="true"
-                    aria-expanded="true"><i class="fas fa-user"></i></a>
-            </div>
-                {% endif %}
+            {% endif %}
         </ul>
     </div>
 </nav>

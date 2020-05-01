@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Accès interdit (403)
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Oups !' } %}
+    <div class="jumbotron text-center">
+
+        <p class="h2">C'est embêtant, vous n'avez pas le droit d'accéder à cette page :-(</p>
+
+        <p class="lead mt-5">
+            <a class="btn btn-primary btn-lg" href="{{ path('homepage') }}" role="button">Retourner à la page d'accueil</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
