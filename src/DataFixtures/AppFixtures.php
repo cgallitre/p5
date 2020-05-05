@@ -7,6 +7,7 @@ use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Theme;
 use App\Entity\Message;
+use App\Entity\Category;
 use App\Entity\Training;
 use App\Entity\Portfolio;
 use App\Entity\Testimonial;
@@ -134,6 +135,19 @@ class AppFixtures extends Fixture
             $manager->persist($testimonial);
         }
 
+        // Catégorie (portfolio)
+        $categories = [];
+
+        for ($i=1; $i<=5; $i++)
+        {
+            $category = new Category;
+            $category->setTitle($faker->sentence());
+            $manager->persist($category);
+
+            $categories[] = $category;
+
+        }
+
         // Portfolio
 
         for ($i=1; $i<=6; $i++){
@@ -145,6 +159,7 @@ class AppFixtures extends Fixture
                 ->setTechnology($faker->text($maxNbChars = 30))
                 ->setUrl($faker->url())
                 ->setCoverImage('http://placehold.it/150x100')
+                ->setCategory($categories[mt_rand(0,4)])
                 ;
                 $manager->persist($portfolio);
         }

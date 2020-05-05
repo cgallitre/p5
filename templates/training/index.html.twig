@@ -5,16 +5,21 @@
 {% block body %}
 
 <div class="container">
-    {% include 'partials/titlePage.html.twig' %}
-
+    {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Formations proposées'} %}
     <div class="row my-5 justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Toutes</button>
-            <button type="button" class="btn btn-secondary">Web</button>
-            <button type="button" class="btn btn-secondary">Bureautique</button>
+            <a href="{{ path ('training_index') }}">
+                <button type="button"
+                    class="m-1 btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</button>
+            </a>
+            {% for theme in themes %}
+            <a href="{{ path('training_index') }}/filtre/{{theme.id}}">
+                <button type="button"
+                    class="m-1 btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %}">{{ theme.title }}</button>
+            </a>
+            {% endfor %}
         </div>
     </div>
-
 
     <div class="row my-5 justify-content-around">
         {% for training in trainings %}
@@ -22,14 +27,15 @@
         <div class="col-md-4">
             <div class="card mb-3">
                 <h3 class="card-header">{{ training.title }}</h3>
-                <img style="max-height: 200px; width: 100%; display: block;" src="../img/formation.jpg"
+                <img style="max-height: 200px; width: 100%; display: block;" src="../../img/formation.jpg"
                     alt="Card image">
                 <div class="card-body">
                     <p class="card-text">{{ training.excerpt }}
                     </p>
                 </div>
                 <div class="card-footer text-muted">
-                    <a href="{{ path('training_show', { 'slug' : training.slug }) }}" class="card-link">En savoir plus</a>
+                    <a href="{{ path('training_show', { 'slug' : training.slug }) }}" class="card-link">En savoir
+                        plus</a>
                 </div>
             </div>
         </div>

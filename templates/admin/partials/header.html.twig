@@ -11,22 +11,36 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto align-items-center">
             <li class="nav-item">
-                <a href="{{ path('admin_theme_index') }}" class="nav-link">Thèmes</a>
+                <a href="#" class="nav-link">Tableau de bord</a>
             </li>
-            <li class="nav-item">
-                <a href="{{path('admin_training_index')}}" class="nav-link">Formations</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Formations</a>
+                <div class="dropdown-menu" style="">
+                    <a href="{{path('admin_training_index')}}" class="dropdown-item">Liste</a>
+                    <a class="dropdown-item" href="{{ path('admin_theme_index') }}">Thèmes</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a href="{{ path('admin_portfolio_index') }}" class="nav-link">Réalisations</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Réalisations</a>
+                <div class="dropdown-menu" style="">
+                    <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Liste</a>
+                    <a class="dropdown-item" href="{{ path('admin_category_index') }}">Catégories</a>
+                </div>
             </li>
+
             <li class="nav-item">
                 <a href="{{ path('admin_testimonial_index') }}" class="nav-link">Témoignages</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Utilisateurs</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Projets</a>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Clients</a>
+                <div class="dropdown-menu" style="">
+                    <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Utilisateurs</a>
+                    <a class="dropdown-item" href="#">Projets</a>
+                </div>
             </li>
         </ul>
 

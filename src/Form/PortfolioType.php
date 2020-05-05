@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Portfolio;
 use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,6 +22,12 @@ class PortfolioType extends ApplicationType
             ->add('technology', TextType::class, $this->getConfiguration("Technologies / Langages utilisés"))
             ->add('coverImage', UrlType::class, $this->getConfiguration("Capture d'écran"))
             ->add('url', UrlType::class, $this->getConfiguration("Lien vers la démonstration"))
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'title',
+                'label' => 'Catégorie de la référence',
+                'expanded' =>true
+            ])
             ;
     }
 

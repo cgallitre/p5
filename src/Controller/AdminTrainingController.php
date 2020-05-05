@@ -16,7 +16,7 @@ class AdminTrainingController extends AbstractController
    /**
      * Create a training
      *
-     * @Route("/admin//formations/ajout", name="admin_training_new")
+     * @Route("/admin/formations/ajout", name="admin_training_new")
      * 
      * @return Response
      */
