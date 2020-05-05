@@ -15,7 +15,12 @@ class MessageType extends ApplicationType
     {
         $builder
             ->add('title', TextType::class, $this->getConfiguration("Objet"))
-            ->add('content', TextareaType::class, $this->getConfiguration("Message"))
+            ->add('content', TextareaType::class, [
+                'label'=>'Message',
+                'attr'=>[
+                    'rows'=>10
+                ]
+            ])
         ;
     }
 

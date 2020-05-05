@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Modification d'un message{% endblock %}
 
 {% block body %}
 <div class="container">
-    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\un message' } %}
+    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
 
     {{ form_start(form) }}
 

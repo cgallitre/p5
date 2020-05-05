@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}
     Ajout d'un message
@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
+    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
     
     {{ form_start(form) }}
 

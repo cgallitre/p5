@@ -11,29 +11,21 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto align-items-center">
             <li class="nav-item">
-                <a href="#" class="nav-link">Tableau de bord</a>
+                <a href="{{ path('admin_message_index') }}" class="nav-link">Tableau de bord</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">Formations</a>
+                    aria-expanded="false">Site</a>
                 <div class="dropdown-menu" style="">
-                    <a href="{{path('admin_training_index')}}" class="dropdown-item">Liste</a>
+                    <a href="{{path('admin_training_index')}}" class="dropdown-item">Formations</a>
                     <a class="dropdown-item" href="{{ path('admin_theme_index') }}">Thèmes</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">Réalisations</a>
-                <div class="dropdown-menu" style="">
-                    <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Liste</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Références</a>
                     <a class="dropdown-item" href="{{ path('admin_category_index') }}">Catégories</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ path('admin_testimonial_index') }}" class="dropdown-item">Témoignages</a>
                 </div>
             </li>
-
-            <li class="nav-item">
-                <a href="{{ path('admin_testimonial_index') }}" class="nav-link">Témoignages</a>
-            </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">Clients</a>
@@ -53,7 +45,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i
                         class="fas fa-user"></i></a>
                 <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="accountDropDown">
-                    <a class="dropdown-item" href="{{ path('account_password') }}">Profile</a>
+                    <a class="dropdown-item" href="{{ path('account_profile') }}">Profile</a>
                     <a class="dropdown-item" href="{{ path('account_password') }}">Mot de passe</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('account_logout') }}">Déconnexion</a>

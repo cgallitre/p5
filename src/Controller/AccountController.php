@@ -121,6 +121,7 @@ class AccountController extends AbstractController
      * MAJ du mot de passe
      * 
      * @Route("/mot-de-passe", name="account_password")
+     * 
      * @return Response
      */
     public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)

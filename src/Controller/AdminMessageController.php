@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Form\MessageType;
+use App\Service\Pagination;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,30 +13,33 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MessageController extends AbstractController
+class AdminMessageController extends AbstractController
 {
     /**
-     * @Route("/messages/liste", name="message_list")
+     * @Route("/admin/messages/{page}", name="admin_message_index", requirements={"page" : "\d+"} )
      * 
      * @return Response
      */
-    public function list(MessageRepository $repo)
+    public function index(MessageRepository $repo, $page = 1, Pagination $pagination)
     {
-        $messages = $repo->findAll();
+        $pagination->setEntityClass(Message::class)
+                   ->setCurrentPage($page);
 
-        return $this->render('message/list.html.twig', [
-            'messages' => $messages
-        ]);
+        return $this->render('admin/message/index.html.twig', [
+            'messages' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page
+            ]);
     }
 
 /** Create a message
 *
-* @Route("/messages/ajout", name="message_create")
+* @Route("/admin/messages/ajout", name="admin_message_new")
 * @IsGranted("ROLE_USER")
 * 
 * @return Response
 */
-public function create(Request $request, EntityManagerInterface $manager)
+public function new(Request $request, EntityManagerInterface $manager)
     {
     
         $message = new Message();
@@ -56,10 +60,10 @@ public function create(Request $request, EntityManagerInterface $manager)
                 "Le message été ajouté. Une réponse vous sera donnée rapidement."
             );
 
-            return $this->redirectToRoute('message_list');
+            return $this->redirectToRoute('admin_message_index');
         }
 
-        return $this->render('message/new.html.twig', [
+        return $this->render('admin/message/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -67,7 +71,7 @@ public function create(Request $request, EntityManagerInterface $manager)
 /**
      * Edition d'un message
      *
-     * @Route("/messages/{id}/edit", name = "message_edit"
+     * @Route("/admin/messages/{id}/edit", name = "admin_message_edit"
      * )
      * @return Response
      */
@@ -88,10 +92,10 @@ public function create(Request $request, EntityManagerInterface $manager)
                 "La modification du message a bien été enregistrée."
             );
 
-            return $this->redirectToRoute('message_list');
+            return $this->redirectToRoute('admin_message_index');
         }
 
-        return $this->render('message/edit.html.twig', [
+        return $this->render('admin/message/edit.html.twig', [
             'form' => $form->createView()
          ]);
     }
@@ -99,7 +103,7 @@ public function create(Request $request, EntityManagerInterface $manager)
     /**
      * Suppression d'un message
      *
-     * @Route("/messages/{id}/delete", name="message_delete")
+     * @Route("/admin/messages/{id}/delete", name="admin_message_delete")
      * 
      * @return Response
      */
@@ -114,6 +118,6 @@ public function create(Request $request, EntityManagerInterface $manager)
             "Le message <strong>{$message->getTitle()}</strong> a bien été supprimé."
         );
 
-        return $this->redirectToRoute('message_list');
+        return $this->redirectToRoute('admin_message_index');
     }
 }
