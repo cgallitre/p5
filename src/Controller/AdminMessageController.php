@@ -26,9 +26,7 @@ class AdminMessageController extends AbstractController
                    ->setCurrentPage($page);
 
         return $this->render('admin/message/index.html.twig', [
-            'messages' => $pagination->getData(),
-            'pages' => $pagination->getPages(),
-            'page' => $page
+            'pagination' => $pagination
             ]);
     }
 

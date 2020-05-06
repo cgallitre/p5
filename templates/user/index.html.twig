@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de {{ user.fullName }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5 align-items-center">
+        <div class="col-md-4">
+            <h1>{{user.fullName}}</h1>
+            <p class="">
+                <span class="badge badge-primary">{{ user.messages | length }}</span> messages publiés.
+            </p>
+            <p class="mb-5">
+                <span class="badge badge-primary">{{ user.messages | length }}</span> messages non lus.
+            </p>
+        </div>
+        <div class="col-md-8">
+            <a type="button" class="btn btn-primary" href="{{ path('admin_message_new') }}">Ajouter un message</a>
+            <a type="button" class="btn btn-primary ml-3" href="{{ path('testimonial_new') }}">Soumettre un
+                témoignage</a>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#projects">Projets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#messages">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#files">Fichiers</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade" id="projects">
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro
+                synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
+                retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
+                Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate
+                nisi qui.</p>
+        </div>
+        <div class="tab-pane fade active show" id="messages">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Objet</th>
+                            <th scope="col">De</th>
+                            <th scope="col" width="100px">Commandes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in pagination.data %}
+                        <tr>
+                            <td>{{ message.id }}</td>
+                            <td>{{ message.createdAt | date('d/m/Y') }}</td>
+                            <td>{{ message.title }}</td>
+                            <td>{{ message.author.fullName }}</td>
+                            {% if (app.user and app.user == message.author) %}
+                            <td class="text-center">
+                                <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                                        class="fas fa-file fa-2x"></i></a>
+                                &emsp;
+                                <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                                        class="fas fa-trash fa-2x"></i></a>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {# {% include 'admin/partials/pagination.html.twig' with {'route' : 'user_show'} %} #}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="files">
+            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+                labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft
+                beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad
+                vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

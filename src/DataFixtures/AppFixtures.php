@@ -150,7 +150,7 @@ class AppFixtures extends Fixture
 
         // Portfolio
 
-        for ($i=1; $i<=6; $i++){
+        for ($i=1; $i<=20; $i++){
 
             $portfolio = new Portfolio;
             $portfolio

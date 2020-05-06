@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/58c417a85e.js" crossorigin="anonymous"></script>
+    <title>Connexion à l'administration</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card bg-light mt-5">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <i class="fas fa-lock"></i>
+                            Connexion à l'administration
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        {% if hasError %}
+                            <div class="alert alert-danger">Erreur de connexion : l'email ou le mot de passe est incorrect.</div>
+                        {% endif %}
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="_username">Email</label>
+                                <input type="text" class="form-control" name="_username" value="{{ username  }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="_password">Mot de passe</label>
+                                <input type="password" class="form-control" name="_password">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-lock-open"></i>
+                                    Se connecter
+                                </button>
+                                <a href="{{ path('homepage') }}" class="btn btn-link"></a>
+                                <i class="fas fa-arrow-circle-left"></i>
+                                Retour au site
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

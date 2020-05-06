@@ -10,7 +10,7 @@
             <div class="bg-light p-3 m-5 rounded">
             <h1 class="my-3">Authentification</h1>
             {% if hasError %}
-                <div class="alert alert-danger">Erreur de connexion : le nom d'utilisation ou le mot de passe est incorrect.</div>
+                <div class="alert alert-danger">Erreur de connexion : l'email ou le mot de passe est incorrect.</div>
             {% endif %}
                 <form action="{{ path('account_login') }}" method="post">
                     <div class="form-group">

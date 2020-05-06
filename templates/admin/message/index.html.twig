@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container-fluid">
     {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Liste des messages' } %}
 
     <p class="text-center pb-5">
@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for message in messages %}
+                {% for message in pagination.data %}
                 <tr>
                     <td>{{ message.id }}</td>
                     <td>{{ message.createdAt | date('d/m/Y') }}</td>
@@ -31,7 +31,7 @@
                     {# {% if (app.user and app.user == message.author) %} #}
                     <td class="text-center">
                         <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
-                                class="fas fa-file fa-2x"></i></a>
+                                class="fas fa-edit fa-2x"></i></a>
                         &emsp;
                         <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
                                 class="fas fa-trash fa-2x"></i></a>
@@ -41,21 +41,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="d-flex justify-content-center mt-5">
-            <ul class="pagination">
-                <li class="page-item {% if page == 1 %}disabled{% endif %}">
-                    <a class="page-link" href="{{ path('admin_message_index', {'page' : page - 1 } )}}">&laquo;</a>
-                </li>
-                {% for i in 1..pages %}
-                <li class="page-item {% if page == i %}active{% endif %}">
-                    <a class="page-link" href="{{ path('admin_message_index', {'page' : i } )}}">{{ i }}</a>
-                </li>
-                {% endfor %}
-                <li class="page-item {% if page == pages %}disabled{% endif %}">
-                    <a class="page-link" href="{{ path('admin_message_index', {'page' : page + 1 } )}}">&raquo;</a>
-                </li>
-            </ul>
-        </div>
+        {% include 'admin/partials/pagination.html.twig' with {'route' : 'admin_message_index'} %}
     </div>
 </div>
 {% endblock %}
