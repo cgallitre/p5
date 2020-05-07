@@ -62,11 +62,6 @@ class User implements UserInterface
     public $passwordConfirm;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $project;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $status;
@@ -176,18 +171,6 @@ class User implements UserInterface
     public function setHash(string $hash): self
     {
         $this->hash = $hash;
-
-        return $this;
-    }
-
-    public function getProject(): ?string
-    {
-        return $this->project;
-    }
-
-    public function setProject(?string $project): self
-    {
-        $this->project = $project;
 
         return $this;
     }
