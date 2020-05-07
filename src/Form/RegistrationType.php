@@ -4,10 +4,12 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Form\ApplicationType;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -22,8 +24,14 @@ class RegistrationType extends ApplicationType
             ->add('email', EmailType::class, $this->getConfiguration("Email"))
             ->add('hash', PasswordType::class, $this->getConfiguration("Mot de passe"))
             ->add('passwordConfirm', PasswordType::class, $this->getConfiguration("Confirmation de mot de passe"))
-            ->add('project', TextareaType::class, $this->getConfiguration("Description du projet"))
-            // Statut et Slug sont créés automatiquement au niveau de l'entité
+            ->add('status', CheckboxType::class, [
+                'label' => 'Compte actif',
+                'required' => false,
+                'attr' => [
+                    'checked' => true
+                ]
+            ])
+            // Slug est créé automatiquement au niveau de l'entité
         ;
     }
 

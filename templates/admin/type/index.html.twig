@@ -1,0 +1,39 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Type message{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Type message' } %}
+    <p class="text-center">
+        <a href="{{ path('admin_type_new') }}" class="btn btn-primary">Ajouter un type de message</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Type message</th>
+                    <th scope="col" width="100px">Commandes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                <tr class="table-light">
+                    <td>{{ type.title }}</td>
+                    <td>
+                        <a href="{{ path('admin_type_edit', { 'id' : type.id }) }}">
+                            <i class="fas fa-edit fa-2x"></i>
+                        </a>
+                        &emsp;
+                        <a href="{{ path('admin_type_delete', {'id' : type.id }) }}">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

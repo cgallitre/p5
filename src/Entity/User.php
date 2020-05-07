@@ -87,7 +87,7 @@ class User implements UserInterface
     private $projects;
 
     /**
-     * Permet de créer le slug et le status automatiquement
+     * Permet de créer le slug automatiquement
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -95,9 +95,6 @@ class User implements UserInterface
         if (empty($this->slug)){
             $slugify =  new Slugify();
             $this->slug = $slugify->slugify($this->firstName . ' ' . $this->lastName);
-        }
-        if (empty($this->status)){
-            $this->status = 1; // 1 = compte actif (par défaut)
         }
     }
 

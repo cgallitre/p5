@@ -3,10 +3,13 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\File;
 use App\Entity\Role;
+use App\Entity\Type;
 use App\Entity\User;
 use App\Entity\Theme;
 use App\Entity\Message;
+use App\Entity\Project;
 use App\Entity\Category;
 use App\Entity\Training;
 use App\Entity\Portfolio;
@@ -60,13 +63,26 @@ class AppFixtures extends Fixture
                 ->setFirstName($faker->firstname)
                 ->setLastName($faker->lastname)
                 ->setEmail($faker->email)
-                ->setProject('<p>' . join('</p><p>', $faker->paragraphs(4)) . '</p>')
                 ->setHash($hash)
                 ->setCompany($faker->sentence())
                 ->setStatus(mt_rand(0,1))
                 ;
             $manager->persist($user);
             $users[] = $user;
+        }
+
+        // Projects
+
+        for ($i; $i<10; $i++){
+            $project = new Project;
+            $user = $users[mt_rand(0, count($users)-1)];
+
+            $project->setTitle($faker->sentence())
+                    ->setContent('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
+                    ->setFinished(0)
+                    ->addUser($user);
+            $manager->persist($project);
+            $projects[] = $project;
         }
 
         // Thèmes
@@ -83,18 +99,48 @@ class AppFixtures extends Fixture
         $themes[] = $themeBureautique;
         $themes[] = $themeWeb;
 
+        // Type
+
+        $sources = ['Facture', 'Bug', 'Question', 'Divers'];
+
+        foreach ($sources as $type){
+            $t = new Type;
+            $t->setTitle($type);
+            $manager->persist($t);
+            $types[] = $t;
+        }
+
+
         // Messages
         for ($i=1; $i<20; $i++){
             $message = new Message;
 
             $user = $users[mt_rand(0, count($users)-1)];
+            $type = $types[mt_rand(0, count($types)-1)];
+            $project = $projects[mt_rand(0, count($projects)-1)];
+
             $message
                 ->setTitle($faker->sentence())
                 ->setContent('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
                 ->setCreatedAt($faker->dateTimeBetween($startDate = '-1 year', $endDate = 'now', $timezone = 'Europe/Paris'))
                 ->setAuthor($user)
+                ->setType($type)
+                ->setProject($project)
                 ;
             $manager->persist($message);
+        }
+
+        // Fichiers
+
+        for ($i; $i<20; $i++){
+            $file = new File;
+            $message = $message[mt_rand(0, count($messages)-1)];
+
+            $file->setName($faker->sentence(4))
+                 ->setLink($faker->url())
+                 ->setMessage($message);
+
+            $manager->persist($file);
         }
 
         // Formations

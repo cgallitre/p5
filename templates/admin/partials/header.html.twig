@@ -18,10 +18,8 @@
                     aria-expanded="false">Site</a>
                 <div class="dropdown-menu" style="">
                     <a href="{{path('admin_training_index')}}" class="dropdown-item">Formations</a>
-                    <a class="dropdown-item" href="{{ path('admin_theme_index') }}">Thèmes</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Références</a>
-                    <a class="dropdown-item" href="{{ path('admin_category_index') }}">Catégories</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ path('admin_testimonial_index') }}" class="dropdown-item">Témoignages</a>
                 </div>
@@ -30,8 +28,18 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">Clients</a>
                 <div class="dropdown-menu" style="">
-                    <a href="{{ path('admin_portfolio_index') }}" class="dropdown-item">Utilisateurs</a>
-                    <a class="dropdown-item" href="#">Projets</a>
+                    <a href="{{ path('admin_user_index') }}" class="dropdown-item">Utilisateurs</a>
+                    <a class="dropdown-item" href="{{ path('admin_project_index') }}">Projets</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Paramètres</a>
+                <div class="dropdown-menu" style="">
+
+                    <a class="dropdown-item" href="{{ path('admin_theme_index') }}">Thèmes de formation</a>
+                    <a class="dropdown-item" href="{{ path('admin_category_index') }}">Catégories de références</a>
+                    <a href="{{ path('admin_type_index') }}" class="dropdown-item">Type de messages</a>
                 </div>
             </li>
         </ul>
@@ -45,7 +53,6 @@
                 <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i
                         class="fas fa-user"></i></a>
                 <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="accountDropDown">
-                    <a class="dropdown-item" href="{{ path('account_profile') }}">Profile</a>
                     <a class="dropdown-item" href="{{ path('account_password') }}">Mot de passe</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('admin_account_logout') }}">Déconnexion</a>

@@ -55,11 +55,6 @@ class Message
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="help")
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="messages")
      */
     private $type;
@@ -68,6 +63,11 @@ class Message
      * @ORM\OneToMany(targetEntity="App\Entity\File", mappedBy="message")
      */
     private $files;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="messages")
+     */
+    private $project;
 
     public function __construct()
     {
@@ -192,6 +192,18 @@ class Message
                 $file->setMessage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
 
         return $this;
     }
