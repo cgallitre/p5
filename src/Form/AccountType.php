@@ -23,7 +23,7 @@ class AccountType extends ApplicationType
                 'label' => 'Compte actif',
                 'required' => false,
                 'attr' => [
-                    'checked' => true
+                    'checked' => false
                 ]
             ])
             ->add('slug')

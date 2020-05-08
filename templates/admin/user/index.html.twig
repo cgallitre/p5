@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 {% for user in users %}
-                <tr class="table-light">
+                <tr class="table-{% if user.status %}light{% else %}primary{% endif %}">
                     <td>{% if user.status ==1 %}<i class="fas fa-check"></i>{% else %}<i
                             class="fas fa-times"></i>{% endif %}</td>
                     <td>{{ user.fullName }}</td>

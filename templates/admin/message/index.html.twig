@@ -15,9 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Date</th>
                     <th scope="col">Objet</th>
-                    <th scope="col">De</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -25,9 +23,11 @@
                 {% for message in pagination.data %}
                 <tr>
                     <td>{{ message.id }}</td>
-                    <td>{{ message.createdAt | date('d/m/Y') }}</td>
-                    <td>{{ message.title }}</td>
-                    <td>{{ message.author.fullName }}</td>
+                    <td>
+                        <p>{{ message.title }}<br>
+                        <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à {{ message.createdAt | date('H\\hi') }}.</small>
+                        </p>
+                    </td> 
                     {# {% if (app.user and app.user == message.author) %} #}
                     <td class="text-center">
                         <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
