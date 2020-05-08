@@ -2,10 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Type;
 use App\Entity\Message;
 use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -20,6 +23,17 @@ class MessageType extends ApplicationType
                 'attr'=>[
                     'rows'=>10
                 ]
+            ])
+            ->add('type', EntityType::class, [
+                'class' => Type::class,
+                'choice_label' => 'title',
+                'label' => 'Type de message',
+                'expanded' =>true
+            ])
+            ->add('Files', FileType::class, [
+                'label' => false,
+                'mapped' => false,
+                'multiple' => true
             ])
         ;
     }

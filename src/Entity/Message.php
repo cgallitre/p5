@@ -60,19 +60,9 @@ class Message
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\File", mappedBy="message")
-     */
-    private $files;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="messages")
      */
     private $project;
-
-    public function __construct()
-    {
-        $this->files = new ArrayCollection();
-    }
 
      /**
      * Crée automatiquement la date du message
@@ -161,37 +151,6 @@ class Message
     public function setType(?Type $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|File[]
-     */
-    public function getFiles(): Collection
-    {
-        return $this->files;
-    }
-
-    public function addFile(File $file): self
-    {
-        if (!$this->files->contains($file)) {
-            $this->files[] = $file;
-            $file->setMessage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFile(File $file): self
-    {
-        if ($this->files->contains($file)) {
-            $this->files->removeElement($file);
-            // set the owning side to null (unless already changed)
-            if ($file->getMessage() === $this) {
-                $file->setMessage(null);
-            }
-        }
 
         return $this;
     }
