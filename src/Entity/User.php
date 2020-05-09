@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -77,12 +77,14 @@ class User implements UserInterface
     private $messages;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Role", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users", cascade={"persist","merge"})
+     * @ORM\JoinTable(name="role_user")
      */
     private $userRoles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Project", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="users", cascade={"persist", "merge"})
+     * @ORM\JoinTable(name="project_user")
      */
     private $projects;
 

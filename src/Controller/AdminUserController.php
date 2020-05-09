@@ -42,6 +42,7 @@ class AdminUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+
             $hash = $encoder->encodePassword($user, $user->getHash());
             $user->setHash($hash);
 
@@ -72,12 +73,10 @@ class AdminUserController extends AbstractController
     public function edit(Request $request, EntityManagerInterface $manager, User $user)
     {
         $form = $this->createForm(AccountType::class, $user);
-
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid())
         {
-            
 
             $manager->persist($user);
             $manager->flush();

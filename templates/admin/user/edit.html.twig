@@ -1,16 +1,31 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block title %}
-    Gestion de profil
+Gestion de profil
 {% endblock %}
 
 {% block body %}
 <div class="container">
     {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Gestion de profil' } %}
-    
     {{ form_start(form) }}
-
-    {{ form_widget(form) }}
+    <div class="row mx-md">
+        <div class="col-md-6 px-md-5 mb-3">
+            <h4>Détails du profil</h4>
+            {{ form_row(form.firstName)}}
+            {{ form_row(form.lastName)}}
+            {{ form_row(form.company)}}
+            {{ form_row(form.email)}}
+            {{ form_row(form.slug)}}
+        </div>
+        <div class="col-md-6 px-md-5">
+            <h4>Status du compte</h4>
+            {{ form_row(form.status)}}
+            <h4>Projets associés</h4>
+            <p>{{ form_row(form.projects)}}</p>
+            <h4>Autorisé à administrer</h4>
+            {{ form_row(form.userRoles)}}
+        </div>
+    </div>
     <p class="text-center">
         <button type="submit" class="btn btn-primary">Modifier le profil</button>
     </p>

@@ -29,7 +29,7 @@ class Project
     private $content;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="projects")
      */
     private $users;
 

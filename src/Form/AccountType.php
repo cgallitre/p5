@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Role;
 use App\Entity\User;
+use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -27,6 +30,20 @@ class AccountType extends ApplicationType
                 ]
             ])
             ->add('slug')
+            ->add('projects', EntityType::class, [
+                'class' => Project::class,
+                'choice_label' => 'title',
+                'label' => false,
+                'expanded' => true,
+                'multiple' =>true
+            ])
+            ->add('userRoles', EntityType::class, [
+                'class' => Role::class,
+                'choice_label' => 'title',
+                'label' => false,
+                'expanded' => true,
+                'multiple'=> true
+            ])
         ;
     }
 
