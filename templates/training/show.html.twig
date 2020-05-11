@@ -6,42 +6,49 @@
 
 {% block body %}
 <div class="container">
-    
+
     {% include 'partials/titlePage.html.twig' with { 'titlePage' : training.title } %}
 
-    <div id="content" class="row my-5 py5">
-        <div class="col-md-3">
-            <h3>Présentation</h3>
-            <p>{{ training.excerpt }}</p>
-            {% if training.objectives  %}
-            <h3>Objectifs pédagogiques</h3>
-            <p>{{ training.objectives }}</p>
-            {% endif %}
-            {% if training.public %}
-            <h3>Public</h3>
-            <p>{{ training.public }}</p>
-            {% endif %}
-            {% if training.level %}
-            <h3>Niveau requis</h3>
-            <p>{{ training.level }}</p>
-            {% endif %}
-            <h3>Durée indicative</h3>
-            <p>{{ training.duration }}</p>
-
+    <div id="content" class="row">
+        <div class="col-md-3 card border-primary mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Présentation</h4>
+                <p class="card-text">{{ training.excerpt }}</p>
+                {% if training.objectives  %}
+                <h4 class="card-title">Objectifs pédagogiques</h4>
+                <p class="card-text">{{ training.objectives }}</p>
+                {% endif %}
+                {% if training.public %}
+                <h4 class="card-title">Public</h4>
+                <p class="card-text">{{ training.public }}</p>
+                {% endif %}
+                {% if training.level %}
+                <h4 class="card-title">Niveau requis</h4>
+                <p class="card-text">{{ training.level }}</p>
+                {% endif %}
+                <h4 class="card-title">Durée indicative</h4>
+                <p class="card-text">{{ training.duration }}</p>
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 my-3">
             <h3>Programme (indicatif)</h3>
             <p>{{ training.program | markdown_to_html }}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 my-3">
             <h3>Sur le même thème</h3>
             <ul class="list-unstyled">
                 {% for tr in trainings %}
-                     <a href="{{ path('training_show', {'slug': tr.slug }) }}"> 
-                        <li>{{ tr.title }}</li>
-                    </a>
+                <a href="{{ path('training_show', {'slug': tr.slug }) }}">
+                    <li>{{ tr.title }}</li>
+                </a>
                 {% endfor %}
             </ul>
+            <div class="text-center">
+                <a href="{{ path('training_index') }}" class="btn btn-primary">
+                    Liste complète
+                </a>
+
+            </div>
         </div>
     </div>
 

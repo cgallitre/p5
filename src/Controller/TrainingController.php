@@ -44,7 +44,7 @@ class TrainingController extends AbstractController
         public function show($slug, Training $training, TrainingRepository $repo)
         {
             // $training = $repo->findOneBySlug($slug);
-            $trainings = $repo->findAll();
+            $trainings = $repo->findByTheme($training->getTheme());
         
             return $this->render('training/show.html.twig', [
                 'training' => $training,

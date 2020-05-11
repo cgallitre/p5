@@ -8,22 +8,22 @@
 
     {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Réalisations' } %}
 
-    <div class="row mt-3 justify-content-around">
+    <div class="row mt-3">
         <!-- one ref -->
         {% for portfolio in portfolios %}
-        <div class="col-md-4">
-            <div class="card border-light mb-3" style="max-width: 20rem;">
-                <h3 class="card-header">{{ portfolio.title }}</h3>
+        <div class="col-md-4 mx-auto">
+            <div class="card border-light mb-3">
+                <h5 class="card-header">{{ portfolio.title }}</h5>
                 <div class="card-body">
-                    <h5 class="card-title">{{ portfolio.technology }}</h5>
+                    <h6 class="card-title">{{ portfolio.technology }}</h6>
                 </div>
-                <img style="height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}">
+                <img style="max-height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}">
                 <div class="card-body">
                     <p class="card-text">{{ portfolio.description | raw }}</p>
                 </div>
-                <div class="card-footer text-muted">
+                {# <div class="card-footer text-muted">
                     <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
-                </div>
+                </div> #}
             </div>
         </div>
         {% endfor %}

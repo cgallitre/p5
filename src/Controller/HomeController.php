@@ -28,4 +28,16 @@ class HomeController extends AbstractController {
         );
     }
 
+    /**
+     * Page A propos
+     *
+     * @Route("/apropos", name="apropos_index")
+     * 
+     * @return void
+     */
+    public function apropos()
+    {
+        return $this->render('apropos.html.twig');
+    }
+
 }
