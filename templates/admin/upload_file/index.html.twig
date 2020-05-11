@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de fichiers!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="container">
+        {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Ajouter un fichier' } %}
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <p class="text-center">
+            <button type="submit" class="btn btn-primary">Ajouter le fichier</button>
+        </p>
+
+        {{ form_end(form) }}
+</div>
+</div>
+{% endblock %}

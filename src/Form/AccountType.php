@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Project;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -35,7 +36,11 @@ class AccountType extends ApplicationType
                 'choice_label' => 'title',
                 'label' => false,
                 'expanded' => true,
-                'multiple' =>true
+                'multiple' =>true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('pr')
+                        ->where('pr.finished = false');
+                }
             ])
             ->add('userRoles', EntityType::class, [
                 'class' => Role::class,

@@ -64,6 +64,16 @@ class Message
      */
     private $project;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UploadFile", mappedBy="message")
+     */
+    private $uploadFiles;
+
+    public function __construct()
+    {
+        $this->uploadFiles = new ArrayCollection();
+    }
+
      /**
      * Crée automatiquement la date du message
      *
@@ -163,6 +173,37 @@ class Message
     public function setProject(?Project $project): self
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UploadFile[]
+     */
+    public function getUploadFiles(): Collection
+    {
+        return $this->uploadFiles;
+    }
+
+    public function addUploadFile(UploadFile $uploadFile): self
+    {
+        if (!$this->uploadFiles->contains($uploadFile)) {
+            $this->uploadFiles[] = $uploadFile;
+            $uploadFile->setMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUploadFile(UploadFile $uploadFile): self
+    {
+        if ($this->uploadFiles->contains($uploadFile)) {
+            $this->uploadFiles->removeElement($uploadFile);
+            // set the owning side to null (unless already changed)
+            if ($uploadFile->getMessage() === $this) {
+                $uploadFile->setMessage(null);
+            }
+        }
 
         return $this;
     }
