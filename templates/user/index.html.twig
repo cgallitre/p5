@@ -3,62 +3,59 @@
 {% block title %}Page de {{ user.fullName }}{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row mt-5 align-items-center">
-        <div class="col-md-4">
-            <h1>{{user.fullName}}</h1>
-            <p class="">
+<div class="col mx-5">
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <h5 class="mb-3">Sélectionnez un projet :</h2>
+                {% for project in user.projects %}
+                    {% if projectDefault[0] == project %}
+                        <span class="badge badge-primary">En cours</span>
+                    {% endif %}
+                <a class="" href="{{ path('user_index', { projectId : project.id}) }}">{{ project.title }}</a><br>
+                {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <h5>Commandes</h5>
+            <a type="button" class="btn btn-secondary mb-3" href="{{ path('admin_message_new') }}">Ajouter un message</a><br>
+            <a type="button" class="btn btn-primary" href="{{ path('account_logout') }}">Déconnexion</a>
+        </div>
+        <div class="col-md-3">
+            <h5>Statistiques</h5>
+            {# <p class="">
                 <span class="badge badge-primary">{{ user.messages | length }}</span> messages publiés.
             </p>
             <p class="mb-5">
                 <span class="badge badge-primary">{{ user.messages | length }}</span> messages non lus.
-            </p>
-        </div>
-        <div class="col-md-8">
-            <a type="button" class="btn btn-primary" href="{{ path('admin_message_new') }}">Ajouter un message</a>
-            <a type="button" class="btn btn-primary ml-3" href="{{ path('testimonial_new') }}">Soumettre un
-                témoignage</a>
+            </p> #}
         </div>
     </div>
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#projects">Projets</a>
+            <a class="nav-link active" data-toggle="tab" href="#messages">Messages</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#messages">Messages</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="nav-link" data-toggle="tab" href="#files">Fichiers</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade" id="projects">
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
-                retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
-                Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate
-                nisi qui.</p>
-        </div>
         <div class="tab-pane fade active show" id="messages">
             <div class="table-responsive">
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Date</th>
                             <th scope="col">Objet</th>
-                            <th scope="col">De</th>
                             <th scope="col" width="100px">Commandes</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for message in pagination.data %}
+
+                        {% for message in messages %}
                         <tr>
-                            <td>{{ message.id }}</td>
-                            <td>{{ message.createdAt | date('d/m/Y') }}</td>
-                            <td>{{ message.title }}</td>
-                            <td>{{ message.author.fullName }}</td>
+                            <td>
+                                {{ message.title }} <br>
+                                <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à {{ message.createdAt | date('H\\hi') }}</small>
+                            </td>
                             {% if (app.user and app.user == message.author) %}
                             <td class="text-center">
                                 <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
@@ -67,12 +64,14 @@
                                 <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
                                         class="fas fa-trash fa-2x"></i></a>
                             </td>
+                            {% else %}
+                                <td></td>
                             {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                {# {% include 'admin/partials/pagination.html.twig' with {'route' : 'user_show'} %} #}
+                {# {% include 'partials/projectFilter.html.twig' with {'route' : 'user_index'} %} #}
             </div>
         </div>
         <div class="tab-pane fade" id="files">

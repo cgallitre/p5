@@ -4,48 +4,47 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Message;
-use App\Service\Pagination;
+use App\Service\ProjectFilter;
+use App\Repository\MessageRepository;
+use App\Repository\ProjectRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
     /**
+     * Tableau de bord client
      * 
-     * 
-     * @Route("/user", name="user_index")
+     * @Route("/user/{projectId}", name="user_index")
      *
      * @return void
      */
-    public function dashboard (Pagination $pagination)
+    public function dashboard (ProjectRepository $projectRepo, $projectId = null, MessageRepository $messageRepo)
     {
-
-        // Temporaire à améliorer !!
-
         $user = $this->getUser();
-        $pagination->setEntityClass(Message::class)
-        ->setCurrentPage(1);
+        $userProjects = $user->getProjects();
+
+        if ($projectId){
+            // on affiche le projet sélectionné
+            $project = $projectRepo->findById($projectId);
+        } else {
+            // on détermine un projet par défaut
+            // $project = $repo->findById($userProjects[0]);
+            $project = $projectRepo  ->createQueryBuilder('p')
+                                    ->select('p')
+                                    ->orderBy('p.id', 'DESC')
+                                    ->setMaxResults(1)
+                                    ->getQuery()
+                                    ->getResult()
+                                    ;
+        }
+
+        $messages = $messageRepo->findByProject($project);
 
         return $this->render('user/index.html.twig', [
             'user' => $user,
-            'pagination' => $pagination
-        ]);
-    }
-
-    /**
-     * @Route("/user/{slug}/{page}", name="user_show", requirements={"page" : "\d+"})
-     */
-    public function index(User $user, Pagination $pagination, $page=1)
-    {
-
-        // Temporaire à améliorer !!
-        
-        $pagination->setEntityClass(Message::class)
-        ->setCurrentPage($page);
-
-        return $this->render('user/index.html.twig', [
-            'user' => $user,
-            'pagination' => $pagination
+            'messages' => $messages,
+            'projectDefault' => $project
         ]);
     }
 }

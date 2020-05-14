@@ -6,10 +6,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class Pagination
 {
-    private $entityClass;
-    private $limit = 5;
-    private $currentPage = 1;
-    private $manager;
+    protected $entityClass;
+    protected $limit = 5;
+    protected $currentPage = 1;
+    protected $manager;
 
     public function __construct(EntityManagerInterface $manager)
     {

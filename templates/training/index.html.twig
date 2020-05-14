@@ -13,7 +13,7 @@
                     class="m-1 btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</button>
             </a>
             {% for theme in themes %}
-            <a href="{{ path('training_index') }}/filtre/{{theme.id}}">
+            <a href="{{ path('training_filter', {id : theme.id}) }}">
                 <button type="button"
                     class="m-1 btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %}">{{ theme.title }}</button>
             </a>

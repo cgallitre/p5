@@ -16,7 +16,13 @@ class HomeController extends AbstractController {
      */
     public function Home(PortfolioRepository $portfolioRepo, TestimonialRepository $testimonialRepo){
 
-        $portfolios = $portfolioRepo->findAll();
+        $portfolios = $portfolioRepo->createQueryBuilder('p')
+                                        ->select('p')
+                                        ->orderBy('p.id', 'DESC')
+                                        ->setMaxResults(3)
+                                        ->getQuery()
+                                        ->getResult();
+
         $testimonials = $testimonialRepo->findByPublished(1);
 
         return $this->render(

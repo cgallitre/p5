@@ -11,10 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TrainingController extends AbstractController
 {
     /**
-     * Show all trainings
+     * Show all trainings with filtering by theme
      * 
      * @Route("/formations", name="training_index")
-     * @Route("/formations/filtre/{id}")
+     * @Route("/formations/filtre/{id}", name="training_filter")
      */
     public function index(TrainingRepository $repoTraining, ThemeRepository $repoTheme, $id=null)
     {
