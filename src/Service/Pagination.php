@@ -19,7 +19,7 @@ class Pagination
     public function getPages()
     {
         $repo = $this->manager->getRepository($this->entityClass); 
-        $total = count( $repo->findAll());
+        $total = count($repo->findAll());
         $pages = ceil($total / $this->limit);
         return $pages;
     }

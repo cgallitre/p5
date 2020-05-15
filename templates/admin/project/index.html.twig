@@ -25,7 +25,7 @@
             <tbody>
                 {% for project in projects %}
                 <tr class="table-{% if project.finished %}light{% else %}primary{% endif %}">
-                    <td>{% if project.finished  ==1 %}<i class="fas fa-check"></i>{% else %}<i class="fas fa-times"></i>{% endif %}</td>
+                    <td>{% if project.finished  ==1 %}<i class="fas fa-times"></i>{% else %}<i class="fas fa-check"></i>{% endif %}</td>
                     <td>{{ project.title }}</td>
                     <td>{{ project.content | raw }}</td>
                     <td>
