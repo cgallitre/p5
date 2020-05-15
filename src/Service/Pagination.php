@@ -6,10 +6,11 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class Pagination
 {
-    protected $entityClass;
+    // protected $entityClass;
     protected $limit = 5;
     protected $currentPage = 1;
     protected $manager;
+    protected $repo;
 
     public function __construct(EntityManagerInterface $manager)
     {
@@ -18,8 +19,8 @@ class Pagination
 
     public function getPages()
     {
-        $repo = $this->manager->getRepository($this->entityClass); 
-        $total = count($repo->findAll());
+        // $repo = $this->manager->getRepository($this->entityClass); 
+        $total = count($this->repo->findAll());
         $pages = ceil($total / $this->limit);
         return $pages;
     }
@@ -28,10 +29,10 @@ class Pagination
     {
         // calcul de l'offset
         $offset =  $this->currentPage * $this->limit - $this->limit;
-
+   
         // demander au repository les éléments
-        $repo = $this->manager->getRepository($this->entityClass);
-        $data = $repo->findBy([], [], $this->limit, $offset);
+        // $repo = $this->manager->getRepository($this->entityClass);
+        $data = $this->repo->findBy([], [], $this->limit, $offset);
         // Renvoyer les éléments
         return $data;
     }
@@ -58,14 +59,25 @@ class Pagination
         return $this->limit;
     }
 
-    public function setEntityClass($entityClass)
+    // public function setEntityClass($entityClass)
+    // {
+    //     $this->entityClass = $entityClass;
+    //     return $this;
+    // }
+
+    // public function getEntityClass()
+    // {
+    //     return $this->entityClass;
+    // }
+
+    public function setRepo($repo)
     {
-        $this->entityClass = $entityClass;
+        $this->repo = $repo;
         return $this;
     }
 
-    public function getEntityClass()
+    public function getRepo()
     {
-        return $this->entityClass;
+        return $this->repo;
     }
 }

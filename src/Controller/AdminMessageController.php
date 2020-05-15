@@ -22,8 +22,11 @@ class AdminMessageController extends AbstractController
      */
     public function index(MessageRepository $repo, $page = 1, Pagination $pagination)
     {
-        $pagination->setEntityClass(Message::class)
-                   ->setCurrentPage($page);
+        // $pagination->setEntityClass(Message::class)
+        //            ->setCurrentPage($page);
+
+        $pagination->setRepo($repo)
+                    ->setCurrentPage($page);
 
         return $this->render('admin/message/index.html.twig', [
             'pagination' => $pagination
