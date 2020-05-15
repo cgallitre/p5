@@ -3,27 +3,23 @@
 {% block title %}Page de {{ user.fullName }}{% endblock %}
 
 {% block body %}
+
 <div class="col mx-5">
     <div class="row">
         <div class="col-12">
             {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Tableau de bord'} %}
         </div>
     </div>
-    <div class="row mb-3 bg-light rounded p-3">
-        <div class="col-md-6">
-            <h5 class="mb-3">Cliquez sur un projet pour afficher les messages</h2>
-                {% for project in user.projects %}
-                {% if projectDefault[0] == project %}
-                <span class="badge badge-primary">Sélectionné</span>
-                {% endif %}
-                <a class="" href="{{ path('user_index', { projectId : project.id}) }}">{{ project.title }}</a><br>
-                {% endfor %}
-        </div>
-        <div class="col-md-3">
-            <h5>Commandes</h5>
-            <a type="button" class="btn btn-secondary mb-3" href="{{ path('admin_message_new') }}">Ajouter un
-                message</a><br>
-            <a type="button" class="btn btn-primary" href="{{ path('account_logout') }}">Déconnexion</a>
+    <div class="row mb-3 p-3 bg-light rounded">
+        <div class="col-md-7 bg-white p-3 rounded">
+            <h5 class="mb-3"><i class="fas fa-filter"></i> Filtrer les messages</h5>
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col">{{ form_widget(form.project) }}</div>
+                <div class="col">{{ form_widget(form.type) }}</div>
+            </div>
+                <button class="btn btn-primary">Filtrer</button>
+            {{ form_end(form) }}
         </div>
         <div class="col-md-3">
             <h5>Statistiques</h5>
@@ -34,60 +30,55 @@
                 <span class="badge badge-primary">{{ user.messages | length }}</span> fichiers.
             </p>
         </div>
+        <div class="col-md-2">
+            <a type="button" class="btn btn-primary mb-3" href="{{ path('account_logout') }}">Déconnexion</a><br>
+            <a type="button" class="btn btn-secondary" href="{{ path('admin_message_new') }}">Ajouter un message</a>
+        
+        </div>
+
+
     </div>
-
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#messages">Messages</a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" data-toggle="tab" href="#files">Fichiers</a>
-        </li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active show" id="messages">
-            <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Objet</th>
-                            <th scope="col" width="100px">Commandes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {% for message in messages %}
-                        <tr>
-                            <td>
-                                <strong>{{ message.title }}</string> <br>
-                                    <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à
-                                        {{ message.createdAt | date('H\\hi') }}</small>
-                            </td>
-                            {% if (app.user and app.user == message.author) %}
-                            <td class="text-center">
-                                <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
-                                        class="fas fa-file fa-2x"></i></a>
-                                &emsp;
-                                <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
-                                        class="fas fa-trash fa-2x"></i></a>
-                            </td>
-                            {% else %}
-                            <td></td>
-                            {% endif %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {# {% include 'partials/pagination.html.twig' with {'route' : 'user_index'} %} #}
+    <div class="row">
+        <div class="col">
+            <table class="table table-hover table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Projet</th>
+                        <th scope="col">Type</th>
+                        <th scope="col" width="100px">Commandes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in messages %}
+                    <tr>
+                        <td>
+                            <strong>{{ message.title }}</string> <br>
+                                <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à
+                                    {{ message.createdAt | date('H\\hi') }}</small>
+                        </td>
+                        <td>{{ message.project.title }}</td>
+                        <td>{{ message.type.title }}</td>
+                        {% if (app.user and app.user == message.author) %}
+                        <td class="text-center">
+                            <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                                    class="fas fa-file fa-2x"></i></a>
+                            &emsp;
+                            <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                                    class="fas fa-trash fa-2x"></i></a>
+                        </td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ knp_pagination_render(
+                    messages ) }}
             </div>
         </div>
-        <div class="tab-pane fade" id="files">
-            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-                labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft
-                beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad
-                vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-        </div>
-
     </div>
 </div>
 {% endblock %}

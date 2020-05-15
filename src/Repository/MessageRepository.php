@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Message;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\MessageSearch;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Message|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,26 @@ class MessageRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Message::class);
+    }
+
+    public function findAllQuery(MessageSearch $search)
+    {
+        $query = $this  ->createQueryBuilder('m')
+                        ->orderBy('m.createdAt', 'DESC');
+
+        if ($search->getProject())
+        {
+            $query = $query->andWhere('m.project = :project')
+                           ->setParameter('project', $search->getProject());
+        }
+        
+        if ($search->getType())
+        {
+            $query = $query->andWhere('m.type = :type')
+                           ->setParameter('type', $search->getType());
+        }
+
+        return $query->getQuery();
     }
 
     // /**
