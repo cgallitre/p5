@@ -5,45 +5,100 @@
 {% block body %}
 
 <div class="container-fluid">
-    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Liste des messages' } %}
+    {# {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Liste des messages' } %} #}
 
-    <p class="text-center pb-5">
+    <p class="text-right mt-3">
         <a href="{{ path('admin_message_new') }}" class="btn btn-primary">Ajouter un message</a>
     </p>
-    <div class="table-responsive">
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Objet</th>
-                    <th scope="col">Type</th>
-                    <th scope="col" width="100px">Commandes</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for message in pagination.data %}
-                <tr>
-                    <td>{{ message.id }}</td>
-                    <td>
-                        <p>{{ message.title }}<br>
-                        <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à {{ message.createdAt | date('H\\hi') }}.</small>
-                        </p>
-                    </td> 
-                    <td>{{ message.type.title }}</td>
-                    {# {% if (app.user and app.user == message.author) %} #}
-                    <td class="text-center">
-                        <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
-                                class="fas fa-edit fa-2x"></i></a>
-                        &emsp;
-                        <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
-                                class="fas fa-trash fa-2x"></i></a>
-                    </td>
-                    {# {% endif %} #}
-                </tr>
+    <div class="row ml-3">
+
+        {# Filtre #}
+        <div class="col-md-3">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header bg-light"><i class="fas fa-filter"></i> Filtrer</div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form.project) }}
+                    <br>
+                    {{ form_widget(form.type) }}
+                    <button class="btn btn-primary">Filtrer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+
+        {# liste des messages #}
+        <div class="col-md-9">
+            <div class="accordion" id="listeMessages">
+                {% for message in messages %}
+                <div class="card">
+                    <div class="card-header bg-light" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link pl-0" type="button" data-toggle="collapse"
+                                data-target="#collapse{{ message.id }}" aria-expanded="true"
+                                aria-controls="collapseOne">
+                                {{ message.title }}
+                            </button>
+                            <span class="float-right">
+                                <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                                        class="fas fa-edit"></i></a>
+                                &emsp;
+                                <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                                        class="fas fa-trash"></i></a>
+                            </span>
+                        </h2>
+                        <span><small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à
+                                {{ message.createdAt | date('H\\hi') }}</small></span>
+                        <p>{{ message.project.title }} | <span class="badge badge-primary">{{ message.type.title }}</span></p>
+                    </div>
+
+                    <div id="collapse{{ message.id }}" class="collapse" aria-labelledby="headingOne"
+                        data-parent="#listeMessages">
+                        <div class="card-body">
+                            {{ message.content | raw }}
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            </tbody>
-        </table>
-        {% include 'admin/partials/pagination.html.twig' with {'route' : 'admin_message_index'} %}
+
+                {# <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Objet</th>
+                            <th scope="col">Type</th>
+                            <th scope="col" width="100px">Commandes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in pagination.data %}
+                        <tr>
+                            <td>{{ message.id }}</td>
+                            <td>
+                                <p>{{ message.title }}<br>
+                                <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à {{ message.createdAt | date('H\\hi') }}.</small>
+                                </p>
+                            </td> 
+                            <td>{{ message.type.title }}</td>
+                            <td class="text-center">
+                                <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                                        class="fas fa-edit fa-2x"></i></a>
+                                &emsp;
+                                <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                                        class="fas fa-trash fa-2x"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table> #}
+
+            </div>
+        </div>
+        {# {% include 'admin/partials/pagination.html.twig' with {'route' : 'admin_message_index'} %} #}
+        <div class="navigation mt-3 mx-auto">
+            {{ knp_pagination_render( messages ) }}
+        </div>
     </div>
 </div>
 {% endblock %}

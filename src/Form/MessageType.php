@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\Type;
 use App\Entity\Message;
+use App\Entity\Project;
 use App\Form\ApplicationType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -17,11 +18,21 @@ class MessageType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('project', EntityType::class, [
+                'class' => Project::class,
+                'choice_label' => 'title',
+                'label' => 'Projet',
+                'expanded' =>false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                              ->orderBy('p.id', 'DESC');
+                }
+            ])
             ->add('title', TextType::class, $this->getConfiguration("Objet"))
             ->add('content', TextareaType::class, [
                 'label'=>'Message',
                 'attr'=>[
-                    'rows'=>10
+                    'rows'=>8
                 ]
             ])
             ->add('type', EntityType::class, [
@@ -29,11 +40,6 @@ class MessageType extends ApplicationType
                 'choice_label' => 'title',
                 'label' => 'Type de message',
                 'expanded' =>true
-            ])
-            ->add('Files', FileType::class, [
-                'label' => false,
-                'mapped' => false,
-                'multiple' => true
             ])
         ;
     }

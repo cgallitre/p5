@@ -5,120 +5,126 @@ namespace App\Controller;
 use App\Entity\Message;
 use App\Form\MessageType;
 use App\Service\Pagination;
+use App\Entity\MessageSearch;
+use App\Form\MessageSearchType;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminMessageController extends AbstractController
 {
     /**
-     * @Route("/admin/messages/{page}", name="admin_message_index", requirements={"page" : "\d+"} )
+     * @Route("/admin/messages", name="admin_message_index", requirements={"page" : "\d+"} )
      * 
      * @return Response
      */
-    public function index(MessageRepository $repo, $page = 1, Pagination $pagination)
-    {
-        // $pagination->setEntityClass(Message::class)
-        //            ->setCurrentPage($page);
+    public function index(MessageRepository $repo, PaginatorInterface $paginator, Request $request)
+    {      
+        $search = new MessageSearch();
+        $form = $this->createForm(MessageSearchType::class, $search);
+        $form->handleRequest($request);
 
-        $pagination->setRepo($repo)
-                    ->setCurrentPage($page);
+        $messages = $paginator->paginate(
+            $repo->findAllQuery($search),
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('admin/message/index.html.twig', [
-            'pagination' => $pagination
+            'form' => $form->createView(),
+            'messages' => $messages
             ]);
     }
 
-/** Create a message
-*
-* @Route("/admin/messages/ajout", name="admin_message_new")
-* @IsGranted("ROLE_USER")
-* 
-* @return Response
-*/
-public function new(Request $request, EntityManagerInterface $manager)
-    {
-    
-        $message = new Message();
-
-        $form = $this->createForm(MessageType::class, $message);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-
-            $message->setAuthor($this->getUser());
-            
-            $manager->persist($message);
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                "Le message été ajouté. Une réponse vous sera donnée rapidement."
-            );
-
-            return $this->redirectToRoute('admin_message_index');
-        }
-
-        return $this->render('admin/message/new.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-/**
-     * Edition d'un message
-     *
-     * @Route("/admin/messages/{id}/edit", name = "admin_message_edit"
-     * )
-     * @return Response
-     */
-    public function edit(Message $message, Request $request, EntityManagerInterface $manager)
-    {
-        $form = $this->createForm(MessageType::class, $message);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
+    /** Create a message
+    *
+    * @Route("/admin/messages/ajout", name="admin_message_new")
+    * 
+    * @return Response
+    */
+    public function new(Request $request, EntityManagerInterface $manager)
         {
-           
-            $manager->persist($message);
-            $manager->flush();
+        
+            $message = new Message();
 
-            $this->addFlash(
-                'success',
-                "La modification du message a bien été enregistrée."
-            );
+            $form = $this->createForm(MessageType::class, $message);
 
-            return $this->redirectToRoute('admin_message_index');
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+
+                $message->setAuthor($this->getUser());
+                
+                $manager->persist($message);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    "Le message été ajouté. Une réponse vous sera donnée rapidement."
+                );
+
+                return $this->redirectToRoute('admin_message_index');
+            }
+
+            return $this->render('admin/message/new.html.twig', [
+                'form' => $form->createView()
+            ]);
         }
-
-        return $this->render('admin/message/edit.html.twig', [
-            'form' => $form->createView()
-         ]);
-    }
 
     /**
-     * Suppression d'un message
-     *
-     * @Route("/admin/messages/{id}/delete", name="admin_message_delete")
-     * 
-     * @return Response
-     */
-    public function delete(Message $message, EntityManagerInterface $manager)
-    {
-    
-        $manager->remove($message);
-        $manager->flush();
+         * Edition d'un message
+         *
+         * @Route("/admin/messages/{id}/edit", name = "admin_message_edit"
+         * )
+         * @return Response
+         */
+        public function edit(Message $message, Request $request, EntityManagerInterface $manager)
+        {
+            $form = $this->createForm(MessageType::class, $message);
 
-        $this->addFlash(
-            'success',
-            "Le message <strong>{$message->getTitle()}</strong> a bien été supprimé."
-        );
+            $form->handleRequest($request);
 
-        return $this->redirectToRoute('admin_message_index');
-    }
+            if ($form->isSubmitted() && $form->isValid())
+            {
+            
+                $manager->persist($message);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    "La modification du message a bien été enregistrée."
+                );
+
+                return $this->redirectToRoute('admin_message_index');
+            }
+
+            return $this->render('admin/message/edit.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+
+        /**
+         * Suppression d'un message
+         *
+         * @Route("/admin/messages/{id}/delete", name="admin_message_delete")
+         * 
+         * @return Response
+         */
+        public function delete(Message $message, EntityManagerInterface $manager)
+        {
+        
+            $manager->remove($message);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le message <strong>{$message->getTitle()}</strong> a bien été supprimé."
+            );
+
+            return $this->redirectToRoute('admin_message_index');
+        }
 }

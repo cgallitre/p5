@@ -5,12 +5,12 @@
 {% block body %}
 
 <div class="col mx-5">
-    <div class="row">
+    {# <div class="row">
         <div class="col-12">
             {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Tableau de bord'} %}
         </div>
-    </div>
-    <div class="row mb-3 p-3 bg-light rounded">
+    </div> #}
+    <div class="row my-3 p-3 bg-light rounded">
         <div class="col-md-7 bg-white p-3 rounded">
             <h5 class="mb-3"><i class="fas fa-filter"></i> Filtrer les messages</h5>
             {{ form_start(form) }}
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-2">
             <a type="button" class="btn btn-primary mb-3" href="{{ path('account_logout') }}">Déconnexion</a><br>
-            <a type="button" class="btn btn-secondary" href="{{ path('admin_message_new') }}">Ajouter un message</a>
+            <a type="button" class="btn btn-secondary" href="{{ path('message_new') }}">Ajouter un message</a>
         
         </div>
 
@@ -61,10 +61,10 @@
                         <td>{{ message.type.title }}</td>
                         {% if (app.user and app.user == message.author) %}
                         <td class="text-center">
-                            <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                            <a href="{{ path('message_edit', { 'id' : message.id }) }}"><i
                                     class="fas fa-file fa-2x"></i></a>
                             &emsp;
-                            <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                            <a href="{{ path('message_delete', {'id' : message.id }) }}"><i
                                     class="fas fa-trash fa-2x"></i></a>
                         </td>
                         {% else %}

@@ -16,19 +16,19 @@ class MessageSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('project', EntityType::class, [
-            'required' => false,
-            'class' => Project::class,
-            'choice_label' => 'title',
-            'label' => false,
-            'expanded'=>true,
-            'multiple'=>false,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('pr')
-                    ->where('pr.finished = false');
-            }
-           
-        ])
+            ->add('project', EntityType::class, [
+                'required' => false,
+                'class' => Project::class,
+                'choice_label' => 'title',
+                'label' => false,
+                'expanded'=>true,
+                'multiple'=>false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('pr')
+                        ->where('pr.finished = false');
+                }
+            
+            ])
             ->add('type', EntityType::class, [
                 'required' => false,
                 'label' => false,
