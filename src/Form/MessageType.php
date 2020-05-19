@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Type;
 use App\Entity\Message;
 use App\Entity\Project;
+use App\Form\UploadFileType;
 use App\Form\ApplicationType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,6 +13,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class MessageType extends ApplicationType
 {
@@ -25,6 +28,7 @@ class MessageType extends ApplicationType
                 'expanded' =>false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
+                                ->where('p.finished = false')
                               ->orderBy('p.id', 'DESC');
                 }
             ])
@@ -41,6 +45,13 @@ class MessageType extends ApplicationType
                 'label' => 'Type de message',
                 'expanded' =>true
             ])
+            ->add('uploadFiles', CollectionType::class, [
+                'entry_type' => UploadFileType::class,
+                'allow_add' => true,
+                'allow_delete' => true, 
+                'label' => false
+            ])
+
         ;
     }
 

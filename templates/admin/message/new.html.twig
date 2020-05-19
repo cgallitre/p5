@@ -1,16 +1,90 @@
 {% extends 'admin/base.html.twig' %}
 
+{% form_theme form _self %}
+
 {% block body %}
 <div class="container">
     {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
-    
     {{ form_start(form) }}
-
-    {{ form_widget(form) }}
-    <p class="text-center">
-        <button type="submit" class="btn btn-primary">Ajouter le message</button>
-    </p>
-
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.title) }}
+            {{ form_row(form.content) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.project) }}
+            <br>
+            {{ form_widget(form.type) }}
+            <br>
+            {{ form_widget(form.uploadFiles) }}
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <p class="text-center">
+                <button type="submit" class="btn btn-primary">Ajouter le message</button>
+            </p>
+        </div>
+    </div>
     {{ form_end(form) }}
 </div>
+{% endblock %}
+
+{% block _message_uploadFiles_widget %}
+{{ form_widget(form) }}
+<div class="form-group">
+    <button type="button" id="add-file" class="btn btn-primary"><i class="fas fa-file-upload"></i></button> Ajouter un
+    fichier
+    <input type="hidden" value="0" id="widgets-counter">
+</div>
+{% endblock %}
+
+{# Pour éviter d'afficher le label, on redéfinit la Row uniquement avec le Widget #}
+{% block _message_uploadFiles_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _message_uploadFiles_entry_widget %}
+<div class="form-group" id="block_{{ id }}">
+    <div class="row">
+        {# <div class="col-5">{{ form_widget(form.fileName) }}</div> #}
+        <div class="col-11">{{ form_widget(form.uploadFile) }}</div>
+        <div class="col-1"><button type="button" data-action="delete" data-target="#block_{{ id }}"
+                class="btn btn-primary"><i class="fas fa-trash"></i></button></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    // ajout d'un sous-formulaire
+    $('#add-file').click(function () {
+        // recherche du prochain numéro pour les champs que j'ajoute
+        const index = +$('#widgets-counter').val();
+
+        // récupération du prototype à recopier et remplace les __name__ par le prochain numéro
+        // la paramètre g signilie qu'il faut remplacer tous les __name__
+        const tmpl = $('#message_uploadFiles').data('prototype').replace(/__name__/g, index);
+
+        // ajout du code dans la page
+        $('#message_uploadFiles').append(tmpl);
+        $('#widgets-counter').val(index + 1);
+
+        // appel de la fonction de suppression si besoin
+        handleDeleteButtons();
+    });
+
+    // Suppression d'un sous-formulaire
+    function handleDeleteButtons() {
+        $('button[data-action="delete"]').click(function () {
+            const target = this.dataset.target;
+            $(target).remove();
+        });
+    }
+
+    // Appel de la fonction suppression dés le chargement de la page (pour éditer un message)
+    handleDeleteButtons();
+</script>
+
 {% endblock %}

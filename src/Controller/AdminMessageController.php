@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Form\MessageType;
+use App\Entity\UploadFile;
 use App\Service\Pagination;
 use App\Entity\MessageSearch;
 use App\Form\MessageSearchType;
@@ -31,7 +32,7 @@ class AdminMessageController extends AbstractController
         $messages = $paginator->paginate(
             $repo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            5
+            10
         );
 
         return $this->render('admin/message/index.html.twig', [
@@ -56,6 +57,11 @@ class AdminMessageController extends AbstractController
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
+
+                foreach ($message->getUploadFiles() as $file){
+                    $file->setMessage($message);
+                    $manager->persist($file);
+                }
 
                 $message->setAuthor($this->getUser());
                 
@@ -91,6 +97,11 @@ class AdminMessageController extends AbstractController
             if ($form->isSubmitted() && $form->isValid())
             {
             
+                foreach ($message->getUploadFiles() as $file){
+                    $file->setMessage($message);
+                    $manager->persist($file);
+                }
+
                 $manager->persist($message);
                 $manager->flush();
 
@@ -116,7 +127,7 @@ class AdminMessageController extends AbstractController
          */
         public function delete(Message $message, EntityManagerInterface $manager)
         {
-        
+
             $manager->remove($message);
             $manager->flush();
 
