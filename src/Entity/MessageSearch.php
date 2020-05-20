@@ -9,6 +9,19 @@ class MessageSearch
 
     private $type;
 
+    private $keyword = '';
+
+    public function setKeyword($keyword)
+    {
+        $this->keyword = $keyword;
+        return $this;
+    }
+
+    public function getKeyword()
+    {
+        return $this->keyword;
+    }
+
     public function setProject($project)
     {
         $this->project = $project;

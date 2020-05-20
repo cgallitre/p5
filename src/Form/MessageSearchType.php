@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class MessageSearchType extends AbstractType
@@ -18,6 +19,13 @@ class MessageSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('keyword', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => "Mot clé"
+                ]
+            ])
             ->add('project', EntityType::class, [
                 'required' => false,
                 'class' => Project::class,
@@ -46,7 +54,8 @@ class MessageSearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => MessageSearch::class,
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'method' => 'GET' // permet de partager la recherche via l'URL
         ]);
     }
 

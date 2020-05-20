@@ -39,7 +39,7 @@ class TestimonialController extends AbstractController
                 "Merci ! Votre témoignage a bien été enregistré."
             );
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('message_index');
         }
 
         return $this->render('testimonial/new.html.twig', [

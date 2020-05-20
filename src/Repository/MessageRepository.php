@@ -25,6 +25,12 @@ class MessageRepository extends ServiceEntityRepository
         $query = $this  ->createQueryBuilder('m')
                         ->orderBy('m.createdAt', 'DESC');
 
+        if ($search->getKeyword())
+        {
+            $query = $query->andWhere('m.content LIKE :keyword OR m.title LIKE :keyword')
+                           ->setParameter('keyword', "%{$search->getKeyword()}%");
+        }
+
         if ($search->getProject())
         {
             $query = $query->andWhere('m.project = :project')

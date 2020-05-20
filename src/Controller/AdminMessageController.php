@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Form\MessageType;
-use App\Entity\UploadFile;
-use App\Service\Pagination;
 use App\Entity\MessageSearch;
 use App\Form\MessageSearchType;
 use App\Repository\MessageRepository;
@@ -32,7 +30,7 @@ class AdminMessageController extends AbstractController
         $messages = $paginator->paginate(
             $repo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            10
+            5
         );
 
         return $this->render('admin/message/index.html.twig', [

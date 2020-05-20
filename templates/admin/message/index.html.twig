@@ -14,103 +14,14 @@
 
         {# Filtre #}
         <div class="col-md-3">
-            <div class="card border-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header bg-light"><i class="fas fa-filter"></i> Filtrer</div>
-                <div class="card-body">
-                    {{ form_start(form) }}
-                    {{ form_widget(form.project) }}
-                    <br>
-                    {{ form_widget(form.type) }}
-                    <button class="btn btn-primary">Filtrer</button>
-                    {{ form_end(form) }}
-                </div>
-            </div>
+            {% include 'admin/message/_filter.html.twig' with {'form' : form }%}
         </div>
 
         {# liste des messages #}
         <div class="col-md-9">
-            <div class="accordion" id="listeMessages">
-                {% for message in messages %}
-                <div class="card mb-1">
-                    <div class="card-header p-2 bg-light">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link pl-0" type="button" data-toggle="collapse"
-                                        data-target="#collapse{{ message.id }}" aria-expanded="true"
-                                        aria-controls="collapseOne">
-                                        {{ message.title }} 
-                                        <span class="badge badge-primary">{{ message.type.title }}</span>
-                                    </button>
-                                </h2>
-                                <p><small>
-                                    de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }}
-                                        à {{ message.createdAt | date('H\\hi') }}<br>
-                                        {{ message.project.title }} 
-                                </small></p>
-                            </div>
-                            <div class="col-md-3 pt-3">
-                                {% for file in message.uploadFiles %}
-                                    <p><small>
-                                        <a href="{{ vich_uploader_asset(file, 'uploadFile') }}">{{ file.fileName }}</a>
-                                    </small></p>
-                                {% endfor %}
-                            </div>
-                            <div class="col-md-1">
-                                <span class="float-right">
-                                    <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
-                                            class="fas fa-edit"></i></a>
-                                    &emsp;
-                                    <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
-                                            class="fas fa-trash"></i></a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="collapse{{ message.id }}" class="collapse" aria-labelledby="headingOne"
-                        data-parent="#listeMessages">
-                        <div class="card-body">
-                            {{ message.content | raw }}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-
-                {# <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Objet</th>
-                            <th scope="col">Type</th>
-                            <th scope="col" width="100px">Commandes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for message in pagination.data %}
-                        <tr>
-                            <td>{{ message.id }}</td>
-                            <td>
-                                <p>{{ message.title }}<br>
-                                <small>de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }} à {{ message.createdAt | date('H\\hi') }}.</small>
-                                </p>
-                            </td> 
-                            <td>{{ message.type.title }}</td>
-                            <td class="text-center">
-                                <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
-                                        class="fas fa-edit fa-2x"></i></a>
-                                &emsp;
-                                <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
-                                        class="fas fa-trash fa-2x"></i></a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> #}
-
-            </div>
+            {% include 'admin/message/_messages.html.twig' with {'messages' : messages} %}
         </div>
+
         {# {% include 'admin/partials/pagination.html.twig' with {'route' : 'admin_message_index'} %} #}
         <div class="navigation mt-3 mx-auto">
             {{ knp_pagination_render( messages ) }}

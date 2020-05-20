@@ -1,0 +1,13 @@
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header bg-light"><i class="fas fa-filter"></i> Filtrer</div>
+    <div class="card-body">
+        {{ form_start(form) }}
+        {{ form_widget(form.keyword) }}
+        <br>
+        {{ form_widget(form.project) }}
+        <br>
+        {{ form_widget(form.type) }}
+        <button class="btn btn-primary mt-3 w-100">Filtrer</button>
+        {{ form_end(form) }}
+    </div>
+</div>

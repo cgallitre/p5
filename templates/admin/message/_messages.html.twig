@@ -1,0 +1,46 @@
+<div class="accordion" id="listeMessages">
+    {% for message in messages %}
+    <div class="card mb-1">
+        <div class="card-header p-2 bg-light">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link pl-0" type="button" data-toggle="collapse"
+                            data-target="#collapse{{ message.id }}" aria-expanded="true" aria-controls="collapseOne">
+                            {{ message.title }}
+                            <span class="badge badge-primary">{{ message.type.title }}</span>
+                        </button>
+                    </h2>
+                    <p><small>
+                            de {{ message.author.fullName }} le {{ message.createdAt | date('d/m/Y') }}
+                            à {{ message.createdAt | date('H\\hi') }}<br>
+                            {{ message.project.title }}
+                        </small></p>
+                </div>
+                <div class="col-md-3 pt-3">
+                    {% for file in message.uploadFiles %}
+                    <p><small>
+                            <a href="{{ vich_uploader_asset(file, 'uploadFile') }}">{{ file.fileName }}</a>
+                        </small></p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-1">
+                    <span class="float-right">
+                        <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i
+                                class="fas fa-edit"></i></a>
+                        &emsp;
+                        <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i
+                                class="fas fa-trash"></i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="collapse{{ message.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#listeMessages">
+            <div class="card-body">
+                {{ message.content | raw }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
