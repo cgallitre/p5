@@ -4,26 +4,26 @@
 
 {% block body %}
 
-<div class="container-fluid">
-    {# {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Liste des messages' } %} #}
-
+<div class="container-fluid js-filter">
     <p class="text-right mt-3">
         <a href="{{ path('admin_message_new') }}" class="btn btn-primary">Ajouter un message</a>
     </p>
     <div class="row ml-3">
 
         {# Filtre #}
-        <div class="col-md-3">
+        <div class="col-md-3 js-filter-form">
             {% include 'admin/message/_filter.html.twig' with {'form' : form }%}
         </div>
 
         {# liste des messages #}
         <div class="col-md-9">
-            {% include 'admin/message/_messages.html.twig' with {'messages' : messages} %}
+            <div class="accordion js-filter-content" id="listeMessages">
+                {% include 'admin/message/_messages.html.twig' with {'messages' : messages} %}
+            </div>
         </div>
 
-        {# {% include 'admin/partials/pagination.html.twig' with {'route' : 'admin_message_index'} %} #}
-        <div class="navigation mt-3 mx-auto">
+        {# Pagination #}
+        <div class="navigation mt-3 mx-auto js-filter-pagination">
             {{ knp_pagination_render( messages ) }}
         </div>
     </div>

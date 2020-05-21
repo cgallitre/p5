@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de fichiers!{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Gestion des fichiers' } %}
+
+    <p class="text-right">
+        <a href="{{ path('admin_upload_new') }}" class="btn btn-primary">Ajouter</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">fichier</th>
+                    <th scope="col" width="100px">Commandes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr class="table-light">
+                    <td>{{ file.fileName }}</td>
+                    <td>
+                        <a href="{{ path('admin_upload_edit', { 'id' : file.id }) }}">
+                            <i class="fas fa-edit fa-2x"></i>
+                        </a>
+                        &emsp;
+                        <a href="{{ path('admin_upload_delete', {'id' : file.id }) }}">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

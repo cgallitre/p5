@@ -51,7 +51,6 @@ class MessageType extends ApplicationType
                 'allow_delete' => true, 
                 'label' => false
             ])
-
         ;
     }
 

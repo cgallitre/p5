@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification d'un fichier{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\un fichier' } %}
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Modifier le fichier</button>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

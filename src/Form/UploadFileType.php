@@ -14,15 +14,17 @@ class UploadFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fileName', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Nom du fichier'
-                ],
-                'required' => false,
+            // ->add('fileName', TextType::class, [
+            //     'attr' => [
+            //         'placeholder' => 'Nom du fichier'
+            //     ],
+            //     'required' => false,
 
-            ])
+            // ])
            ->add('uploadFile', VichFileType::class, [
-               'allow_delete' =>true,
+                'asset_helper' => true,
+               'allow_delete' =>false,
+               'download_uri' => false,
                'attr' => [
                     'placeholder' => 'Choisir un fichier'
                ],

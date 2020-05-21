@@ -66,7 +66,7 @@ class Message
     private $project;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UploadFile", mappedBy="message")
+     * @ORM\OneToMany(targetEntity="App\Entity\UploadFile", mappedBy="message", cascade={"persist" , "remove"}, orphanRemoval=true)
      */
     private $uploadFiles;
 

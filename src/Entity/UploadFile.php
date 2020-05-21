@@ -22,6 +22,7 @@ class UploadFile
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var String|null
      */
     private $fileName;
 
@@ -55,7 +56,7 @@ class UploadFile
         return $this->fileName;
     }
 
-    public function setFileName(string $fileName): self
+    public function setFileName($fileName): self
     {
         $this->fileName = $fileName;
 

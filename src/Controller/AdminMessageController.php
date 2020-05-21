@@ -95,10 +95,20 @@ class AdminMessageController extends AbstractController
             if ($form->isSubmitted() && $form->isValid())
             {
             
-                foreach ($message->getUploadFiles() as $file){
-                    $file->setMessage($message);
-                    $manager->persist($file);
+                $files = $message->getUploadfiles();
+
+                foreach ($files as $key => $file){
+                    if ($file->getUploadfile()){
+                        $file->setMessage($message);
+                        $files->set($key,$file);
+                    } else {
+                        $manager->remove($file);
+                    }
                 }
+                // foreach ($files as $key => $file){
+                //     $file->setMessage($message);
+                //     $files->set($key,$file);
+                // }
 
                 $manager->persist($message);
                 $manager->flush();
@@ -125,6 +135,9 @@ class AdminMessageController extends AbstractController
          */
         public function delete(Message $message, EntityManagerInterface $manager)
         {
+            foreach ($message->getUploadFiles() as $file){
+                $manager->remove($file);
+            }
 
             $manager->remove($message);
             $manager->flush();
