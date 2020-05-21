@@ -21,21 +21,29 @@ class AdminMessageController extends AbstractController
      * 
      * @return Response
      */
-    public function index(MessageRepository $repo, PaginatorInterface $paginator, Request $request)
+    public function index(MessageRepository $repo, PaginatorInterface $paginator, Request $request, EntityManagerInterface $manager)
     {      
         $search = new MessageSearch();
+
         $form = $this->createForm(MessageSearchType::class, $search);
         $form->handleRequest($request);
 
         $messages = $paginator->paginate(
             $repo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            5
+            8
         );
+
+        // Dashboard
+        $users = $manager->createQuery('SELECT count(u) FROM \App\Entity\User u WHERE u.status = 1')->getSingleScalarResult();
+        $testimonials = $manager->createQuery('SELECT count(t) FROM \App\Entity\Testimonial t WHERE t.published = false')->getSingleScalarResult();
+        $projects = $manager->createQuery('SELECT count(p) FROM \App\Entity\Project p WHERE p.finished = false')->getSingleScalarResult();
+        
 
         return $this->render('admin/message/index.html.twig', [
             'form' => $form->createView(),
-            'messages' => $messages
+            'messages' => $messages,
+            'stats' => compact('users', 'testimonials', 'projects') // retourne un tableau clé/valeur avec chaque élément
             ]);
     }
 

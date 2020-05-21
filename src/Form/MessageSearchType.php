@@ -34,8 +34,8 @@ class MessageSearchType extends AbstractType
                 'expanded'=>true,
                 'multiple'=>false,
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('pr')
-                        ->where('pr.finished = false');
+                    return $er->createQueryBuilder('p')
+                              ->andWhere('p.finished = false');
                 }
             
             ])

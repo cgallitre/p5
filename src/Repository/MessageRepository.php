@@ -23,7 +23,10 @@ class MessageRepository extends ServiceEntityRepository
     public function findAllQuery(MessageSearch $search)
     {
         $query = $this  ->createQueryBuilder('m')
-                        ->orderBy('m.createdAt', 'DESC');
+                        ->join('m.project', 'p')
+                        ->orderBy('m.createdAt', 'DESC')
+                        ->andWhere('p.finished = :finished')
+                        ->setParameter('finished', false);
 
         if ($search->getKeyword())
         {
