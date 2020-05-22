@@ -12,10 +12,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class MessageSearchType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,19 +28,19 @@ class MessageSearchType extends AbstractType
                     'placeholder' => "Mot clé"
                 ]
             ])
-            ->add('project', EntityType::class, [
-                'required' => false,
-                'class' => Project::class,
-                'choice_label' => 'title',
-                'label' => false,
-                'expanded'=>true,
-                'multiple'=>false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                              ->andWhere('p.finished = false');
-                }
+            // ->add('project', EntityType::class, [
+            //     'required' => false,
+            //     'class' => Project::class,
+            //     'choice_label' => 'title',
+            //     'label' => false,
+            //     'expanded'=>true,
+            //     'multiple'=>false,
+            //     'query_builder' => function (EntityRepository $er) {
+            //         return $er->createQueryBuilder('p')
+            //                   ->andWhere('p.finished = false');
+            //     }
             
-            ])
+            // ])
             ->add('type', EntityType::class, [
                 'required' => false,
                 'label' => false,
@@ -63,4 +65,6 @@ class MessageSearchType extends AbstractType
     {
         return '';
     }
+
+
 }

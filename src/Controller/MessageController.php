@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -23,17 +24,31 @@ class MessageController extends AbstractController
      * @IsGranted("ROLE_USER")
      *
      */
-    public function dashboard (MessageRepository $repo, PaginatorInterface $paginator, Request $request)
+    public function index (MessageRepository $repo, PaginatorInterface $paginator, Request $request,  EntityManagerInterface $manager)
     {
         $user = $this->getUser();
         $search = new MessageSearch();
-        $form = $this->createForm(MessageSearchType::class, $search);
+
+        // liste des projets ouverts associés au user courant
+        $projects = $manager->createQuery('SELECT p FROM \App\Entity\Project p JOIN p.users u WHERE p.finished = false AND u.id=' . $user->getId() )->getResult();
+        // Activation d'un projet par défaut
+        $search->setProject($projects[0]);
+
+        $form = $this
+            ->createForm(MessageSearchType::class, $search)
+            ->add('project', ChoiceType::class, [
+                'choices' => $projects,
+                'choice_label' => 'title',
+                'expanded' => true,
+                'multiple' => false,
+            ]);
+
         $form->handleRequest($request);
 
         $messages = $paginator->paginate(
             $repo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            5
+            8
         );
     
 
@@ -59,6 +74,11 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            
+            foreach ($message->getUploadFiles() as $file){
+                $file->setMessage($message);
+                $manager->persist($file);
+            }
 
             $message->setAuthor($this->getUser());
             
@@ -94,6 +114,16 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $files = $message->getUploadfiles();
+
+            foreach ($files as $key => $file){
+                if ($file->getUploadfile()){
+                    $file->setMessage($message);
+                    $files->set($key,$file);
+                } else {
+                    $manager->remove($file);
+                }
+            }
         
             $manager->persist($message);
             $manager->flush();
@@ -120,6 +150,9 @@ class MessageController extends AbstractController
      */
     public function delete(Message $message, EntityManagerInterface $manager)
     {
+        foreach ($message->getUploadFiles() as $file){
+            $manager->remove($file);
+        }
 
         $manager->remove($message);
         $manager->flush();

@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container">
-    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
     {{ form_start(form) }}
     <div class="row">
         <div class="col-md-6">
@@ -41,7 +41,7 @@
 
 {# Pour éviter d'afficher le label, on redéfinit la Row uniquement avec le Widget #}
 {% block _message_uploadFiles_entry_row %}
-    {{ form_widget(form) }}
+{{ form_widget(form) }}
 {% endblock %}
 
 {% block _message_uploadFiles_entry_widget %}

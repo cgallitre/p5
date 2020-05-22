@@ -4,12 +4,13 @@ namespace App\Entity;
 
 class MessageSearch
 {
-     
+
     private $project;
 
     private $type;
 
     private $keyword = '';
+
 
     public function setKeyword($keyword)
     {

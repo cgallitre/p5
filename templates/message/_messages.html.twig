@@ -24,11 +24,13 @@
                 {% endfor %}
             </div>
             <div class="col-md-1">
+            {% if (user.fullName == message.author.fullName) %}
                 <span class="float-right">
-                    <a href="{{ path('admin_message_edit', { 'id' : message.id }) }}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('message_edit', { 'id' : message.id }) }}"><i class="fas fa-edit"></i></a>
                     &emsp;
-                    <a href="{{ path('admin_message_delete', {'id' : message.id }) }}"><i class="fas fa-trash"></i></a>
+                    <a href="{{ path('message_delete', {'id' : message.id }) }}"><i class="fas fa-trash"></i></a>
                 </span>
+            {% endif %}
             </div>
         </div>
     </div>

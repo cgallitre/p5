@@ -12,20 +12,32 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminMessageController extends AbstractController
 {
     /**
-     * @Route("/admin/messages", name="admin_message_index", requirements={"page" : "\d+"} )
+     * @Route("/admin", name="admin_message_index", requirements={"page" : "\d+"} )
      * 
      * @return Response
      */
     public function index(MessageRepository $repo, PaginatorInterface $paginator, Request $request, EntityManagerInterface $manager)
     {      
         $search = new MessageSearch();
+        // liste des projets ouverts associés au user courant
+        $projects = $manager->createQuery('SELECT p FROM \App\Entity\Project p WHERE p.finished = false ')->getResult();
 
-        $form = $this->createForm(MessageSearchType::class, $search);
+        $form = $this
+                    ->createForm(MessageSearchType::class, $search)
+                    ->add('project', ChoiceType::class, [
+                        'required' => false,
+                        'choices' => $projects,
+                        'choice_label' => 'title',
+                        'expanded' => true,
+                        'multiple' => false,
+                    ]);
+
         $form->handleRequest($request);
 
         $messages = $paginator->paginate(
@@ -113,10 +125,6 @@ class AdminMessageController extends AbstractController
                         $manager->remove($file);
                     }
                 }
-                // foreach ($files as $key => $file){
-                //     $file->setMessage($message);
-                //     $files->set($key,$file);
-                // }
 
                 $manager->persist($message);
                 $manager->flush();
