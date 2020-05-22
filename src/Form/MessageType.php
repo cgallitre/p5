@@ -36,7 +36,7 @@ class MessageType extends ApplicationType
             ->add('content', TextareaType::class, [
                 'label'=>'Message',
                 'attr'=>[
-                    'rows'=>8
+                    'rows'=>10
                 ]
             ])
             ->add('type', EntityType::class, [

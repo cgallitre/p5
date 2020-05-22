@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-     {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
+    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
     {{ form_start(form) }}
     <div class="row">
         <div class="col-md-6">
@@ -43,14 +43,13 @@
 
 {# Pour éviter d'afficher le label, on redéfinit la Row uniquement avec le Widget #}
 {% block _message_uploadFiles_entry_row %}
-    {{ form_widget(form) }}
+{{ form_widget(form) }}
 {% endblock %}
 
 {% block _message_uploadFiles_entry_widget %}
 <div class="form-group" id="block_{{ id }}">
     <div class="row">
         <div class="col-11">
-            {# {{ form_widget(form.fileName) }} #}
             {{ form_widget(form.uploadFile) }}
         </div>
         <div class="col-1"><button type="button" data-action="delete" data-target="#block_{{ id }}"
@@ -89,7 +88,7 @@
     }
 
     // Mise à jour du compteur de fichier
-    function updateCounter(){
+    function updateCounter() {
         const count = +$('#message_uploadFiles div.form-group').length;
         $('#widgets-counter').val(count);
     }
@@ -98,5 +97,7 @@
     updateCounter();
     handleDeleteButtons();
 </script>
+
+{% include 'partials/tinymce.html.twig' %}
 
 {% endblock %}

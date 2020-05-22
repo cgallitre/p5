@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -51,7 +52,7 @@ class AccountController extends AbstractController
      * MAJ du mot de passe
      * 
      * @Route("/mot-de-passe", name="account_password")
-     * 
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
     public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
@@ -80,7 +81,7 @@ class AccountController extends AbstractController
                     "Le mot de passe a été changé."
                 );
 
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('message_index');
                 
             } else {
                 // si échec

@@ -35,12 +35,6 @@ class Message
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(
-     *      min = 10,
-     *      minMessage = "Le message doit au moins faire 10 caractères",
-     *      allowEmptyString = false
-     *      )
-     * @Assert\NotBlank(message = "Le message est obligatoire")
      */
     private $content;
 

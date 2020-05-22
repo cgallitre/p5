@@ -9,10 +9,16 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <li class="nav-item">
+                <a href="{{ path('message_index') }}" class="nav-link">Tableau de bord</a>
+            </li>
+
+        </ul>
         <ul class="navbar-nav ml-auto align-items-center">
             {% if app.user %}
             <li class="nav-item">
-                <a href="{{ path('message_index') }}">{{ app.user.fullName }}</a> 
+                <a href="{{ path('message_index') }}">{{ app.user.fullName }}</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i
@@ -81,23 +87,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form name="contact" method="POST" action="{{ path('contact_index') }}" class="bg-light p-3 m-5 rounded">
+                <form name="contact" method="POST" action="{{ path('contact_index') }}"
+                    class="bg-light p-3 m-5 rounded">
                     <div class="form-group">
                         <input type="text" id="contact_name" name="contact[name]" required="required"
                             class="form-control" placeholder="Indiquer votre nom">
                     </div>
                     <div class="form-group">
                         <input type="email" id="contact_email" name="contact[email]" required="required"
-                            class="form-control" placeholder="Votre email"> 
+                            class="form-control" placeholder="Votre email">
                     </div>
                     <div class="form-group">
-                        <textarea id="contact_message" name="contact[message]" required="required"
-                            class="form-control" placeholder="Votre message" rows="8"></textarea>
+                        <textarea id="contact_message" name="contact[message]" required="required" class="form-control"
+                            placeholder="Votre message" rows="8"></textarea>
                     </div>
                     <input type="hidden" id="contact__token" name="contact[_token]"
                         value="JLhs8XlnrH4EptPjj-KttWVy4_m1Vs-vurQoiX1SX6I">
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary float-right"><i class="fas fa-paper-plane"></i> Envoyer</button>
+                        <button type="submit" class="btn btn-primary float-right"><i class="fas fa-paper-plane"></i>
+                            Envoyer</button>
                     </div>
                 </form>
             </div>

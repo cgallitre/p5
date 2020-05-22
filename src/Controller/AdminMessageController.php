@@ -111,10 +111,10 @@ class AdminMessageController extends AbstractController
             $form = $this->createForm(MessageType::class, $message);
 
             $form->handleRequest($request);
-
+            
             if ($form->isSubmitted() && $form->isValid())
             {
-            
+                
                 $files = $message->getUploadfiles();
 
                 foreach ($files as $key => $file){
@@ -138,7 +138,7 @@ class AdminMessageController extends AbstractController
             }
 
             return $this->render('admin/message/edit.html.twig', [
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]);
         }
 

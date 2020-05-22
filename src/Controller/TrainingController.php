@@ -18,7 +18,7 @@ class TrainingController extends AbstractController
      */
     public function index(TrainingRepository $repoTraining, ThemeRepository $repoTheme, $id=null)
     {
-        // $repo = $this->getDoctrine()->getRepository(Training::class);
+        
         if ($id)
         {
             $trainings=$repoTraining->findByTheme($id);

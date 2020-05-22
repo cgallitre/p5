@@ -25,7 +25,7 @@ class MessageSearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => "Mot clé"
+                    'placeholder' => "Objet, message ou auteur"
                 ]
             ])
             // ->add('project', EntityType::class, [
