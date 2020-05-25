@@ -1,0 +1,7 @@
+<a href="{{ path ('training_index') }}" type="button" class="btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</a>
+
+{% for theme in themes %}
+
+    <a href="{{ path('training_filter', {id : theme.id}) }}" type="button" class="btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %}">{{ theme.title }}</a>
+
+{% endfor %}

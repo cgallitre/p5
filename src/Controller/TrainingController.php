@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Training;
 use App\Repository\ThemeRepository;
 use App\Repository\TrainingRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TrainingController extends AbstractController
@@ -16,7 +18,7 @@ class TrainingController extends AbstractController
      * @Route("/formations", name="training_index")
      * @Route("/formations/filtre/{id}", name="training_filter")
      */
-    public function index(TrainingRepository $repoTraining, ThemeRepository $repoTheme, $id=null)
+    public function index(TrainingRepository $repoTraining, ThemeRepository $repoTheme, $id=null, Request $request)
     {
         
         if ($id)
@@ -25,8 +27,22 @@ class TrainingController extends AbstractController
         } else {
             $trainings = $repoTraining->findAll();
         }
-        
+    
+
         $themes = $repoTheme->findAll();
+
+        if ($request->isXmlHttpRequest()){
+
+            return new JsonResponse([
+                'content' => $this->renderView('training/_list.html.twig', [
+                    'trainings' => $trainings
+                    ]),
+                'form' => $this->renderView('training/_form.html.twig', [
+                    'themes' => $themes,
+                    'idSource' => $id
+                    ])
+                ]);
+        }
         
         return $this->render('training/index.html.twig', [
             'trainings' => $trainings,

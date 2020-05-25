@@ -4,38 +4,21 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container js-filter">
     {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Formations proposées'} %}
     <div class="row my-5 justify-content-center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{{ path ('training_index') }}">
-                <button type="button"
-                    class="m-1 btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</button>
-            </a>
-            {% for theme in themes %}
-            <a href="{{ path('training_filter', {id : theme.id}) }}">
-                <button type="button"
-                    class="m-1 btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %}">{{ theme.title }}</button>
-            </a>
-            {% endfor %}
+        <div class="btn-group js-filter-form">
+            {% include 'training/_form.html.twig' %}
         </div>
     </div>
 
-    <div class="row my-5 justify-content-around">
-        {% for training in trainings %}
-        <!-- a card -->
-        <div class="card border-primary mb-3 mx-1" style="max-width: 20rem;">
-            <div class="card-header">{{ training.theme.title}}</div>
-            <div class="card-body">
-                <a href="{{ path('training_show', { 'slug' : training.slug }) }}" class="card-link">
-                    <h4 class="card-title">{{ training.title }}</h4>
-                </a>
-                <p class="card-text">{{ training.excerpt }}</p>
-            </div>
-        </div>
-        <!-- end of a card -->
-        {% endfor %}
-
+    <div class="row my-5 justify-content-around js-filter-content">
+        {% include 'training/_list.html.twig' %}
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/filter.js"></script>
+
 {% endblock %}

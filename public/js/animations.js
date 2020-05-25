@@ -7,7 +7,6 @@ const handleIntersect = function(entries, observer) {
     });
 }
 
-
 const observer = new IntersectionObserver(handleIntersect)
 
 document.querySelectorAll('[class*="reveal-"]').forEach( r => {
