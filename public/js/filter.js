@@ -18,13 +18,12 @@ class Filter {
     }
 
     bindEvents() {
-        this.form.querySelectorAll('a').forEach ( a =>
-            {
-                a.addEventListener('click', e => {
-                    e.preventDefault()
-                    this.loadUrl(a.getAttribute('href'))
-                })
-            })
+        this.form.addEventListener('click', e => {
+            if (e.target.tagName === 'A'){
+                e.preventDefault()
+                this.loadUrl(e.target.getAttribute('href'))
+            }
+        })
     }
 
     async loadUrl(url){
