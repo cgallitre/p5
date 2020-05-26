@@ -28,6 +28,7 @@
     </div>
     {{ form_end(form) }}
 </div>
+
 {% endblock %}
 
 {% block _message_uploadFiles_widget %}
@@ -86,7 +87,5 @@
     // Appel de la fonction suppression dés le chargement de la page (pour éditer un message)
     handleDeleteButtons();
 </script>
-
-{% include 'partials/tinymce.html.twig' %}
 
 {% endblock %}

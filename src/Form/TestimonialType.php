@@ -14,7 +14,12 @@ class TestimonialType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextareaType::class, $this->getConfiguration('Texte du témoignage','Renseignez votre texte. Vous pouvez le formater avec la barre d\'outils ci-dessus.'))
+            ->add('content', TextareaType::class,[
+                'label' => 'Texte du témoignage',
+                'attr' => [
+                    'rows' => 6
+                ]
+            ])
             ->add('author', TextType::class, $this->getConfiguration("Votre signature","Laissez votre nom ainsi que votre fonction et entreprise"))
             ;
     }
