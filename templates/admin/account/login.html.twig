@@ -24,7 +24,8 @@
 
                     <div class="card-body">
                         {% if hasError %}
-                            <div class="alert alert-danger">Erreur de connexion : l'email ou le mot de passe est incorrect.</div>
+                        <div class="alert alert-danger">Erreur de connexion : l'email ou le mot de passe est incorrect.
+                        </div>
                         {% endif %}
                         <form method="post">
                             <div class="form-group">
@@ -40,15 +41,18 @@
                                     <i class="fas fa-lock-open"></i>
                                     Se connecter
                                 </button>
-                                <a href="{{ path('homepage') }}" class="btn btn-link"></a>
-                                <i class="fas fa-arrow-circle-left"></i>
-                                Retour au site
+                                <a href="{{ path('homepage') }}" class="btn btn-link float-right">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                    Retour au site</a>
                             </div>
-                        </form>
+
+
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

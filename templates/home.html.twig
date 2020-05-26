@@ -123,13 +123,16 @@ Formateur développeur à Tours (37)
                         <div class="card-body">
                             <h6 class="card-title">{{ portfolio.technology }}</h6>
                         </div>
-                        <img style="height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}">
+                        <img style="height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}"
+                            alt="Illustration du projet {{ portfolio.title}}">
                         <div class="card-body">
                             <p class="card-text">{{ portfolio.description | raw }}</p>
                         </div>
-                        {# <div class="card-footer text-muted">
-                        <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
-                    </div> #}
+                        {% if portfolio.url %}
+                        <div class="card-footer text-muted">
+                            <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -187,8 +190,7 @@ Formateur développeur à Tours (37)
                 </div>
             </div>
             <p class="lead text-center py-3 reveal-3">
-                <a class="btn btn-primary text-center"
-                    href="{{ path('training_index') }}">Programme de formations</a>
+                <a class="btn btn-primary text-center" href="{{ path('training_index') }}">Programme de formations</a>
             </p>
         </div>
     </div>

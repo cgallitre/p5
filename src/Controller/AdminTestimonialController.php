@@ -28,6 +28,43 @@ class AdminTestimonialController extends AbstractController
         ]);
     }
 
+    /**
+     * Ajout d'un témoignage
+     *
+     * @Route("/admin/temoignages/ajout", name="admin_testimonial_new")
+     * @return response
+     */
+    public function new(Request $request, EntityManagerInterface $manager)
+    {
+        $testimonial = new Testimonial();
+
+        $form = $this->createForm(TestimonialType::class, $testimonial)
+        // Ajout ici pour ne pas que le client puisse publié son témoignage tout seul
+        ->add('published', CheckboxType::class, [ 
+            'label' => 'Publié',
+            'required' => false
+            ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            // $manager = $this->getDoctrine()->getManager();
+            $manager->persist($testimonial);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le témoignage a bien été enregistré."
+            );
+
+            return $this->redirectToRoute('admin_testimonial_index');
+        }
+
+        return $this->render('admin/testimonial/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    
 
     /**
      * Modification d'un témoignage
@@ -43,8 +80,7 @@ class AdminTestimonialController extends AbstractController
                         ->add('published', CheckboxType::class, [ 
                             'label' => 'Publié',
                             'required' => false
-                            ]) 
-                        ;
+                            ]);
 
         $form->handleRequest($request);
 

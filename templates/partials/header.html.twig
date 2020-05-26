@@ -55,10 +55,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('apropos_index') }}">A propos</a>
             </li>
-            <div class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#accountModal" role="button" aria-haspopup="true"
                     aria-expanded="true"><i class="fas fa-user"></i></a>
-            </div>
+            </li>
             {% endif %}
         </ul>
     </div>
@@ -76,7 +76,6 @@
 {% endfor %}
 
 {# Modal form for contact #}
-<!-- Modal -->
 <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -115,7 +114,6 @@
 </div>
 
 {# Modal form for account #}
-<!-- Modal -->
 <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

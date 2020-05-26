@@ -7,13 +7,18 @@
 
     {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Créer un compte utilisateur' } %}
 
-    {{ form_start(form )}}
+    <div class="row">
+        <div class="mx-auto col-md-6">
+            {{ form_start(form )}}
 
-    {{ form_widget(form) }}
+            {{ form_widget(form) }}
 
-    <button type="submit" class="btn btn-primary">Inscription</button>
+            <button type="submit" class="btn btn-primary">Inscription</button>
 
-    {{ form_end(form) }}
+            {{ form_end(form) }}
+        
+        </div>
+    </div>
 
 </div>
 {% endblock %}

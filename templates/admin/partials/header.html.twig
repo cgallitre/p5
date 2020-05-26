@@ -53,7 +53,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="accountDropDown" data-toggle="dropdown"><i
                         class="fas fa-user"></i></a>
                 <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="accountDropDown">
-                    <a class="dropdown-item" href="{{ path('homepage') }}">Site public</a>
+                    <a class="dropdown-item" href="{{ path('homepage') }}" target="_blank">Site public</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('account_password') }}">Mot de passe</a>
                     <div class="dropdown-divider"></div>
@@ -77,7 +77,6 @@
 {% endfor %}
 
 {# Modal form for contact #}
-<!-- Modal -->
 <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -100,7 +99,6 @@
 </div>
 
 {# Modal form for account #}
-<!-- Modal -->
 <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

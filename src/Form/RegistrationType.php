@@ -31,7 +31,7 @@ class RegistrationType extends ApplicationType
                     'checked' => true
                 ]
             ])
-            // Slug est créé automatiquement au niveau de l'entité
+            // Le Slug est créé automatiquement au niveau de l'entité
         ;
     }
 

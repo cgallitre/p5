@@ -43,6 +43,4 @@ class Filter {
     }
 }
 
-
-
 new Filter (document.querySelector('.js-filter'));

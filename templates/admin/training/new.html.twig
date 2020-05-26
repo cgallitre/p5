@@ -10,7 +10,8 @@
     
     {{ form_start(form) }}
 
-    {{ form_widget(form) }}
+    {% include '/admin/training/_form.html.twig' %}
+
     <p class="text-center">
         <button type="submit" class="btn btn-primary">Créer la formation</button>
     </p>

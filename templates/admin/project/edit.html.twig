@@ -4,14 +4,10 @@
 
 {% block body %}
 <div class="container">
-    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\un projet' } %}
 
-    {{ form_start(form) }}
+    {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un projet' } %}
 
-    {{ form_widget(form) }}
+    {% include 'admin/project/_form.html.twig' with {'btnForm' : 'Modifier' } %}
 
-    <button type="submit" class="btn btn-primary">Modifier le projet</button>
-
-    {{ form_end(form) }}
 </div>
 {% endblock %}
