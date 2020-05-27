@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Portfolio;
 use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -20,13 +21,21 @@ class PortfolioType extends ApplicationType
             ->add('title', TextType::class, $this->getConfiguration("Titre de la référence"))
             ->add('description', TextareaType::class, $this->getConfiguration("Description"))
             ->add('technology', TextType::class, $this->getConfiguration("Technologies / Langages utilisés"))
-            ->add('coverImage', UrlType::class, $this->getConfiguration("Capture d'écran"))
+            // ->add('coverImage', UrlType::class, $this->getConfiguration("Capture d'écran"))
             ->add('url', UrlType::class, $this->getConfiguration("Lien vers la démonstration"))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',
                 'label' => 'Catégorie de la référence',
                 'expanded' =>true
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'label' => 'Capture d\'écran (150x100)',
+                'download_uri' => false,
+                'image_uri' => true,
+                'asset_helper' => true
             ])
             ;
     }

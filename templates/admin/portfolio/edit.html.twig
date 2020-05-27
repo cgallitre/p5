@@ -1,20 +1,15 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block title %}
-    Modification d'une référence
+Modification d'une référence
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Modifier une référence' } %}
+<div class="container">
 
-        {{ form_start(form) }}
+    {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Modifier une référence' } %}
 
-        {{ form_widget(form) }}
-
-        <button type="submit" class="btn btn-primary">Modifier la référence</button>
-
-        {{ form_end(form) }}
+    {% include 'admin/portfolio/_form.html.twig' with {'btnForm' : 'Modifier' } %}
 
 </div>
 {% endblock %}

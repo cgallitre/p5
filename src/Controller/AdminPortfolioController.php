@@ -96,7 +96,7 @@ class AdminPortfolioController extends AbstractController
      * Suppression d'une référence
      *
      * @Route("/admin/portfolio/{id}/delete", name="admin_portfolio_delete")
-     * @return Response
+     * 
      */
     public function delete(Portfolio $portfolio, EntityManagerInterface $manager)
     {

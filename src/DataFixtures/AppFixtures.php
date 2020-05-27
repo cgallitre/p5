@@ -174,7 +174,7 @@ class AppFixtures extends Fixture
 
             $testimonial = new Testimonial;
             $testimonial
-                ->setContent($faker->paragraph(3))
+                ->setContent($faker->paragraph(5))
                 ->setAuthor($faker->name())
                 ->setPublished(1)
                 ;
@@ -196,7 +196,7 @@ class AppFixtures extends Fixture
 
         // Portfolio
 
-        for ($i=1; $i<=20; $i++){
+        for ($i=1; $i<=10; $i++){
 
             $portfolio = new Portfolio;
             $portfolio

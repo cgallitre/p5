@@ -3,7 +3,7 @@
 {% block title %}Portfolio{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid">
 
     {% include 'admin/partials/titlePage.html.twig' with {'titlePage' : 'Portfolio' } %}
 
@@ -17,6 +17,7 @@
                     <th scope="col">Titre</th>
                     <th scope="col" class="d-none d-md-table-cell">Technologies</th>
                     <th scope="col" class="d-none d-md-table-cell">URL</th>
+                    <th scope="col" class="d-none d-md-table-cell">Capture</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -26,13 +27,14 @@
                     <td>{{ portfolio.title }}</td>
                     <td class="d-none d-md-table-cell">{{ portfolio.technology }}</td>
                     <td class="d-none d-md-table-cell">{{ portfolio.url }}</td>
+                    <td class="d-none d-md-table-cell"><img src="{{ vich_uploader_asset(portfolio, 'imageFile') }}" alt="{{ portfolio.coverImage }}"></td>
                     <td class="text-center">
                         <a href="{{ path('admin_portfolio_edit', { 'id' : portfolio.id }) }}">
-                            <i class="fas fa-edit fa-2x"></i>
+                            <i class="fas fa-edit"></i>
                         </a>
                         &emsp;
                         <a href="{{ path('admin_portfolio_delete', {'id' : portfolio.id }) }}">
-                            <i class="fas fa-trash fa-2x"></i>
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>

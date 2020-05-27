@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h6 class="card-title">{{ portfolio.technology }}</h6>
                 </div>
-                <img style="max-height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}">
+                <img style="max-height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(portfolio, 'imageFile') }}" alt="{{ portfolio.coverImage }}">
                 <div class="card-body">
                     <p class="card-text">{{ portfolio.description | raw }}</p>
                 </div>
