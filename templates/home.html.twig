@@ -115,28 +115,7 @@ Formateur développeur à Tours (37)
             </div>
             <!-- end of section title -->
             <div class="row mt-3 px-5 justify-content-around reveal-1">
-                <!-- one ref -->
-                {% for portfolio in portfolios %}
-                <div class="col-md-4-offset">
-                    <div class="card border-light mb-3" style="max-width: 20rem;">
-                        <h5 class="card-header">{{ portfolio.title }}</h5>
-                        <div class="card-body">
-                            <h6 class="card-title">{{ portfolio.technology }}</h6>
-                        </div>
-                        <img style="height: 200px; width: 100%; display: block;" src="{{ portfolio.coverImage }}"
-                            alt="Illustration du projet {{ portfolio.title}}">
-                        <div class="card-body">
-                            <p class="card-text">{{ portfolio.description | raw }}</p>
-                        </div>
-                        {% if portfolio.url %}
-                        <div class="card-footer text-muted">
-                            <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-                <!-- end one ref -->
+                    {% include '/portfolio/_list.html.twig' with {'portfolios' : portfolios} %}           
             </div>
             <p class="lead text-center py-3 reveal-2">
                 <a class="btn btn-primary text-center" href="{{ path('portfolio_index') }}">En découvrir

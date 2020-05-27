@@ -1,0 +1,7 @@
+<a href="{{ path ('portfolio_index') }}" type="button" class="btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</a>
+
+{% for category in categories %}
+
+    <a href="{{ path('portfolio_filter', {id : category.id}) }}" type="button" class="btn btn-{% if category.id == idSource %}primary{% else %}secondary{% endif %}">{{ category.title }}</a>
+
+{% endfor %}

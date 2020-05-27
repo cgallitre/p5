@@ -182,16 +182,15 @@ class AppFixtures extends Fixture
         }
 
         // Catégorie (portfolio)
-        $categories = [];
 
-        for ($i=1; $i<=5; $i++)
+        $sources = ['PHP/MySQL', 'Windev', 'Excel VBA', 'JavaScript / jQuery', 'Symfony'];
+
+        foreach ($sources as $source)
         {
             $category = new Category;
-            $category->setTitle($faker->sentence());
+            $category->setTitle($source);
             $manager->persist($category);
-
             $categories[] = $category;
-
         }
 
         // Portfolio
