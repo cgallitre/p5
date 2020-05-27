@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\PortfolioRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PortfolioController extends AbstractController
@@ -31,18 +32,18 @@ class PortfolioController extends AbstractController
 
         $categories = $repoCategory->findAll();
 
-        // if ($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()){
 
-        //     return new JsonResponse([
-        //         'content' => $this->renderView('training/_list.html.twig', [
-        //             'trainings' => $trainings
-        //             ]),
-        //         'form' => $this->renderView('training/_form.html.twig', [
-        //             'themes' => $themes,
-        //             'idSource' => $id
-        //             ])
-        //         ]);
-        // }
+            return new JsonResponse([
+                'content' => $this->renderView('portfolio/_list.html.twig', [
+                    'portfolios' => $portfolios->getQuery()->getResult()
+                    ]),
+                'form' => $this->renderView('portfolio/_form.html.twig', [
+                    'categories' => $categories,
+                    'idSource' => $id
+                    ])
+                ]);
+        }
 
         return $this->render('portfolio/index.html.twig', [
             'portfolios' => $portfolios->getQuery()->getResult(),
