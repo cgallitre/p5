@@ -60,6 +60,8 @@
 {% endblock %}
 
 {% block javascripts %}
+{# Pour afficher le nom du fichier - correction bug symfony -> bootstrap #}
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
 <script>
     // ajout d'un sous-formulaire
@@ -77,6 +79,11 @@
 
         // appel de la fonction de suppression si besoin
         handleDeleteButtons();
+        
+        // Affiche le nom du fichier
+        $(document).ready(function () {
+        bsCustomFileInput.init()
+        })     
 
     });
 
@@ -98,7 +105,5 @@
     updateCounter();
     handleDeleteButtons();
 </script>
-
-{% include 'partials/tinymce.html.twig' %}
 
 {% endblock %}

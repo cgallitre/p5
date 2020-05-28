@@ -25,7 +25,10 @@ class ProjectType extends ApplicationType
                          'rows' => 10
                          ]
                  ]))
-            ->add('finished', CheckboxType::class, $this->getConfiguration("Projet terminé"))
+            ->add('finished', CheckboxType::class, [
+                'label' => 'Projet terminé',
+                'required' => false
+            ])
             // ->add('users')
         ;
     }

@@ -37,7 +37,7 @@
 
     <div id="collapse{{ message.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#listeMessages">
         <div class="card-body">
-            {{ message.content | raw }}
+            {{ message.content | markdown_to_html }}
         </div>
     </div>
 </div>

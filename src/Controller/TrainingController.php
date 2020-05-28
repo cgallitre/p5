@@ -28,7 +28,6 @@ class TrainingController extends AbstractController
             $trainings = $repoTraining->findAll();
         }
     
-
         $themes = $repoTheme->findAll();
 
         if ($request->isXmlHttpRequest()){
@@ -57,7 +56,7 @@ class TrainingController extends AbstractController
          * @Route("/formations/{slug}", name="training_show")
          * @return Response
          */
-        public function show($slug, Training $training, TrainingRepository $repo)
+        public function show(Training $training, TrainingRepository $repo)
         {
             // $training = $repo->findOneBySlug($slug);
             $trainings = $repo->findByTheme($training->getTheme());

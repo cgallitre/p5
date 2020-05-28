@@ -21,7 +21,6 @@ class PortfolioType extends ApplicationType
             ->add('title', TextType::class, $this->getConfiguration("Titre de la référence"))
             ->add('description', TextareaType::class, $this->getConfiguration("Description"))
             ->add('technology', TextType::class, $this->getConfiguration("Technologies / Langages utilisés"))
-            // ->add('coverImage', UrlType::class, $this->getConfiguration("Capture d'écran"))
             ->add('url', UrlType::class, $this->getConfiguration("Lien vers la démonstration"))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
@@ -35,7 +34,10 @@ class PortfolioType extends ApplicationType
                 'label' => 'Capture d\'écran (150x100)',
                 'download_uri' => false,
                 'image_uri' => true,
-                'asset_helper' => true
+                'asset_helper' => true,
+                'attr' => [
+                    'placeholder' => false
+                ]
             ])
             ;
     }

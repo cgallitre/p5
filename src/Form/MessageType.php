@@ -21,21 +21,11 @@ class MessageType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('project', EntityType::class, [
-                'class' => Project::class,
-                'choice_label' => 'title',
-                'label' => 'Projet',
-                'expanded' =>false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                                ->where('p.finished = false')
-                              ->orderBy('p.id', 'DESC');
-                }
-            ])
             ->add('title', TextType::class, $this->getConfiguration("Objet"))
             ->add('content', TextareaType::class, [
-                'label'=>'Message',
+                'label'=>'Message (markdown supporté)',
                 'attr'=>[
+                    'placeholder' => 'Appuyer 2 fois sur Entrée pour un retour à la ligne.',
                     'rows'=>10
                 ]
             ])

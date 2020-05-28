@@ -51,6 +51,7 @@ class AccountController extends AbstractController
     /**
      * MAJ du mot de passe
      * 
+     * @Route("/admin/mot-de-passe", name="admin_account_password")
      * @Route("/mot-de-passe", name="account_password")
      * @IsGranted("ROLE_USER")
      * @return Response
@@ -60,6 +61,8 @@ class AccountController extends AbstractController
         $passwordUpdate = new PasswordUpdate;
 
         $user = $this->getUser();
+        $roles = $user->getRoles();
+        in_array('ROLE_ADMIN',$roles) ? $roleAdmin = true : $roleAdmin = false;
         
         $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
 
@@ -80,8 +83,12 @@ class AccountController extends AbstractController
                     'success',
                     "Le mot de passe a été changé."
                 );
-
-                return $this->redirectToRoute('message_index');
+                
+                if ($roleAdmin) {
+                    return $this->redirectToRoute('admin_message_index');
+                } else {
+                    return $this->redirectToRoute('message_index');
+                }
                 
             } else {
                 // si échec
@@ -90,7 +97,7 @@ class AccountController extends AbstractController
         }
 
         return $this->render('account/password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

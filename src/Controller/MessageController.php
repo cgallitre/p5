@@ -3,14 +3,17 @@
 namespace App\Controller;
  
 use App\Entity\Message;
+use App\Entity\Project;
 use App\Form\MessageType;
 use App\Entity\MessageSearch;
 use App\Form\MessageSearchType;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -69,7 +72,21 @@ class MessageController extends AbstractController
     {
         $message = new Message();
 
-        $form = $this->createForm(MessageType::class, $message);
+        $form = $this->createForm(MessageType::class, $message)
+                    ->add('project', EntityType::class, [
+                        'class' => Project::class,
+                        'choice_label' => 'title',
+                        'label' => 'Projet',
+                        'expanded' =>false,
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er
+                                    ->createQueryBuilder('p')
+                                    ->join('p.users', 'u')
+                                    ->where('p.finished = false AND u.id =' . $this->getUser()->getId())
+                                    ->orderBy('p.id', 'DESC');
+                        }
+                    ])
+                    ;
 
         $form->handleRequest($request);
 
@@ -108,7 +125,21 @@ class MessageController extends AbstractController
      */
     public function edit(Message $message, Request $request, EntityManagerInterface $manager)
     {
-        $form = $this->createForm(MessageType::class, $message);
+        $form = $this->createForm(MessageType::class, $message)
+                    ->add('project', EntityType::class, [
+                        'class' => Project::class,
+                        'choice_label' => 'title',
+                        'label' => 'Projet',
+                        'expanded' =>false,
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er
+                                    ->createQueryBuilder('p')
+                                    ->join('p.users', 'u')
+                                    ->where('p.finished = false AND u.id =' . $this->getUser()->getId())
+                                    ->orderBy('p.id', 'DESC');
+                        }
+                    ])
+                ;
 
         $form->handleRequest($request);
 

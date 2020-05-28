@@ -1,11 +1,10 @@
 {% for portfolio in portfolios %}
-<div class="col-md-4">
-    <div class="card border-light mb-3" style="max-width: 20rem;">
+    <div class="card border-primary mb-3 mx-1" style="max-width: 20rem;">
         <h5 class="card-header">{{ portfolio.title }}</h5>
         <div class="card-body">
             <h6 class="card-title">{{ portfolio.technology }}</h6>
         </div>
-        <img style="height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(portfolio, 'imageFile') }}"
+        <img style="height: 100px; width: 100%; display: block;" src="{{ vich_uploader_asset(portfolio, 'imageFile') }}"
             alt="Illustration du projet {{ portfolio.title}}">
         <div class="card-body">
             <p class="card-text">{{ portfolio.description | raw }}</p>
@@ -16,5 +15,4 @@
         </div>
         {% endif %}
     </div>
-</div>
 {% endfor %}
