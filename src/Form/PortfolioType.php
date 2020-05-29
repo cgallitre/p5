@@ -21,7 +21,9 @@ class PortfolioType extends ApplicationType
             ->add('title', TextType::class, $this->getConfiguration("Titre de la référence"))
             ->add('description', TextareaType::class, $this->getConfiguration("Description"))
             ->add('technology', TextType::class, $this->getConfiguration("Technologies / Langages utilisés"))
-            ->add('url', UrlType::class, $this->getConfiguration("Lien vers la démonstration"))
+            ->add('url', UrlType::class, $this->getConfiguration("Lien vers la démonstration",null, [
+                'required' => false
+            ]))
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',

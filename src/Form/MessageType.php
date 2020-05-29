@@ -10,10 +10,12 @@ use App\Form\ApplicationType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 
 class MessageType extends ApplicationType
@@ -33,7 +35,7 @@ class MessageType extends ApplicationType
                 'class' => Type::class,
                 'choice_label' => 'title',
                 'label' => 'Type de message',
-                'expanded' =>true
+                'expanded' =>true,
             ])
             ->add('uploadFiles', CollectionType::class, [
                 'entry_type' => UploadFileType::class,

@@ -51,6 +51,7 @@ class Portfolio
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var String|null
      */
     private $url;
 
@@ -142,7 +143,7 @@ class Portfolio
         return $this->url;
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 

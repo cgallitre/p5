@@ -8,15 +8,16 @@
 
     {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Réalisations' } %}
 
+    {# Barre de filtrage #}
     <div class="row my-5">
         <div class="col-md-8 mx-auto">
             <nav class="btn-group js-filter-form nav flex-column flex-sm-row">
                 {% include 'portfolio/_form.html.twig' %}
             </nav>
-
         </div>
     </div>
 
+    {# Liste des références #}
     <div class="row my-5 justify-content-around js-filter-content">
         {% include '/portfolio/_list.html.twig' with {'portfolios' : portfolios} %}
     </div>

@@ -35,6 +35,12 @@ class Message
 
     /**
      * @ORM\Column(type="text")
+    * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le message doit au moins faire 10 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le message est obligatoire")
      */
     private $content;
 
@@ -51,11 +57,13 @@ class Message
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="messages")
+     * @Assert\NotBlank(message = "Le type est obligatoire")
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="messages")
+      * @Assert\NotBlank(message = "Le projet est obligatoire")
      */
     private $project;
 

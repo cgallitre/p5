@@ -39,11 +39,11 @@ class AppFixtures extends Fixture
 
         $user = new User;
         $user
-            ->setFirstName('Cyril')
-            ->setLastName('Gallitre')
-            ->setEmail('cyril@gallitre.fr')
+            ->setFirstName('A')
+            ->setLastName('dmin')
+            ->setEmail('admin@monsite.fr')
             ->setHash($this->encoder->encodePassword($user, 'password'))
-            ->setCompany('FC2I')
+            ->setCompany('Mon entreprise')
             ->setStatus(1)
             ->addUserRole($adminRole);
             
