@@ -8,9 +8,11 @@
 
     {% include 'partials/titlePage.html.twig' with {'titlePage' : 'Formations proposées'} %}
     
-    <div class="row my-5 justify-content-center">
-        <div class="btn-group js-filter-form">
-            {% include 'training/_form.html.twig' %}
+    <div class="row my-5">
+        <div class="col-md-8 mx-auto">
+            <nav class="btn-group js-filter-form nav flex-column flex-sm-row">
+                {% include 'training/_form.html.twig' %}
+            </nav>
         </div>
     </div>
 

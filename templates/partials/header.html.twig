@@ -88,7 +88,7 @@
             </div>
             <div class="modal-body">
                 <form name="contact" method="POST" action="{{ path('contact_index') }}"
-                    class="bg-light p-3 m-5 rounded">
+                    class="bg-light p-3 mt-5 rounded container-fluid">
                     <div class="form-group">
                         <input type="text" id="contact_name" name="contact[name]" required="required"
                             class="form-control" placeholder="Indiquer votre nom">
@@ -125,15 +125,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="bg-light p-3 m-5 rounded">
+                <div class="bg-light p-3 mt-5 rounded container-fluid">
                     <form action="{{ path('account_login') }}" method="post">
                         <div class="form-group mt-3">
-                            {# <label for="email">Email</label> #}
                             <input type="text" name="_username" id="email" class="form-control"
                                 placeholder="Saisir votre email" required>
                         </div>
                         <div class="form-group">
-                            {# <label for="password">Mot de passe</label> #}
                             <input type="password" name="_password" id="password" class="form-control"
                                 placeholder="Saisir votre mot de passe" required>
                         </div>

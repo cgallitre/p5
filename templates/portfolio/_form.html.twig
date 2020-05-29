@@ -1,7 +1,8 @@
-<a href="{{ path ('portfolio_index') }}" class="btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</a>
+
+<a href="{{ path ('portfolio_index') }}" class="btn btn-{% if  not idSource %}primary{% else %}secondary{% endif %} my-1">Toutes</a>
 
 {% for category in categories %}
 
-    <a href="{{ path('portfolio_filter', {id : category.id}) }}" class="btn btn-{% if category.id == idSource %}primary{% else %}secondary{% endif %}">{{ category.title }}</a>
+    <a href="{{ path('portfolio_filter', {id : category.id}) }}" class="btn btn-{% if  category.id == idSource %}primary{% else %}secondary{% endif %} my-1">{{ category.title }}</a>
 
 {% endfor %}

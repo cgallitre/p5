@@ -1,8 +1,8 @@
 <a href="{{ path ('training_index') }}"
-    class="btn btn-{% if not idSource %}primary{% else %}secondary{% endif%}">Toutes</a>
+    class="btn btn-{% if not idSource %}primary{% else %}secondary{% endif%} my-1">Toutes</a>
 
 {% for theme in themes %}
 <a href="{{ path('training_filter', {id : theme.id}) }}"
-    class="btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %}">{{ theme.title }}
+    class="btn btn-{% if theme.id == idSource %}primary{% else %}secondary{% endif %} my-1">{{ theme.title }}
 </a>
 {% endfor %}
