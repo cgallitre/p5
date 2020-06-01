@@ -22,3 +22,5 @@ Après exécution de la fixture :
 - URL différente client / admin
 - Accès client : adresse email (à voir dans la bdd) / password
 - Accès admin : admin@monsite.fr / password (URL : /admin/login)
+
+
