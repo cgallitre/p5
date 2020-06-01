@@ -22,7 +22,7 @@ final class Version20200527080811 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE portfolio ADD updated_at DATETIME DEFAULT NULL, CHANGE cover_image cover_image VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE portfolio CHANGE cover_image cover_image VARCHAR(255) NOT NULL');
         // $this->addSql('ALTER TABLE upload_file DROP FOREIGN KEY FK_81BB169537A1329');
         // $this->addSql('ALTER TABLE upload_file CHANGE file_name file_name VARCHAR(255) NOT NULL');
         // $this->addSql('ALTER TABLE upload_file ADD CONSTRAINT FK_81BB169537A1329 FOREIGN KEY (message_id) REFERENCES message (id)');
