@@ -1,10 +1,10 @@
 # Site web perso
 
-## Fonctions 
+## Fonctions
 
- - Frontoffice : présentation des activités et portfolio/témoignages
- - Backoffice client : gestion des échanges pendant la réalisation des projets
- - Back Office admin : adminitration des infos présentes sur le frontoffice et gestion des messages clients
+- Frontoffice : présentation des activités et portfolio/témoignages
+- Backoffice client : gestion des échanges pendant la réalisation des projets
+- Back Office admin : adminitration des infos présentes sur le frontoffice et gestion des messages clients
 
 ## Installation
 

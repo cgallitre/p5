@@ -6,21 +6,21 @@ body {
     background: center / cover url('../img/phare.jpg') no-repeat;
 }
 
-.title-line{
+.title-line {
     font-size: 0.8em;
-    color:#E95420;
-    text-align:center;
+    color: #e95420;
+    text-align: center;
 }
 
-hr{
+hr {
     padding: 0 0 0 0;
-    width:25%;
-    margin:-30px auto 5rem auto;
+    width: 25%;
+    margin: -34px auto 5rem auto;
     border: 1px solid #d3d3d3;
 }
 
-#portfolio_homepage{
-    background-color: #E9ECEF;
+#portfolio_homepage {
+    background-color: #e9ecef;
 }
 
 #footer {
@@ -28,13 +28,21 @@ hr{
     color: white;
 }
 
-.icones-blanc { color:#fff; }
-.icones-gris { color: #f0f0f0; }
-.icones-orange { color:#E95420; }
+.icones-blanc {
+    color: #fff;
+}
+
+.icones-gris {
+    color: #f0f0f0;
+}
+
+.icones-orange {
+    color: #e95420;
+}
 
 .carousel-item.active {
-    display:block;
+    display: block;
     max-width: 70%;
-    margin-left : auto;
-    margin-right : auto;
+    margin-left: auto;
+    margin-right: auto;
 }

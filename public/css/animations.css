@@ -10,19 +10,21 @@
 }
 
 .reveal-2 {
-    transition-delay : 0.1s
+    transition-delay: 0.1s
 }
 
 .reveal-3 {
-    transition-delay : 0.2s
+    transition-delay: 0.2s
 }
 
 .reveal-4 {
-    transition-delay : 0.3s
+    transition-delay: 0.3s
 }
+
 .reveal-5 {
-    transition-delay : 0.4s
+    transition-delay: 0.4s
 }
+
 .reveal-6 {
-    transition-delay : 0.5s
+    transition-delay: 0.5s
 }

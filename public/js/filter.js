@@ -12,7 +12,7 @@ class Filter {
         if (element === null){
             return
         }
-        this.content = document.querySelector('.js-filter-content')
+        this.content = document.querySelector(".js-filter-content")
         this.form = document.querySelector('.js-filter-form')
         this.bindEvents()
     }

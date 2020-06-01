@@ -2,10 +2,11 @@
     <div class="card-header bg-light"><i class="fas fa-filter"></i> Filtrer</div>
     <div class="card-body">
         {{ form_start(form) }}
+        <h6 class="text-muted mt-2">Mot clé</h6>
         {{ form_widget(form.keyword) }}
-        <br>
+        <h6 class="text-muted mt-4">Projet</h6>
         {{ form_widget(form.project) }}
-        <br>
+        <h6 class="text-muted mt-4">Type message</h6>
         {{ form_widget(form.type) }}
         <button class="btn btn-primary mt-3 w-100"><i class="fas fa-filter"></i> Filtrer</button>
         {{ form_end(form) }}

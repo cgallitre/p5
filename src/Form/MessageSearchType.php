@@ -28,26 +28,14 @@ class MessageSearchType extends AbstractType
                     'placeholder' => "Objet, message ou auteur"
                 ]
             ])
-            // ->add('project', EntityType::class, [
-            //     'required' => false,
-            //     'class' => Project::class,
-            //     'choice_label' => 'title',
-            //     'label' => false,
-            //     'expanded'=>true,
-            //     'multiple'=>false,
-            //     'query_builder' => function (EntityRepository $er) {
-            //         return $er->createQueryBuilder('p')
-            //                   ->andWhere('p.finished = false');
-            //     }
-            
-            // ])
             ->add('type', EntityType::class, [
                 'required' => false,
                 'label' => false,
                 'class' => Type::class,
                 'choice_label' => 'title',
                 'expanded'=>true,
-                'multiple'=>false
+                'multiple'=>false,
+                'placeholder' => 'Aucun'
             ])
         ;
     }

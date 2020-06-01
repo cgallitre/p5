@@ -39,6 +39,7 @@ class AdminMessageController extends AbstractController
                         'choice_label' => 'title',
                         'expanded' => true,
                         'multiple' => false,
+                        'placeholder' => 'Aucun'
                     ]);
 
         $form->handleRequest($request);

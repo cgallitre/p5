@@ -22,12 +22,13 @@
     </div>
 </div>
 {% endblock %}
-
 {% block javascripts %}
-<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 <script>
-    $(document).ready(function () {
-        bsCustomFileInput.init()
-    })
+    $('.custom-file-input').on('change', function (event) {
+        var inputFile = event.currentTarget;
+        $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+    });
 </script>
 {% endblock %}
