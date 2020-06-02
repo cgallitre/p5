@@ -12,16 +12,16 @@ class Filter {
         if (element === null){
             return
         }
-        this.content = document.querySelector(".js-filter-content")
-        this.form = document.querySelector('.js-filter-form')
-        this.bindEvents()
+        this.content = document.querySelector(".js-filter-content");
+        this.form = document.querySelector(".js-filter-form");
+        this.bindEvents();
     }
 
     bindEvents() {
-        this.form.addEventListener('click', e => {
+        this.form.addEventListener('click', (e) => {
             if (e.target.tagName === 'A'){
-                e.preventDefault()
-                this.loadUrl(e.target.getAttribute('href'))
+                e.preventDefault();
+                this.loadUrl(e.target.getAttribute('href'));
             }
         })
     }
@@ -35,7 +35,7 @@ class Filter {
 
         if (response.status >=200 && response.status <300){
             const data = await response.json() 
-            this.form.innerHTML = data.form
+            this.form.innerHTML = data.form;
             this.content.innerHTML = data.content
         } else {
             console.error(response)
@@ -43,4 +43,4 @@ class Filter {
     }
 }
 
-new Filter (document.querySelector('.js-filter'));
+new Filter (document.querySelector(".js-filter"));

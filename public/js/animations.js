@@ -5,10 +5,10 @@ const handleIntersect = function(entries, observer) {
             observer.unobserve(entry.target)
         }
     });
-}
+};
 
 const observer = new IntersectionObserver(handleIntersect)
 
-document.querySelectorAll('[class*="reveal-"]').forEach( r => {
-    observer.observe(r)
-})
+document.querySelectorAll('[class*="reveal-"]').forEach( (r) => {
+    observer.observe(r);
+});
