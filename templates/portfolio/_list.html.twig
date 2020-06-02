@@ -4,14 +4,14 @@
         <div class="card-body">
             <h6 class="card-title">{{ portfolio.technology }}</h6>
         </div>
-        <img style="height: 100px; width: 100%; display: block;" src="{{ vich_uploader_asset(portfolio, 'imageFile') }}"
+        <img style="width: 320px; display: block;" src="{{ vich_uploader_asset(portfolio, 'imageFile') }}"
             alt="Illustration du projet {{ portfolio.title}}">
         <div class="card-body">
             <p class="card-text">{{ portfolio.description | raw }}</p>
         </div>
         {% if portfolio.url %}
         <div class="card-footer text-muted">
-            <a href="{{ portfolio.url }}" class="card-link">Démonstration</a>
+            <a href="{{ portfolio.url }}" class="card-link" target="_blank">Démonstration</a>
         </div>
         {% endif %}
     </div>

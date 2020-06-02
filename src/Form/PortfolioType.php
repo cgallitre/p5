@@ -33,7 +33,7 @@ class PortfolioType extends ApplicationType
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
                 'allow_delete' => true,
-                'label' => 'Capture d\'écran (150x100)',
+                'label' => 'Capture d\'écran (320x200, 16/10)',
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,

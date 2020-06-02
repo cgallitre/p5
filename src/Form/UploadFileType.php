@@ -19,10 +19,7 @@ class UploadFileType extends AbstractType
                 'allow_delete' =>false,
                 'download_uri' => false,
                 'required' => false,
-                'attr' => [
-                   'placeholder' => 'Faire glisser un fichier ici',
-                   'label' => 'Parcourir'
-                ]
+
            ])
         ;
     }
