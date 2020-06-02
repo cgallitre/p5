@@ -1,5 +1,5 @@
 body {
-        padding-top: 55px;
+  padding-top: 55px;
 }
 
 #slider {
@@ -7,42 +7,42 @@ body {
 }
 
 .title-line {
-    font-size: 0.8em;
-    color: #e95420;
-    text-align: center;
+  font-size: 0.8em;
+  color: #e95420;
+  text-align: center;
 }
 
 hr {
-    padding: 0 0 0 0;
-    width: 25%;
-    margin: -34px auto 5rem auto;
-    border: 1px solid #d3d3d3;
+  padding: 0 0 0 0;
+  width: 25%;
+  margin: -34px auto 5rem auto;
+  border: 1px solid #d3d3d3;
 }
 
 #portfolio_homepage {
-    background-color: #e9ecef;
+  background-color: #e9ecef;
 }
 
 #footer {
-    background-color: rgb(110, 110, 110);
-    color: white;
+  background-color: rgb(110, 110, 110);
+  color: white;
 }
 
 .icones-blanc {
-    color: #fff;
+  color: #fff;
 }
 
 .icones-gris {
-    color: #f0f0f0;
+  color: #f0f0f0;
 }
 
 .icones-orange {
-    color: #e95420;
+  color: #e95420;
 }
 
 .carousel-item.active {
-    display: block;
-    max-width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
