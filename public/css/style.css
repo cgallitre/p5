@@ -1,9 +1,9 @@
 body {
-      padding-top: 55px;
+    padding-top: 55px;
 }
 
 #slider {
-      background: center / cover url('../img/phare.jpg') no-repeat;
+    background: center / cover url('../img/phare.jpg') no-repeat;
 }
 
 .title-line {
