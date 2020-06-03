@@ -9,180 +9,183 @@ Formateur développeur à Tours (37)
 {% endblock %}
 
 {% block body %}
-
-<div class="col p-0 p-0">
-    <!-- slider -->
-    <div class="row vw-100 vh-100" id="slider">
-        <div class="col text-center pt-5">
-            <h1 class="display-5 pt-5 reveal-1">Formateur développeur</h1>
-            <p class="lead reveal-2">Guide pour rendre les technologies accessibles</p>
-            <p class="reveal-3 my-5 text-white">Formations et sites web sur mesure</p>
-            <div class="d-flex flex-row mt-5 justify-content-center">
-                <p class="reveal-4 mb-1 mr-4">
-                    <a class="btn btn-primary btn-md" href="#services_homepage" role="button">Offre de services</a>
-                </p>
-                <p class="reveal-4">
-                    <a class="btn btn-primary btn-md" href="#testimonial_homepage" role="button">Témoignages</a>
-                </p>
+<div class="row p-0 p-0 no-gutters">
+    <div class="col">
+        <!-- slider -->
+        <div class="row vh-100 vw-100" id="slider">
+            <div class="col text-center pt-5">
+                <h1 class="display-5 pt-5 reveal-1">Formateur développeur</h1>
+                <p class="lead reveal-2">Guide pour rendre les technologies accessibles</p>
+                <p class="reveal-3 my-5 text-white">Formations et sites web sur mesure</p>
+                <div class="d-flex flex-md-row mt-5 justify-content-center">
+                    <p class="reveal-4 m-1">
+                        <a class="btn btn-primary btn-md" href="#services_homepage" role="button">Offre de services</a>
+                    </p>
+                    <p class="reveal-4 m-1">
+                        <a class="btn btn-primary btn-md" href="#testimonial_homepage" role="button">Témoignages</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- end slider -->
+        <!-- end slider -->
 
-    <!-- Services -->
-    <div class="row my-5 py-5 vw-100" id="services_homepage">
-        <div class="col mx-3">
-            <div class="row">
-                <div class="col">
-                    <h2 class="mt-5 text-center display-5">Offre de services</h2>
-                    <p class="title-line">
-                        <span class="fa-stack">
-                            <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
-                            <i class="fas fa-circle fa-stack-1x"></i>
-                        </span>
-                    </p>
-                    <hr>
-                </div>
-            </div>
-            <div class="row mt-3 justify-content-around">
-                <!-- image -->
-                <div class="col-md-5 mb-3 reveal-1 text-center">
-                    <img src="/img/services.jpg" alt="Formateur développeur devant son bureau" class="img-fluid">
-                </div>
-                <!-- Description dev-formation -->
-                <div class="col-md-5 reveal-2">
-                    <!-- Service Développement-->
-                    <!-- Logo -->
-                    <div class="row mb-3">
-                        <div class="col-md-3 text-center d-none d-md-block">
-                            <span class="fa-stack fa-2x align-top">
-                                <i class="far fa-circle fa-stack-2x icones-gris"></i>
-                                <i class="far fa-circle fa-stack-1x icones-blanc"></i>
-                                <i class="fas fa-file-code fa-stack-1x icones-orange"></i>
+        <!-- Services -->
+        <div class="row my-5 py-5 vw-100" id="services_homepage">
+            <div class="col mx-3">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="mt-5 text-center display-5">Offre de services</h2>
+                        <p class="title-line">
+                            <span class="fa-stack">
+                                <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
+                                <i class="fas fa-circle fa-stack-1x"></i>
                             </span>
-                        </div>
-                        <!-- Développement contenu textuel-->
-                        <div class="col-md-9">
-                            <h3>Développement</h3>
-                            <p>Application web ou de bureau ? Vous avez le choix. Les sites sont généralement
-                                développés
-                                avec PHP/Symfony et les applications de gestion avec Windev ou Excel VBA.
-                            </p>
-                            <p class="text-center py-3 reveal-3">
-                                <a class="btn btn-primary text-center" href="{{ path('homepage') }}#portfolio_homepage">
-                                    Exemples de réalisations</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Service Formation -->
-                    <!-- Logo -->
-                    <div class="row mb-3">
-                        <div class="col-md-3 text-center d-none d-md-block">
-                            <span class="fa-stack fa-2x align-top">
-                                <i class="far fa-circle fa-stack-2x icones-gris"></i>
-                                <i class="far fa-circle fa-stack-1x icones-blanc"></i>
-                                <i class="fas fa-user-graduate fa-stack-1x icones-orange"></i>
-                            </span>
-                        </div>
-                        <!-- Formaton contenu textuel-->
-                        <div class="col-md-9">
-                            <h3>Formation</h3>
-                            <p>Pour un centre de formation ou pour une entreprise, je propose des
-                                formations en bureautique avancée et développement web.</p>
-                            <p class="text-center py-3 reveal-3">
-                                <a class="btn btn-primary text-center"
-                                    href="{{ path('homepage') }}#testimonial_homepage">Témoignages</a>
-                            </p>
-                        </div>
+                        </p>
+                        <hr>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Services -->
-
-    <!-- Portfolio -->
-    <div class="row my-5 py-5 vw-100" id="portfolio_homepage">
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    <h2 class="mt-5 text-center display-5">Réalisations</h2>
-                    <p class="title-line">
-                        <span class="fa-stack">
-                            <i class="fas fa-circle fa-stack-2x icones-blanc"></i>
-                            <i class="fas fa-circle fa-stack-1x"></i>
-                        </span>
-                    </p>
-                    <hr>
-                </div>
-            </div>
-            <!-- end of section title -->
-            <div class="row mt-3 justify-content-around reveal-1 ml-1">
-                {% include '/portfolio/_list.html.twig' with {'portfolios' : portfolios} %}
-            </div>
-            <p class="text-center py-3 reveal-2">
-                <a class="btn btn-primary text-center" href="{{ path('portfolio_index') }}">En découvrir
-                    plus...</a>
-            </p>
-        </div>
-    </div>
-    <!-- End Portfolio -->
-
-    <!-- Testimonials -->
-    <div class="row my-5 py-5 vw-100" id="testimonial_homepage">
-        <div class="col mx-auto">
-            <div class="row">
-                <div class="col">
-                    <h2 class="mt-5 text-center display-5">Témoignages</h2>
-                    <p class="title-line">
-                        <span class="fa-stack">
-                            <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
-                            <i class="fas fa-circle fa-stack-1x"></i>
-                        </span>
-                    </p>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Carousel -->
-                <div class="col mb-5">
-                    <div id="carouselTestimonials" class="carousel slide reveal-1" data-ride="carousel">
-                        <div class="carousel-inner d-flex">
-                            {% for testimonial in testimonials %}
-                            <div class="carousel-item text-center {% if loop.first %}active{% endif %}">
-                                <p class="text-left">
-                                    <i class="fas fa-quote-left fa-2x"></i>
-                                </p>
-                                <p class="px-1">{{ testimonial.content | raw }}</p>
-                                <p class="text-right">
-                                    <i class="fas fa-quote-right fa-2x"></i>
-                                </p>
-                                <p class="text-right"><strong>{{ testimonial.author }}</strong></p>
+                <div class="row mt-3 justify-content-around">
+                    <!-- image -->
+                    <div class="col-md-5 mb-3 reveal-1 text-center">
+                        <img src="/img/services.jpg" alt="Formateur développeur devant son bureau" class="img-fluid">
+                    </div>
+                    <!-- Description dev-formation -->
+                    <div class="col-md-5 reveal-2">
+                        <!-- Service Développement-->
+                        <!-- Logo -->
+                        <div class="row mb-3">
+                            <div class="col-md-3 text-center d-none d-md-block">
+                                <span class="fa-stack fa-2x align-top">
+                                    <i class="far fa-circle fa-stack-2x icones-gris"></i>
+                                    <i class="far fa-circle fa-stack-1x icones-blanc"></i>
+                                    <i class="fas fa-file-code fa-stack-1x icones-orange"></i>
+                                </span>
                             </div>
-                            {% endfor %}
-                            <a class="carousel-control-prev" href="#carouselTestimonials" role="button"
-                                data-slide="prev">
-                                <i style="font-size: 50px; color: #E95420;"
-                                    class="fas fa-arrow-alt-circle-left ml-2"></i>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselTestimonials" role="button"
-                                data-slide="next">
-                                <i style="font-size: 50px; color: #E95420;"
-                                    class="fas fa-arrow-alt-circle-right mr-2"></i>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            <!-- Développement contenu textuel-->
+                            <div class="col-md-9">
+                                <h3>Développement</h3>
+                                <p>Application web ou de bureau ? Vous avez le choix. Les sites sont généralement
+                                    développés
+                                    avec PHP/Symfony et les applications de gestion avec Windev ou Excel VBA.
+                                </p>
+                                <p class="text-center py-3 reveal-3">
+                                    <a class="btn btn-primary text-center"
+                                        href="{{ path('homepage') }}#portfolio_homepage">
+                                        Exemples de réalisations</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Service Formation -->
+                        <!-- Logo -->
+                        <div class="row mb-3">
+                            <div class="col-md-3 text-center d-none d-md-block">
+                                <span class="fa-stack fa-2x align-top">
+                                    <i class="far fa-circle fa-stack-2x icones-gris"></i>
+                                    <i class="far fa-circle fa-stack-1x icones-blanc"></i>
+                                    <i class="fas fa-user-graduate fa-stack-1x icones-orange"></i>
+                                </span>
+                            </div>
+                            <!-- Formaton contenu textuel-->
+                            <div class="col-md-9">
+                                <h3>Formation</h3>
+                                <p>Pour un centre de formation ou pour une entreprise, je propose des
+                                    formations en bureautique avancée et développement web.</p>
+                                <p class="text-center py-3 reveal-3">
+                                    <a class="btn btn-primary text-center"
+                                        href="{{ path('homepage') }}#testimonial_homepage">Témoignages</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- end Carousel -->
             </div>
-            <p class="text-center py-3 reveal-3">
-                <a class="btn btn-primary text-center" href="{{ path('training_index') }}">Programme de formations</a>
-            </p>
         </div>
+        <!-- End Services -->
+
+        <!-- Portfolio -->
+        <div class="row my-5 py-5 vw-100" id="portfolio_homepage">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="mt-5 text-center display-5">Réalisations</h2>
+                        <p class="title-line">
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-2x icones-blanc"></i>
+                                <i class="fas fa-circle fa-stack-1x"></i>
+                            </span>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+                <!-- end of section title -->
+                <div class="row mt-3 justify-content-around reveal-1 ml-1">
+                    {% include '/portfolio/_list.html.twig' with {'portfolios' : portfolios} %}
+                </div>
+                <p class="text-center py-3 reveal-2">
+                    <a class="btn btn-primary text-center" href="{{ path('portfolio_index') }}">En découvrir
+                        plus...</a>
+                </p>
+            </div>
+        </div>
+        <!-- End Portfolio -->
+
+        <!-- Testimonials -->
+        <div class="row my-5 py-5 vw-100" id="testimonial_homepage">
+            <div class="col mx-auto">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="mt-5 text-center display-5">Témoignages</h2>
+                        <p class="title-line">
+                            <span class="fa-stack">
+                                <i class="fas fa-circle  fa-stack-2x icones-blanc"></i>
+                                <i class="fas fa-circle fa-stack-1x"></i>
+                            </span>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Carousel -->
+                    <div class="col mb-5">
+                        <div id="carouselTestimonials" class="carousel slide reveal-1" data-ride="carousel">
+                            <div class="carousel-inner d-flex">
+                                {% for testimonial in testimonials %}
+                                <div class="carousel-item text-center {% if loop.first %}active{% endif %}">
+                                    <p class="text-left">
+                                        <i class="fas fa-quote-left fa-2x"></i>
+                                    </p>
+                                    <p class="px-1">{{ testimonial.content | raw }}</p>
+                                    <p class="text-right">
+                                        <i class="fas fa-quote-right fa-2x"></i>
+                                    </p>
+                                    <p class="text-right"><strong>{{ testimonial.author }}</strong></p>
+                                </div>
+                                {% endfor %}
+                                <a class="carousel-control-prev" href="#carouselTestimonials" role="button"
+                                    data-slide="prev">
+                                    <i style="font-size: 50px; color: #E95420;"
+                                        class="fas fa-arrow-alt-circle-left ml-2"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselTestimonials" role="button"
+                                    data-slide="next">
+                                    <i style="font-size: 50px; color: #E95420;"
+                                        class="fas fa-arrow-alt-circle-right mr-2"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end Carousel -->
+                </div>
+                <p class="text-center py-3 reveal-3">
+                    <a class="btn btn-primary text-center" href="{{ path('training_index') }}">Programme de
+                        formations</a>
+                </p>
+            </div>
+        </div>
+        <!-- End testimonials -->
     </div>
-    <!-- End testimonials -->
 </div>
 {% endblock %}
 
