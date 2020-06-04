@@ -1,5 +1,6 @@
 body {
   padding-top: 55px;
+  overflow-x: hidden;
 }
 
 #slider {
@@ -46,3 +47,7 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
+
+.custom-file-label::after{content: 'Parcourir' !important;}
+/* .custom-file-input { opacity: 1; }
+.custom-file-label { opacity: 0; } */

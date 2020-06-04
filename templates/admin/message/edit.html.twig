@@ -5,6 +5,7 @@
 {% form_theme form _self %}
 
 {% block body %}
+ 
 <div class="container">
     {% include 'admin/partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
     {{ form_start(form) }}
@@ -59,6 +60,7 @@
 {% endblock %}
 
 {% block javascripts %}
+
 
 <script>
     // ajout d'un sous-formulaire
