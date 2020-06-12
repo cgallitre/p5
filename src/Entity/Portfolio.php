@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PortfolioRepository")
@@ -21,16 +22,34 @@ class Portfolio
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      minMessage = "Le nom doit au moins faire 4 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le nom est obligatoire")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "La description doit au moins faire 10 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "La description est obligatoire")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Les technologies doivent au moins faire 2 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Les technologies sont obligatoires")
      */
     private $technology;
 
@@ -57,6 +76,7 @@ class Portfolio
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="portfolios")
+     * @Assert\NotBlank(message = "La catégorie est obligatoire")
      */
     private $category;
 

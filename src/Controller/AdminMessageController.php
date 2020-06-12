@@ -169,6 +169,7 @@ class AdminMessageController extends AbstractController
 
             return $this->render('admin/message/edit.html.twig', [
                 'form' => $form->createView(),
+                // 'files' => $message->getUploadfiles()
             ]);
         }
 

@@ -48,6 +48,6 @@ hr {
   margin-right: auto;
 }
 
-.custom-file-label::after{content: 'Parcourir' !important;}
-/* .custom-file-input { opacity: 1; }
-.custom-file-label { opacity: 0; } */
+.custom-file-label::after {
+  content: 'Parcourir' !important;
+}

@@ -23,9 +23,15 @@ class TrainingType extends ApplicationType
             ]))
             ->add('excerpt', TextareaType::class, $this->getConfiguration("Présentation", "Résumé de la formation"))
             ->add('duration', TextType::class, $this->getConfiguration("Durée de la formation", "En jours ou heures"))
-            ->add('objectives', TextareaType::class, $this->getConfiguration("Objectifs pédagogiques"))
-            ->add('level', TextareaType::class, $this->getConfiguration("Niveau requis", "Indiquer les prérequis pour suivre la formation"))
-            ->add('public', TextareaType::class, $this->getConfiguration("Public"))
+            ->add('objectives', TextareaType::class, $this->getConfiguration("Objectifs pédagogiques", null, [
+                'required' => false
+            ]))
+            ->add('level', TextareaType::class, $this->getConfiguration("Niveau requis", "Indiquer les prérequis pour suivre la formation", null, [
+                'required' => false
+            ]))
+            ->add('public', TextareaType::class, $this->getConfiguration("Public", null, [
+                'required' => false
+            ]))
             ->add('program', TextareaType::class, [
                 'label' => 'Programme (markdown supporté)',
                 'attr' => [

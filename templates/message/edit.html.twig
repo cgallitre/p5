@@ -6,29 +6,8 @@
 
 {% block body %}
 <div class="container">
-     {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_row(form.title) }}
-            {{ form_row(form.content) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.project) }}
-            <br>
-            {{ form_widget(form.type) }}
-            <br>
-            {{ form_widget(form.uploadFiles) }}
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col">
-            <p class="text-center">
-                <button type="submit" class="btn btn-primary">Modifier le message</button>
-            </p>
-        </div>
-    </div>
-    {{ form_end(form) }}
+    {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Modification d\'un message' } %}
+    {% include 'message/_form.html.twig' with {'titleButton' : 'Modifier'} %}
 </div>
 {% endblock %}
 

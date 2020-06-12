@@ -5,6 +5,7 @@ namespace App\Entity;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TrainingRepository")
@@ -22,11 +23,23 @@ class Training
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Le titre doit au moins faire 3 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le titre est obligatoire")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le résumé doit au moins faire 10 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le résumé est obligatoire")
      */
     private $excerpt;
 
@@ -52,6 +65,12 @@ class Training
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le programme doit au moins faire 10 caractères",
+     *      allowEmptyString = false
+     *      )
+     * @Assert\NotBlank(message = "Le programme est obligatoire")
      */
     private $program;
 
@@ -62,6 +81,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="trainings")
+     * @Assert\NotBlank(message = "Le thème est obligatoire")
      */
     private $theme;
 

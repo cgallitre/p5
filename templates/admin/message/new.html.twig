@@ -5,28 +5,7 @@
 {% block body %}
 <div class="container">
     {% include 'partials/titlePage.html.twig' with { 'titlePage' : 'Ajouter un message' } %}
-    {{ form_start(form) }}
-    <div class="row ">
-        <div class="col-md-6">
-            {{ form_row(form.title) }}
-            {{ form_row(form.content) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.project) }}
-            <br>
-            {{ form_widget(form.type) }}
-            <br>
-            {{ form_widget(form.uploadFiles) }}
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col">
-            <p class="text-center">
-                <button type="submit" class="btn btn-primary">Ajouter le message</button>
-            </p>
-        </div>
-    </div>
-    {{ form_end(form) }}
+    {% include 'message/_form.html.twig' with {'titleButton' : 'Ajouter'} %}
 </div>
 
 {% endblock %}
@@ -89,11 +68,7 @@
         });
     }
 
-
     // Appel de la fonction suppression dés le chargement de la page (pour éditer un message)
     handleDeleteButtons();
 </script>
-
-
-
 {% endblock %}
