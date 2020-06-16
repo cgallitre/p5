@@ -4,9 +4,9 @@
 Formateur développeur à Tours (37)
 {% endblock %}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
 <link rel="stylesheet" href="/css/animations.css">
-{% endblock %}
+{% endblock %} #}
 
 {% block body %}
 <div class="col">
@@ -18,11 +18,9 @@ Formateur développeur à Tours (37)
     <div class="row mx-auto">
         <div class="col-11 col-md-7 mx-auto bg-light p-3 mb-5 rounded">
             {{ form_start(form) }}
-
             {{ form_widget(form) }}
             <button type="submit" class="btn btn-primary float-right"><i class="fas fa-paper-plane"></i> Envoyer</a>
             {{ form_end(form)}}
-
         </div>
     </div>
 </div>

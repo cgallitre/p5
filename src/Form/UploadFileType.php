@@ -20,6 +20,9 @@ class UploadFileType extends AbstractType
                 'download_uri' => false,
                 'required' => false,
           ])
+          ->add('fileName', TextType::class, [
+              'required' => false
+          ])
         ;
     }
 
