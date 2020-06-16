@@ -30,8 +30,8 @@ class ContactType extends AbstractType
                 'constraints' => new NotBlank(),
                 'label' =>"Votre message",
                 'attr' => [
-                    'rows' => '8'
-                ]
+                    'rows' => '6'
+                    ]
                 ])
         ;
     }

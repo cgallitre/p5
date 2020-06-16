@@ -13,7 +13,7 @@
     <div class="row ml-3">
 
         {# Filtre #}
-        <div class="col-md-3 js-filter-form">
+        <div class="col-md-3 js-filter-form d-none d-md-block">
             {% include 'admin/message/_dashboard.html.twig' %}
             {% include 'message/_filter.html.twig' with {'form' : form }%}
         </div>

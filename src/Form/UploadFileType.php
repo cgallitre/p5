@@ -18,7 +18,7 @@ class UploadFileType extends AbstractType
                 'asset_helper' => true,
                 'allow_delete' =>false,
                 'download_uri' => false,
-                'required' => false,
+                'required' => true,
           ])
           ->add('fileName', TextType::class, [
               'required' => false

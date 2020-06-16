@@ -17,7 +17,8 @@ class TestimonialType extends ApplicationType
             ->add('content', TextareaType::class,[
                 'label' => 'Texte du témoignage',
                 'attr' => [
-                    'rows' => 6
+                    'rows' => 6,
+                    'placeholder' => "Appuyer 2 fois sur Entrée pour un retour à la ligne."
                 ]
             ])
             ->add('author', TextType::class, $this->getConfiguration("Votre signature","Laissez votre nom ainsi que votre fonction et entreprise"))

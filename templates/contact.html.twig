@@ -4,10 +4,6 @@
 Formateur développeur à Tours (37)
 {% endblock %}
 
-{# {% block stylesheets %}
-<link rel="stylesheet" href="/css/animations.css">
-{% endblock %} #}
-
 {% block body %}
 <div class="col">
     <div class="row">
@@ -17,11 +13,51 @@ Formateur développeur à Tours (37)
     </div>
     <div class="row mx-auto">
         <div class="col-11 col-md-7 mx-auto bg-light p-3 mb-5 rounded">
-            {{ form_start(form) }}
+            <p id="validationMessage" class="mt-3"></p>
+            {{ form_start(form, {'attr' : {'id':'formContact'}}) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary float-right"><i class="fas fa-paper-plane"></i> Envoyer</a>
+            <button type="submit" class="btn btn-primary float-right" id="valid"><i class="fas fa-paper-plane"></i> Envoyer</a>
             {{ form_end(form)}}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{# Validation du formulaire #}
+<script>
+    $(function() {
+        $("#valid").click(function(){
+
+            name = $("#contact_name").val();
+            email = $("#contact_email").val();
+            message = $("#contact_message").val();
+            validation = $("#validationMessage");
+
+            if (name.length == 0 || email.length == 0 || message == 0){       
+                validation.addClass("alert alert-danger");
+                validation.html("Vous devez renseigner tous les champs.");
+                return false;
+            }
+            
+            if (name.length < 3 || name.length > 80){
+                validation.addClass("alert alert-danger");
+                validation.html("Le nom doit faire entre 3 et 80 caractères.");
+                return false;
+            }
+
+            if (!(email.match(/\S+@\S+\.\S+/))){
+                validation.addClass("alert alert-danger");
+                validation.html("L'adresse email n'est pas conforme.");
+                return false;
+            }
+
+            if (message.length < 10 || name.length > 300){
+                validation.addClass("alert alert-danger");
+                validation.html("Le message doit faire entre 10 et 300 caractères.");
+                return false;
+            }
+        })
+    })
+</script>
 {% endblock %}
