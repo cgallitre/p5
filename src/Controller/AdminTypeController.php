@@ -98,14 +98,23 @@ class AdminTypeController extends AbstractController
      */
     public function delete(Type $type, EntityManagerInterface $manager)
     {
-       
-        $manager->remove($type);
-        $manager->flush();
+       $countMessages = $type->getMessages()->count();
 
-        $this->addFlash(
-            'success',
-            "Le type <strong>{$type->getTitle()}</strong> a bien été supprimée."
-        );
+        if ($countMessages == 0){
+            $manager->remove($type);
+            $manager->flush();
+    
+            $this->addFlash(
+                'success',
+                "Le type <strong>{$type->getTitle()}</strong> a bien été supprimée."
+            );
+        } else {
+                $this->addFlash(
+                    'danger',
+                    "Le type <strong>{$type->getTitle()}</strong> est associé à $countMessages message(s) et ne peut pas être supprimé."
+                );
+
+        }
 
         return $this->redirectToRoute('admin_type_index');
     }

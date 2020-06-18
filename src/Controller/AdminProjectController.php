@@ -96,14 +96,23 @@ class AdminProjectController extends AbstractController
      */
     public function delete(Project $project, EntityManagerInterface $manager)
     {
-       
-        $manager->remove($project);
-        $manager->flush();
+        $countMessages = $project->getMessages()->count();
+        
+        if ($countMessages == 0) {
+            $manager->remove($project);
+            $manager->flush();
+    
+            $this->addFlash(
+                'success',
+                "Le projet <strong>{$project->getTitle()}</strong> a bien été supprimé."
+            );
+        } else {
+                $this->addFlash(
+                    'danger',
+                    "Le projet <strong>{$project->getTitle()}</strong> contient $countMessages message(s) et ne peut pas être supprimé."
+                );
 
-        $this->addFlash(
-            'success',
-            "Le projet <strong>{$project->getTitle()}</strong> a bien été supprimé."
-        );
+        }
 
         return $this->redirectToRoute('admin_project_index');
     }

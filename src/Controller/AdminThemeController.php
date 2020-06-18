@@ -97,14 +97,18 @@ class AdminThemeController extends AbstractController
      */
     public function delete(Theme $theme, EntityManagerInterface $manager)
     {
-       
-        $manager->remove($theme);
-        $manager->flush();
+        $countTraining = $theme->getTrainings()->count();
 
-        $this->addFlash(
-            'success',
-            "Le thème <strong>{$theme->getTitle()}</strong> a bien été supprimé."
-        );
+        if ($countTraining == 0){
+            $manager->remove($theme);
+            $manager->flush();
+    
+        } else {
+                $this->addFlash(
+                    'danger',
+                    "Le thème <strong>{$theme->getTitle()}</strong> est associé à $countTraining formation(s) et ne peut pas être supprimé."
+                );
+        }
 
         return $this->redirectToRoute('admin_theme_index');
     }

@@ -97,14 +97,22 @@ class AdminCategoryController extends AbstractController
      */
     public function delete(Category $category, EntityManagerInterface $manager)
     {
-       
-        $manager->remove($category);
-        $manager->flush();
+        $countPorfolio = $category->getPortfolios()->count();
 
-        $this->addFlash(
-            'success',
-            "La catégorie <strong>{$category->getTitle()}</strong> a bien été supprimée."
-        );
+        if ($countPorfolio == 0){
+            $manager->remove($category);
+            $manager->flush();
+    
+            $this->addFlash(
+                'success',
+                "La catégorie <strong>{$category->getTitle()}</strong> a bien été supprimée."
+            );
+        } else {
+                $this->addFlash(
+                    'danger',
+                    "La catégorie <strong>{$category->getTitle()}</strong> est associée à $countPorfolio référence(s) et ne peut pas être supprimée."
+                );
+        }
 
         return $this->redirectToRoute('admin_category_index');
     }
