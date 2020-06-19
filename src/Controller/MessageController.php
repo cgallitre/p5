@@ -73,7 +73,7 @@ class MessageController extends AbstractController
         $message = new Message();
 
         $form = $this->createForm(MessageType::class, $message)
-                    ->add('project', EntityType::class, [
+                     ->add('project', EntityType::class, [
                         'class' => Project::class,
                         'choice_label' => 'title',
                         'label' => 'Projet',

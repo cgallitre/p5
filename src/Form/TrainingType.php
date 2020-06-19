@@ -26,7 +26,7 @@ class TrainingType extends ApplicationType
             ->add('objectives', TextareaType::class, $this->getConfiguration("Objectifs pédagogiques", null, [
                 'required' => false
             ]))
-            ->add('level', TextareaType::class, $this->getConfiguration("Niveau requis", "Indiquer les prérequis pour suivre la formation", null, [
+            ->add('level', TextareaType::class, $this->getConfiguration("Niveau requis", "Indiquer les prérequis pour suivre la formation", [
                 'required' => false
             ]))
             ->add('public', TextareaType::class, $this->getConfiguration("Public", null, [
