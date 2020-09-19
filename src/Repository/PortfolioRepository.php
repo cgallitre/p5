@@ -19,6 +19,15 @@ class PortfolioRepository extends ServiceEntityRepository
         parent::__construct($registry, Portfolio::class);
     }
 
+    public function findAllInOrder()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.screenOrder','ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Portfolio[] Returns an array of Portfolio objects
     //  */

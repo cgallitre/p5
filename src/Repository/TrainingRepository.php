@@ -19,6 +19,36 @@ class TrainingRepository extends ServiceEntityRepository
         parent::__construct($registry, Training::class);
     }
 
+    public function findInOrder()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.published = true')
+            ->orderBy('t.screenOrder','ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findAllInOrder()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.screenOrder','ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findInOrderByTheme($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.published = true AND t.theme = :id')
+            ->setParameter('id', $id)
+            ->orderBy('t.screenOrder','ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Training[] Returns an array of Training objects
     //  */

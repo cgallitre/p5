@@ -19,6 +19,16 @@ class ThemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Theme::class);
     }
 
+    public function findInOrder()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.screenOrder','ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Theme[] Returns an array of Theme objects
     //  */
@@ -47,4 +57,5 @@ class ThemeRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

@@ -54,7 +54,7 @@ class AdminTrainingController extends AbstractController
      */
     public function list(TrainingRepository $repo) {
 
-        $trainings = $repo->findAll();
+        $trainings = $repo->findAllInOrder();
 
         return $this->render('admin/training/index.html.twig', [
             'trainings' => $trainings

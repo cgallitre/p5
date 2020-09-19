@@ -86,6 +86,16 @@ class Portfolio
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $screenOrder;
+
+    /**
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
@@ -190,6 +200,30 @@ class Portfolio
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getScreenOrder(): ?int
+    {
+        return $this->screenOrder;
+    }
+
+    public function setScreenOrder(?int $screenOrder): self
+    {
+        $this->screenOrder = $screenOrder;
 
         return $this;
     }

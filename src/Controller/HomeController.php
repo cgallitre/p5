@@ -22,7 +22,8 @@ class HomeController extends AbstractController {
 
         $portfolios = $portfolioRepo->createQueryBuilder('p')
                                         ->select('p')
-                                        ->orderBy('p.id', 'DESC')
+                                        ->where('p.published = TRUE')
+                                        ->orderBy('p.screenOrder', 'ASC')
                                         ->setMaxResults(3)
                                         ->getQuery()
                                         ->getResult();

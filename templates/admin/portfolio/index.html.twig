@@ -17,7 +17,8 @@
                     <th scope="col">Titre</th>
                     <th scope="col" class="d-none d-md-table-cell">Technologies</th>
                     <th scope="col" class="d-none d-md-table-cell">URL</th>
-                    <th scope="col" class="d-none d-md-table-cell">Capture</th>
+                    <th scope="col" class="d-none d-md-table-cell">Ordre</th>
+                    <th scope="col" class="d-none d-md-table-cell">Publié</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -27,7 +28,9 @@
                     <td>{{ portfolio.title }}</td>
                     <td class="d-none d-md-table-cell">{{ portfolio.technology }}</td>
                     <td class="d-none d-md-table-cell">{{ portfolio.url }}</td>
-                    <td class="d-none d-md-table-cell"><img src="{{ vich_uploader_asset(portfolio, 'imageFile') }}" alt="{{ portfolio.coverImage }}"></td>
+                    <td class="d-none d-md-table-cell">{{ portfolio.screenOrder }}</td>
+                    <td class="d-none d-md-table-cell">{{ portfolio.published }}</td>
+                    {# <td class="d-none d-md-table-cell"><img src="{{ vich_uploader_asset(portfolio, 'imageFile') }}" alt="{{ portfolio.coverImage }}"></td> #}
                     <td class="text-center">
                         <a href="{{ path('admin_portfolio_edit', { 'id' : portfolio.id }) }}">
                             <i class="fas fa-edit"></i>

@@ -23,14 +23,15 @@ class PortfolioController extends AbstractController
         $portfolios = $repoPortfolio
                 ->createQueryBuilder('p')
                 ->select('p')
-                ->orderBy('p.id', 'DESC');
+                ->where('p.published = TRUE')
+                ->orderBy('p.screenOrder', 'ASC');
       
         if ($id)
         {
             $portfolios->andWhere('p.category =' . $id);
         } 
 
-        $categories = $repoCategory->findAll();
+        $categories = $repoCategory->findInOrder();
 
         if ($request->isXmlHttpRequest()){
 

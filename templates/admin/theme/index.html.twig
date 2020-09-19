@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col">Thème</th>
+                    <th scope="col">Order d'apparition</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                 {% for theme in themes %}
                 <tr class="table-light">
                     <td>{{ theme.title }}</td>
+                    <td>{{ theme.screenOrder }}</td>
                     <td>
                         <a href="{{ path('admin_theme_edit', { 'id' : theme.id }) }}">
                             <i class="fas fa-edit fa-2x"></i>

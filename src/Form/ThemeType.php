@@ -14,6 +14,7 @@ class ThemeType extends ApplicationType
     {
         $builder
             ->add('title', TextType::class, $this->getConfiguration("Titre du thème"))
+            ->add('screenOrder', TextType::class, ['label' => 'Ordre d\'apparition'])
         ;
     }
 

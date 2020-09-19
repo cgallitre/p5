@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-{{ training.title }}
-{% endblock %}
+{% block description %}
+Cyril Gallitre - {{ training.title }} - {{ training.metaDesc }}{% endblock %}
+
+{% block title %}{{ training.title }}{% endblock %}
 
 {% block body %}
 <div class="container">

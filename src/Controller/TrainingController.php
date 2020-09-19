@@ -23,12 +23,12 @@ class TrainingController extends AbstractController
         
         if ($id)
         {
-            $trainings=$repoTraining->findByTheme($id);
+            $trainings=$repoTraining->findInOrderByTheme($id);
         } else {
-            $trainings = $repoTraining->findAll();
+            $trainings = $repoTraining->findInOrder();
         }
     
-        $themes = $repoTheme->findAll();
+        $themes = $repoTheme->findInOrder();
 
         if ($request->isXmlHttpRequest()){
 

@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th scope="col">Catégorie</th>
+                    <th scope="col">Order d'apparition</th>
                     <th scope="col" width="100px">Commandes</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                 {% for category in categories %}
                 <tr class="table-light">
                     <td>{{ category.title }}</td>
+                    <td>{{ category.screenOrder }}</td>
                     <td>
                         <a href="{{ path('admin_category_edit', { 'id' : category.id }) }}">
                             <i class="fas fa-edit fa-2x"></i>

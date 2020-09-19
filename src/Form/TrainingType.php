@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TrainingType extends ApplicationType
@@ -44,7 +45,17 @@ class TrainingType extends ApplicationType
                 'choice_label' => 'title',
                 'label' => 'Thème de la formation',
                 'expanded' =>true
-            ]);
+            ])
+            ->add('screenOrder', TextType::class, $this->getConfiguration("Order d'apparition", null, [
+                'required' => false
+                ]))
+            ->add('published', CheckboxType::class, $this->getConfiguration("Publié", null, [
+                'required' => false
+                ]))
+            ->add('metaDesc', TextareaType::class, $this->getConfiguration("Meta Description", null, [
+                'required' => false
+            ]))
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

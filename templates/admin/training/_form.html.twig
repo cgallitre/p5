@@ -24,6 +24,15 @@
         {{ form_row(form.theme) }}
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.screenOrder) }}
+        {{ form_row(form.published) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.metaDesc)}}
+    </div>
+</div>
 <p class="text-center">
     <button type="submit" class="btn btn-primary">{{ btnForm }} la formation</button>
 </p>

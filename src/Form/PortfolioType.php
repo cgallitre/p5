@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PortfolioType extends ApplicationType
@@ -40,6 +41,14 @@ class PortfolioType extends ApplicationType
                 'attr' => [
                     'placeholder' => false
                 ]
+            ])
+            ->add('screenOrder', TextType::class, [
+                'label' => 'Ordre d\'apparition',
+                'required' => false
+            ])
+            ->add('published', CheckboxType::class, [
+                'label' => 'Publié',
+                'required' => false
             ])
             ;
     }

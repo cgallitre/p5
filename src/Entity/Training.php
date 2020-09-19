@@ -86,6 +86,21 @@ class Training
     private $theme;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $screenOrder;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $metaDesc;
+
+    /**
      * Permet de créer le slug automatiquement
      * @ORM\PrePersist
      * @ORM\PreUpdate
@@ -206,6 +221,42 @@ class Training
     public function setTheme(?theme $theme): self
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getScreenOrder(): ?int
+    {
+        return $this->screenOrder;
+    }
+
+    public function setScreenOrder(?int $screenOrder): self
+    {
+        $this->screenOrder = $screenOrder;
+
+        return $this;
+    }
+
+    public function getMetaDesc(): ?string
+    {
+        return $this->metaDesc;
+    }
+
+    public function setMetaDesc(?string $metaDesc): self
+    {
+        $this->metaDesc = $metaDesc;
 
         return $this;
     }

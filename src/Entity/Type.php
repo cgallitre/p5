@@ -35,6 +35,11 @@ class Type
      */
     private $messages;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $screenOrder;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -84,6 +89,18 @@ class Type
                 $message->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getScreenOrder(): ?int
+    {
+        return $this->screenOrder;
+    }
+
+    public function setScreenOrder(?int $screenOrder): self
+    {
+        $this->screenOrder = $screenOrder;
 
         return $this;
     }

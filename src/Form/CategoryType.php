@@ -14,6 +14,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Nom de la catégorie'])
+            ->add('screenOrder', TextType::class, ['label' => 'Ordre d\'apparition'])
         ;
     }
 

@@ -22,7 +22,7 @@ class Theme
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 4,
+     *      min = 3,
      *      minMessage = "Le titre doit au moins faire 4 caractères",
      *      allowEmptyString = false
      *      )
@@ -35,6 +35,11 @@ class Theme
      * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="theme")
      */
     private $trainings;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $screenOrder;
 
     public function __construct()
     {
@@ -85,6 +90,18 @@ class Theme
                 $training->setTheme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getScreenOrder(): ?int
+    {
+        return $this->screenOrder;
+    }
+
+    public function setScreenOrder(?int $screenOrder): self
+    {
+        $this->screenOrder = $screenOrder;
 
         return $this;
     }

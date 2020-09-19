@@ -55,7 +55,7 @@ class AdminPortfolioController extends AbstractController
      */
     public function list(PortfolioRepository $repo)
     {
-        $portfolios = $repo->findAll();
+        $portfolios = $repo->findAllInOrder();
 
         return $this->render('admin/portfolio/index.html.twig', [
             'portfolios' => $portfolios

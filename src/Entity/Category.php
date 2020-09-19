@@ -35,6 +35,11 @@ class Category
      */
     private $portfolios;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $screenOrder;
+
     public function __construct()
     {
         $this->portfolios = new ArrayCollection();
@@ -84,6 +89,18 @@ class Category
                 $portfolio->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getScreenOrder(): ?int
+    {
+        return $this->screenOrder;
+    }
+
+    public function setScreenOrder(int $screenOrder): self
+    {
+        $this->screenOrder = $screenOrder;
 
         return $this;
     }
